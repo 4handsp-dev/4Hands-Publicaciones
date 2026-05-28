@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SARAS — Flujo de gestión A&S</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gotu&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --naranja:   #F18446;
+      --naranja-lt:#FEDB9B;
+      --morazul:   #093E5E;
+      --gris:      #4B4B4C;
+      --nocturno:  #1c1c1c;
+      --tofu:      #FEF0C4;
+      --jengibre:  #FBF3E4;
+      --gran-lago: #BED4CF;
+      --onix:      #8B8B8C;
+      --plata:     #F1F1F1;
+      --white:     #ffffff;
+    }
+
+    @font-face { font-family: 'Ibrand'; src: local('Ibrand'); }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Satoshi', 'Segoe UI', sans-serif;
+      background: var(--plata);
+      color: var(--nocturno);
+      padding: 44px 20px 64px;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-header h1 {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--morazul);
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .page-header p {
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.75rem;
+      color: var(--onix);
+      margin-top: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .header-rule {
+      width: 44px;
+      height: 3px;
+      background: var(--naranja);
+      margin: 14px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── FLOW WRAPPER ── */
+    .flow {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── STAGE CARD ── */
+    .stage {
+      width: 100%;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(9,62,94,0.09);
+      overflow: hidden;
+    }
+    .stage::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: var(--morazul);
+    }
+    .stage.s-orange::before { background: var(--naranja); }
+    .stage.s-gray::before   { background: var(--gris); }
+    .stage.s-apetito {
+      border: 2px dashed #a0b8cc;
+      box-shadow: 0 2px 10px rgba(9,62,94,0.06);
+    }
+    .stage.s-apetito::before { display: none; }
+
+    .stage-inner { padding: 20px 26px 22px; }
+
+    /* Stage head */
+    .stage-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 16px;
+    }
+    .stage-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--plata);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stage-icon .material-icons-round {
+      font-size: 21px;
+      color: var(--morazul);
+    }
+    .stage.s-orange .stage-icon { background: #fff2ea; }
+    .stage.s-orange .stage-icon .material-icons-round { color: var(--naranja); }
+    .stage.s-gray   .stage-icon { background: #f2f2f2; }
+    .stage.s-gray   .stage-icon .material-icons-round { color: var(--gris); }
+    .stage.s-apetito .stage-icon { background: #eaf0f6; }
+
+    .stage-meta { flex: 1; }
+    .stage-label {
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--onix);
+      margin-bottom: 3px;
+    }
+    .stage-title {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--morazul);
+      line-height: 1.25;
+    }
+    .stage.s-orange .stage-title { color: #7a3200; }
+
+    /* ── CHIPS ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .chip {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: 20px;
+      padding: 5px 16px;
+      background: var(--plata);
+      color: var(--morazul);
+      border: 1px solid #d4dde6;
+    }
+    .chip.c1 { border-left: 4px solid var(--gran-lago);  background: #f2f9f7; }
+    .chip.c2 { border-left: 4px solid var(--naranja-lt); background: #fffcf5; }
+    .chip.c3 { border-left: 4px solid var(--naranja);    background: #fff7f2; }
+
+    /* ── THRESHOLD (1ª capa) ── */
+    .threshold-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 2px;
+    }
+    .threshold-badge {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      background: var(--naranja);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 8px 24px;
+      white-space: nowrap;
+    }
+    .threshold-note {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.75rem;
+      color: #7a3200;
+      line-height: 1.55;
+      flex: 1;
+      min-width: 180px;
+    }
+    .fin-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+      justify-content: center;
+    }
+    .fin-chip {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--jengibre);
+      border: 1px solid var(--naranja-lt);
+      border-radius: 16px;
+      padding: 4px 14px;
+      color: #7a3200;
+    }
+
+    /* ── SUB-BLOCKS ── */
+    .sub-block {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .sub-block-label {
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    /* Canales */
+    .channels-block {
+      background: #f2f8f9;
+      border: 1px solid var(--gran-lago);
+    }
+    .channels-block .sub-block-label { color: #1a5a52; }
+
+    /* 2ª capa */
+    .layer2-block {
+      background: var(--plata);
+      border: 1px solid #d8e2ec;
+    }
+    .layer2-block .sub-block-label { color: #8a5000; }
+    .layer2-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .layer2-chip {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--white);
+      border: 1.5px solid var(--naranja-lt);
+      border-radius: 16px;
+      padding: 5px 16px;
+      color: #7a3200;
+    }
+    .layer2-desc {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.7rem;
+      color: var(--gris);
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* Notes */
+    .note {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.55;
+      border-radius: 7px;
+      padding: 9px 12px;
+      margin-top: 8px;
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+    .note .material-icons-round { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .note.warning { background: #fffcee; border: 1px solid #f0d050; color: #6b4800; }
+    .note.warning .material-icons-round { color: #c08000; }
+    .note.info    { background: #f2f5ff; border: 1px solid #b8ccf0; color: #1a2a6a; }
+    .note.info    .material-icons-round { color: #3060c0; }
+
+    /* ── TWO-COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .col-card {
+      background: var(--plata);
+      border: 1px solid #e0e8ef;
+      border-radius: 8px;
+      padding: 13px 14px;
+      border-top: 3px solid var(--gran-lago);
+    }
+    .col-card.b { border-top-color: #3a9a80; }
+    .col-card h4 {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--morazul);
+      margin-bottom: 5px;
+    }
+    .col-card p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.7rem;
+      color: var(--gris);
+      line-height: 1.45;
+    }
+
+    /* ── MEDICIÓN ── */
+    .meas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.5fr;
+      gap: 10px;
+    }
+    .mcard {
+      background: var(--plata);
+      border-radius: 8px;
+      padding: 12px 13px;
+      border-top: 3px solid var(--gran-lago);
+    }
+    .mcard.b { border-top-color: var(--morazul); }
+    .mcard.c { border-top-color: var(--naranja-lt); }
+    .mcard h4 {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--morazul);
+      margin-bottom: 5px;
+    }
+    .mcard p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.69rem;
+      color: var(--gris);
+      line-height: 1.42;
+    }
+    .horizons { display: flex; flex-direction: column; gap: 5px; }
+    .hz {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.68rem;
+      color: var(--gris);
+      background: var(--white);
+      border-radius: 5px;
+      padding: 5px 10px;
+      border: 1px solid #dce8e4;
+      line-height: 1.4;
+    }
+
+    /* ── IMPACTO ── */
+    .imp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .icard {
+      background: var(--plata);
+      border-radius: 8px;
+      padding: 13px 14px;
+      border-top: 3px solid var(--naranja-lt);
+    }
+    .icard.b { border-top-color: var(--naranja); }
+    .icard h4 {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--morazul);
+      margin-bottom: 5px;
+    }
+    .icard p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.69rem;
+      color: var(--gris);
+      line-height: 1.42;
+    }
+
+    /* ── APETITO ── */
+    .apetito-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .ap {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.73rem;
+      font-weight: 500;
+      background: var(--plata);
+      border-radius: 6px;
+      padding: 7px 16px;
+      color: var(--morazul);
+      border: 1px solid #c8d8e8;
+    }
+
+    /* ── TOLERANCIAS ── */
+    .tol-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+    .tol-card {
+      border-radius: 12px;
+      padding: 18px 17px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .tol-nivel {
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.61rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .tol-card h3 {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
+      margin-bottom: 11px;
+    }
+    .tol-card .acciones {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.69rem;
+      line-height: 1.65;
+      padding-left: 14px;
+      color: #333;
+    }
+    .tol-bajo  { background: var(--white); border-left: 4px solid #b01010; }
+    .tol-bajo  .tol-nivel, .tol-bajo  h3 { color: #b01010; }
+    .tol-medio { background: var(--white); border-left: 4px solid #c07010; }
+    .tol-medio .tol-nivel, .tol-medio h3 { color: #c07010; }
+    .tol-alto  { background: var(--white); border-left: 4px solid #1a7a30; }
+    .tol-alto  .tol-nivel, .tol-alto  h3 { color: #1a7a30; }
+
+    /* ── CONNECTOR ── */
+    .connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 30px;
+      width: 100%;
+    }
+    .connector::before {
+      content: '';
+      width: 1.5px;
+      flex: 1;
+      background: linear-gradient(to bottom, #b0c8d8, var(--gran-lago));
+    }
+    .connector::after {
+      content: '';
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid var(--gran-lago);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.67rem;
+      color: var(--onix);
+      letter-spacing: 0.07em;
+    }
+
+    @media (max-width: 640px) {
+      .two-col, .meas-grid, .imp-grid, .tol-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>SARAS — Flujo del proceso de gestión A&amp;S</h1>
+  <p>Sistema de Administración de Riesgos Ambientales y Sociales · Asulado Seguros de Vida S.A.</p>
+  <div class="header-rule"></div>
+</div>
+
+<div class="flow">
+
+  <!-- 1. LÍNEAS DE NEGOCIO -->
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">domain</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">Punto de partida</div>
+          <div class="stage-title">Líneas de negocio</div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Seguro previsional</span>
+        <span class="chip">Renta vitalicia</span>
+        <span class="chip">Otros productos</span>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 2. 1ª CAPA: MATERIALIDAD FINANCIERA -->
+  <div class="stage s-orange">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">filter_alt</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">1ª capa · Umbral de materialidad</div>
+          <div class="stage-title">Dimensión de materialidad financiera</div>
+        </div>
+      </div>
+      <div class="threshold-row">
+        <span class="threshold-badge">≥ 5 Puntos de solvencia</span>
+        <span class="threshold-note">Representación económica de la línea de negocio como primer criterio de focalización del esfuerzo A&amp;S más relevante</span>
+      </div>
+      <div class="fin-chips">
+        <span class="fin-chip">Impacto sobre solvencia regulatoria</span>
+        <span class="fin-chip">Priorización por línea de negocio</span>
+        <span class="fin-chip">Filtro previo a la gestión A&amp;S</span>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 3. IDENTIFICACIÓN Y PERFILAMIENTO -->
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">manage_search</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">Ciclo de gestión · Paso 1</div>
+          <div class="stage-title">Identificación y perfilamiento de factores de riesgo A&amp;S</div>
+        </div>
+      </div>
+
+      <!-- Canales de exposición -->
+      <div class="sub-block channels-block">
+        <div class="sub-block-label">Canales de exposición A&amp;S · Marco estructural</div>
+        <div class="chips">
+          <span class="chip c1">Suscripción · frecuencia y severidad de siniestros</span>
+          <span class="chip c2">Inversión · valor, liquidez y rentabilidad del portafolio</span>
+          <span class="chip c3">Reserva técnica · pasivos de largo plazo</span>
+        </div>
+      </div>
+
+      <!-- 2ª capa: Criterios de relevancia -->
+      <div class="sub-block layer2-block">
+        <div class="sub-block-label">2ª capa · Caracterización de criterios de relevancia</div>
+        <div class="layer2-chips">
+          <span class="layer2-chip">Sectorial</span>
+          <span class="layer2-chip">Clientes / Asegurados</span>
+          <span class="layer2-chip">Geográfica</span>
+        </div>
+        <div class="layer2-desc">Aplicada a los canales de exposición y líneas de negocio materiales · Paso previo al análisis Ex ante y Continuo</div>
+        <div class="note warning">
+          <span class="material-icons-round">warning_amber</span>
+          <span><strong>Nota de validación:</strong> Las líneas no priorizadas en la 1ª capa deben verificarse para confirmar que no presentan potencial de riesgo A&amp;S por ubicación geográfica, sector económico o segmento de clientes que, en una visión prospectiva, pudiera activar un riesgo relevante para la entidad.</span>
+        </div>
+        <div class="note info">
+          <span class="material-icons-round">link</span>
+          <span><strong>Conexión con estrategia de sostenibilidad:</strong> Los criterios de relevancia se nutren de los asuntos materiales priorizados en la Matriz de Doble Materialidad corporativa. Los asuntos con conexión a riesgos financieros —según TCFD e IFRS S1/S2— se incorporan como señales de entrada. La doble materialidad opera como insumo externo al ciclo de gestión de riesgo.</span>
+        </div>
+      </div>
+
+      <!-- Ex ante / Continuo -->
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Ex ante — Originación</h4>
+          <p>Suscripción de riesgo · incorporación de activo · constitución de reservas<br>Insumo para: aceptación · precio · condicionamiento</p>
+        </div>
+        <div class="col-card b">
+          <h4>Continuo — Monitoreo</h4>
+          <p>A lo largo de la vigencia de cada operación · frecuencia ajustada al horizonte temporal del canal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 4. MEDICIÓN Y EVALUACIÓN -->
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">analytics</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">Ciclo de gestión · Paso 2</div>
+          <div class="stage-title">Medición y evaluación</div>
+        </div>
+      </div>
+      <div class="meas-grid">
+        <div class="mcard">
+          <h4>Cualitativa</h4>
+          <p>Escalas · matrices de calor · juicio experto<br>Riesgos de baja frecuencia o alta incertidumbre</p>
+        </div>
+        <div class="mcard b">
+          <h4>Cuantitativa</h4>
+          <p>Modelos actuariales · escenarios de estrés · series históricas<br>Preferida en inversión y reservas</p>
+        </div>
+        <div class="mcard c">
+          <h4>Horizontes temporales</h4>
+          <div class="horizons">
+            <span class="hz">Corto · 0–3 años · <em>Resultados y liquidez</em></span>
+            <span class="hz">Mediano · 3–10 años · <em>Solvencia e inversión</em></span>
+            <span class="hz">Largo · +10 años · <em>Longevidad · equilibrio actuarial</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 5. ESTIMACIÓN DE IMPACTO -->
+  <div class="stage s-gray">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">assessment</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">Dimensiones del impacto</div>
+          <div class="stage-title">Estimación de impacto potencial</div>
+        </div>
+      </div>
+      <div class="imp-grid">
+        <div class="icard">
+          <h4>Económico y financiero</h4>
+          <p>Siniestralidad · rentabilidad portafolio · insuficiencia de reservas · costo reaseguro · solvencia · liquidez · valor activos actuariales</p>
+        </div>
+        <div class="icard b">
+          <h4>Modelo de negocio y resiliencia</h4>
+          <p>Viabilidad estratégica · capacidad de suscripción futura · reputación · adaptabilidad ante cambios regulatorios, climáticos y sociales</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 6. CONTRASTE CON APETITO -->
+  <div class="stage s-apetito">
+    <div class="stage-inner">
+      <div class="stage-head">
+        <div class="stage-icon"><span class="material-icons-round">balance</span></div>
+        <div class="stage-meta">
+          <div class="stage-label">Punto de decisión</div>
+          <div class="stage-title">Contraste con apetito y umbrales</div>
+        </div>
+      </div>
+      <div class="apetito-row">
+        <span class="ap">Junta Directiva · apetito aprobado</span>
+        <span class="ap">Umbrales de materialidad por canal</span>
+        <span class="ap">Determinación del nivel de exposición</span>
+      </div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 7. NIVELES DE TOLERANCIA -->
+  <div class="tol-grid">
+    <div class="tol-card tol-bajo">
+      <div class="tol-nivel">Nivel 1 · Bajo</div>
+      <h3>Exclusión / remediación</h3>
+      <ul class="acciones">
+        <li>Suscripción: no activar cliente · reaseguro del exceso A&S</li>
+        <li>Inversión: desinvertir</li>
+        <li>Reserva: elevar reserva técnica o plan aprobado por Junta</li>
+      </ul>
+    </div>
+    <div class="tol-card tol-medio">
+      <div class="tol-nivel">Nivel 2 · Medio</div>
+      <h3>Condicionado</h3>
+      <ul class="acciones">
+        <li>Suscripción: variables A&S en hipótesis actuariales · monitoreo reforzado</li>
+        <li>Inversión: límites de concentración · análisis de escenarios de estrés</li>
+        <li>Reserva: factor de ajuste corrector A&S</li>
+      </ul>
+    </div>
+    <div class="tol-card tol-alto">
+      <div class="tol-nivel">Nivel 3 · Alto</div>
+      <h3>Sin restricción A&S</h3>
+      <ul class="acciones">
+        <li>Suscripción: admisión libre</li>
+        <li>Inversión: posición sin restricción</li>
+        <li>Reserva: factor de ajuste corrector A&S</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  SARAS · Asulado Seguros de Vida S.A. · Política de Gestión de Riesgos Ambientales y Sociales — Construcción direccionada por 4Hands Partners S.A.S BIC
+</div>
+
+</body>
+</html>
