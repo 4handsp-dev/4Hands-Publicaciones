@@ -226,13 +226,6 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-    /* Canales */
-    .channels-block {
-      background: #f2f8f9;
-      border: 1px solid var(--gran-lago);
-    }
-    .channels-block .sub-block-label { color: #1a5a52; }
-
     /* 2ª capa */
     .layer2-block {
       background: var(--plata);
@@ -390,6 +383,65 @@
       color: var(--morazul);
       border: 1px solid #c8d8e8;
     }
+    .apetito-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .ap-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid #d8e2ec;
+      border-top: 3px solid var(--morazul);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ap-card.c-fin   { border-top-color: #4338ca; }
+    .ap-card.c-conc  { border-top-color: #c07010; }
+    .ap-card.c-excl  { border-top-color: #0d9488; }
+    .ap-card.c-sev   { border-top-color: #b01010; }
+    .ap-card .ap-tag {
+      font-family: 'Gotu', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .ap-card .ap-title {
+      font-family: 'Ibrand', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--morazul);
+      line-height: 1.25;
+    }
+    .ap-card .ap-umbral {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #222;
+    }
+    .ap-card .ap-detalle {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.62rem;
+      color: #555;
+      line-height: 1.35;
+    }
+    .ap-note {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.65rem;
+      color: #555;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #f4f7fb;
+      border-left: 3px solid var(--morazul);
+      border-radius: 4px;
+      line-height: 1.45;
+    }
+    @media (max-width: 900px) {
+      .apetito-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     /* ── TOLERANCIAS ── */
     .tol-grid {
@@ -491,6 +543,7 @@
         <span class="chip">Seguro previsional</span>
         <span class="chip">Renta vitalicia</span>
         <span class="chip">Otros productos</span>
+        <span class="chip">Portafolio de Inversión</span>
       </div>
     </div>
   </div>
@@ -502,18 +555,18 @@
       <div class="stage-head">
         <div class="stage-icon"><span class="material-icons-round">filter_alt</span></div>
         <div class="stage-meta">
-          <div class="stage-label">1ª capa · Umbral de materialidad</div>
-          <div class="stage-title">Dimensión de materialidad financiera</div>
+          <div class="stage-label">1ª capa · Apetito financiero vigente · SIAR</div>
+          <div class="stage-title">Materialidad financiera · Impacto sobre la solvencia regulatoria</div>
         </div>
       </div>
       <div class="threshold-row">
         <span class="threshold-badge">≥ 5 Puntos de solvencia</span>
-        <span class="threshold-note">Representación económica de la línea de negocio como primer criterio de focalización del esfuerzo A&amp;S más relevante</span>
+        <span class="threshold-note">El riesgo A&amp;S se vincula al SIAR mediante el umbral de impacto sobre la solvencia regulatoria; opera como primer criterio de priorización de las líneas de negocio que escalan al ciclo SARAS</span>
       </div>
       <div class="fin-chips">
-        <span class="fin-chip">Impacto sobre solvencia regulatoria</span>
-        <span class="fin-chip">Priorización por línea de negocio</span>
-        <span class="fin-chip">Filtro previo a la gestión A&amp;S</span>
+        <span class="fin-chip">Integración al SIAR · apetito financiero vigente</span>
+        <span class="fin-chip">Impacto sobre la solvencia regulatoria</span>
+        <span class="fin-chip">Primer criterio de priorización de líneas de negocio</span>
       </div>
     </div>
   </div>
@@ -530,25 +583,15 @@
         </div>
       </div>
 
-      <!-- Canales de exposición -->
-      <div class="sub-block channels-block">
-        <div class="sub-block-label">Canales de exposición A&amp;S · Marco estructural</div>
-        <div class="chips">
-          <span class="chip c1">Suscripción · frecuencia y severidad de siniestros</span>
-          <span class="chip c2">Inversión · valor, liquidez y rentabilidad del portafolio</span>
-          <span class="chip c3">Reserva técnica · pasivos de largo plazo</span>
-        </div>
-      </div>
-
       <!-- 2ª capa: Criterios de relevancia -->
       <div class="sub-block layer2-block">
         <div class="sub-block-label">2ª capa · Caracterización de criterios de relevancia</div>
         <div class="layer2-chips">
           <span class="layer2-chip">Sectorial</span>
-          <span class="layer2-chip">Clientes / Asegurados</span>
+          <span class="layer2-chip">Clientes / Usuarios</span>
           <span class="layer2-chip">Geográfica</span>
         </div>
-        <div class="layer2-desc">Aplicada a los canales de exposición y líneas de negocio materiales · Paso previo al análisis Ex ante y Continuo</div>
+        <div class="layer2-desc">Aplicada a las líneas de negocio materiales · Paso previo al análisis Ex ante y Continuo</div>
         <div class="note warning">
           <span class="material-icons-round">warning_amber</span>
           <span><strong>Nota de validación:</strong> Las líneas no priorizadas en la 1ª capa deben verificarse para confirmar que no presentan potencial de riesgo A&amp;S por ubicación geográfica, sector económico o segmento de clientes que, en una visión prospectiva, pudiera activar un riesgo relevante para la entidad.</span>
@@ -567,8 +610,12 @@
         </div>
         <div class="col-card b">
           <h4>Continuo — Monitoreo</h4>
-          <p>A lo largo de la vigencia de cada operación · frecuencia ajustada al horizonte temporal del canal</p>
+          <p>A lo largo de la vigencia de cada operación · frecuencia ajustada al horizonte temporal de cada línea de negocio</p>
         </div>
+      </div>
+      <div class="note info">
+        <span class="material-icons-round">tune</span>
+        <span><strong>Momentos opcionales y complementarios:</strong> el análisis <strong>Ex ante</strong> y el <strong>Continuo</strong> no son obligatorios ni excluyentes. Su aplicación <strong>depende de los factores de riesgo A&amp;S identificados aplicables</strong> y de la <strong>información disponible</strong> en cada caso.</span>
       </div>
     </div>
   </div>
@@ -602,6 +649,10 @@
           </div>
         </div>
       </div>
+      <div class="note info">
+        <span class="material-icons-round">tune</span>
+        <span><strong>Enfoque opcional y complementario:</strong> la medición <strong>cualitativa</strong> y <strong>cuantitativa</strong> no es obligatoria ni excluyente. Su aplicación <strong>depende de los factores de riesgo A&amp;S identificados aplicables</strong> y de la <strong>información disponible</strong> en cada caso.</span>
+      </div>
     </div>
   </div>
   <div class="connector"></div>
@@ -612,10 +663,11 @@
       <div class="stage-head">
         <div class="stage-icon"><span class="material-icons-round">assessment</span></div>
         <div class="stage-meta">
-          <div class="stage-label">Dimensiones del impacto</div>
+          <div class="stage-label">Estimación de probabilidad y afectaciones</div>
           <div class="stage-title">Estimación de impacto potencial</div>
         </div>
       </div>
+      <div class="layer2-desc">Estimación de la probabilidad de ocurrencia y de las afectaciones asociadas · orientada a los dos tipos de impacto</div>
       <div class="imp-grid">
         <div class="icard">
           <h4>Económico y financiero</h4>
@@ -625,6 +677,10 @@
           <h4>Modelo de negocio y resiliencia</h4>
           <p>Viabilidad estratégica · capacidad de suscripción futura · reputación · adaptabilidad ante cambios regulatorios, climáticos y sociales</p>
         </div>
+      </div>
+      <div class="note info">
+        <span class="material-icons-round">tune</span>
+        <span><strong>No siempre cuantificable:</strong> no en todos los casos el impacto podrá medirse cuantitativamente. Según los <strong>factores de riesgo A&amp;S aplicables</strong> y la <strong>información disponible</strong>, la estimación de probabilidad y afectaciones podrá ser <strong>cualitativa</strong>.</span>
       </div>
     </div>
   </div>
@@ -636,47 +692,44 @@
       <div class="stage-head">
         <div class="stage-icon"><span class="material-icons-round">balance</span></div>
         <div class="stage-meta">
-          <div class="stage-label">Punto de decisión</div>
+          <div class="stage-label">Punto de decisión · Apetito A&amp;S integrado al apetito financiero (SIAR) · Junta Directiva</div>
           <div class="stage-title">Contraste con apetito y umbrales</div>
         </div>
       </div>
       <div class="apetito-row">
         <span class="ap">Junta Directiva · apetito aprobado</span>
-        <span class="ap">Umbrales de materialidad por canal</span>
+        <span class="ap">Umbrales de materialidad</span>
         <span class="ap">Determinación del nivel de exposición</span>
       </div>
-    </div>
-  </div>
-  <div class="connector"></div>
-
-  <!-- 7. NIVELES DE TOLERANCIA -->
-  <div class="tol-grid">
-    <div class="tol-card tol-bajo">
-      <div class="tol-nivel">Nivel 1 · Bajo</div>
-      <h3>Exclusión / remediación</h3>
-      <ul class="acciones">
-        <li>Suscripción: no activar cliente · reaseguro del exceso A&S</li>
-        <li>Inversión: desinvertir</li>
-        <li>Reserva: elevar reserva técnica o plan aprobado por Junta</li>
-      </ul>
-    </div>
-    <div class="tol-card tol-medio">
-      <div class="tol-nivel">Nivel 2 · Medio</div>
-      <h3>Condicionado</h3>
-      <ul class="acciones">
-        <li>Suscripción: variables A&S en hipótesis actuariales · monitoreo reforzado</li>
-        <li>Inversión: límites de concentración · análisis de escenarios de estrés</li>
-        <li>Reserva: factor de ajuste corrector A&S</li>
-      </ul>
-    </div>
-    <div class="tol-card tol-alto">
-      <div class="tol-nivel">Nivel 3 · Alto</div>
-      <h3>Sin restricción A&S</h3>
-      <ul class="acciones">
-        <li>Suscripción: admisión libre</li>
-        <li>Inversión: posición sin restricción</li>
-        <li>Reserva: factor de ajuste corrector A&S</li>
-      </ul>
+      <div class="apetito-grid">
+        <div class="ap-card c-fin">
+          <span class="ap-tag">1 · Financiero</span>
+          <span class="ap-title">Solvencia</span>
+          <span class="ap-umbral">≥ <span class="editable-pct" contenteditable="true">5</span> Pts Solvencia</span>
+          <span class="ap-detalle">Integrado al SIAR · impacto sobre la solvencia regulatoria · primer criterio de priorización de líneas de negocio.</span>
+        </div>
+        <div class="ap-card c-excl">
+          <span class="ap-tag">2 · Exclusión A&S</span>
+          <span class="ap-title">Clientes/Usuarios &middot; Actividades</span>
+          <span class="ap-umbral">Exclusiones definidas en la Política de Inversiones Sostenible</span>
+          <span class="ap-detalle">Lista cerrada de exclusiones A&amp;S aplicable a toda la operación.</span>
+        </div>
+        <div class="ap-card c-conc">
+          <span class="ap-tag">3 · Concentración A&S</span>
+          <span class="ap-title">Sectorial &middot; Geográfica</span>
+          <span class="ap-umbral">Sin umbral definido en esta etapa</span>
+          <span class="ap-detalle">Concentración sectorial y geográfica de las líneas de negocio · incorporación gradual como elemento de análisis para el monitoreo de alertas A&amp;S.</span>
+        </div>
+        <div class="ap-card c-sev">
+          <span class="ap-tag">4 · Severidad A&S</span>
+          <span class="ap-title">Calificación por emisor</span>
+          <span class="ap-umbral">Sin umbral definido en esta etapa</span>
+          <span class="ap-detalle">Características o niveles de riesgo A&amp;S de los emisores · Portafolio de Inversión (L. de Negocio) · incorporación gradual como elemento de análisis.</span>
+        </div>
+      </div>
+      <div class="ap-note">
+        <strong>Concentración A&amp;S y Severidad A&amp;S · Portafolio:</strong> en esta primera etapa no se definen umbrales de apetito. La Entidad incorporará gradualmente como elementos de análisis la concentración sectorial y geográfica de las líneas de negocio, así como las características o niveles de riesgo A&amp;S de los emisores, con el fin de monitorear alertas relevantes para la gestión del riesgo A&amp;S.
+      </div>
     </div>
   </div>
 
@@ -686,5 +739,53 @@
   SARAS · Asulado Seguros de Vida S.A. · Política de Gestión de Riesgos Ambientales y Sociales — Construcción direccionada por 4Hands Partners S.A.S BIC
 </div>
 
+
+<style id="editable-pct-style">
+  .editable-pct { display:inline-block; min-width:1.4em; padding:0 3px; border-bottom:1.5px dashed #6366f1; background:#eef2ff; border-radius:3px; cursor:text; outline:none; font-variant-numeric:tabular-nums; }
+  .editable-pct:hover { background:#e0e7ff; }
+  .editable-pct:focus { background:#fef9c3; border-bottom-color:#ca8a04; box-shadow:0 0 0 2px rgba(202,138,4,0.25); }
+</style>
+
+<script>
+(function () {
+  var STORE_KEY = 'saras_flujo_apetito_pct';
+
+  function save() {
+    var data = {};
+    document.querySelectorAll('.editable-pct').forEach(function (el, i) {
+      data[i] = el.textContent.trim();
+    });
+    localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  }
+
+  function restore() {
+    var data = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    document.querySelectorAll('.editable-pct').forEach(function (el, i) {
+      if (data[i] !== undefined && data[i] !== '') el.textContent = data[i];
+    });
+  }
+
+  function debounce(fn, ms) { var t; return function () { clearTimeout(t); t = setTimeout(fn, ms); }; }
+  var dSave = debounce(save, 400);
+
+  function attach() {
+    document.querySelectorAll('.editable-pct').forEach(function (el) {
+      el.addEventListener('input', dSave);
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
+      el.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var txt = (e.clipboardData || window.clipboardData).getData('text/plain').trim();
+        document.execCommand('insertText', false, txt);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { restore(); attach(); });
+  } else {
+    restore(); attach();
+  }
+})();
+</script>
 </body>
 </html>
