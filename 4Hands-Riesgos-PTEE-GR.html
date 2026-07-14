@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación PTEE · Riesgos de soborno y corrupción — Grupo Retorna</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<style>
+:root{
+  --naranja:#F18446;      /* NR001-A Naranja intenso */
+  --magico:#FEDB9B;       /* NR025-T Mágico suroeste */
+  --morazul:#093E5E;      /* AZ087-A Morazul */
+  --gris:#4B4B4C;         /* NE238-D Gris ratón */
+  --nocturno:#1c1c1c;     /* NE287-A Paisaje nocturno */
+  --tofu:#FEF0C4;         /* NR022-P Tofu */
+  --jengibre:#FBF3E4;     /* NR050-P Jengibre dulce */
+  --lago:#BED4CF;         /* VD214-T Gran lago */
+  --onix:#8B8B8C;         /* NE230-D Ónix profundo */
+  --plata:#F1F1F1;        /* NE226-P Estrella de plata */
+  --font-titulo:'Ibrand','Gotu',Georgia,serif;
+  --font-subtitulo:'Gotu',Georgia,serif;
+  --font-parrafo:'Satoshi','Segoe UI',Arial,sans-serif;
+  --font-mono:'Courier New',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-parrafo);color:var(--nocturno);background:var(--jengibre);line-height:1.6;font-size:16px}
+.material-icons{font-size:inherit;vertical-align:middle;line-height:1}
+
+h1,h2{font-family:var(--font-titulo);font-weight:700;line-height:1.2}
+h3,h4{font-family:var(--font-subtitulo);font-weight:400;line-height:1.3}
+p{margin-bottom:.8rem}
+
+/* ===== Header ===== */
+header.top{background:#fff;border-bottom:4px solid var(--naranja);position:sticky;top:0;z-index:60;box-shadow:0 2px 12px rgba(28,28,28,.08)}
+.top-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 20px}
+.top-inner img{height:54px;width:auto}
+.top-title{flex:1;min-width:0}
+.top-title .t1{font-family:var(--font-titulo);font-size:1.05rem;color:var(--morazul);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-title .t2{font-family:var(--font-mono);font-size:.72rem;color:var(--onix);letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;border-radius:10px;padding:10px 18px;font-family:var(--font-parrafo);font-weight:700;font-size:.9rem;transition:all .2s}
+.btn-primary{background:var(--naranja);color:#fff}
+.btn-primary:hover{background:#d96e33;box-shadow:0 4px 14px rgba(241,132,70,.4)}
+.btn-ghost{background:var(--plata);color:var(--gris)}
+.btn-ghost:hover{background:#e2e2e2}
+
+/* ===== Nav ===== */
+nav.secciones{background:var(--morazul);position:sticky;top:78px;z-index:50}
+nav.secciones .nav-inner{max-width:1120px;margin:0 auto;display:flex;overflow-x:auto;gap:2px;padding:0 12px}
+nav.secciones a{color:#cfe0ec;text-decoration:none;padding:10px 14px;font-family:var(--font-mono);font-size:.78rem;white-space:nowrap;border-bottom:3px solid transparent}
+nav.secciones a:hover{color:#fff;border-color:var(--magico)}
+
+/* ===== Layout ===== */
+main{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+section{margin-bottom:46px;scroll-margin-top:140px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sec-head .chip-num{font-family:var(--font-mono);background:var(--morazul);color:#fff;border-radius:8px;padding:4px 10px;font-size:.8rem;font-weight:700}
+.sec-head h2{font-size:1.5rem;color:var(--morazul)}
+.sec-head .mins{margin-left:auto;font-family:var(--font-mono);font-size:.78rem;color:var(--naranja);font-weight:700;white-space:nowrap}
+
+.card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(28,28,28,.06);border:1px solid #eee}
+.card p,.def p,.stat p,.caso-mid,.hot small,.mito .veredicto,.dilema .op,.top-riesgo,.banner-cero div{text-align:justify}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g6{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(120deg,var(--morazul) 55%,#0d5580);color:#fff;border-radius:18px;padding:42px 36px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:rgba(241,132,70,.25)}
+.hero::before{content:"";position:absolute;right:60px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(254,219,155,.18)}
+.hero h1{font-size:2.1rem;margin-bottom:10px;max-width:720px}
+.hero .sub{font-family:var(--font-subtitulo);color:var(--magico);font-size:1.05rem;max-width:680px;margin-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:var(--font-mono);font-size:.78rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:99px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px}
+
+/* ===== Agenda ===== */
+.agenda{display:flex;flex-direction:column;gap:0}
+.ag-row{display:grid;grid-template-columns:110px 1fr;gap:0;position:relative}
+.ag-time{font-family:var(--font-mono);font-size:.8rem;font-weight:700;color:var(--morazul);padding:14px 10px 14px 0;text-align:right;border-right:3px solid var(--lago)}
+.ag-body{padding:12px 0 12px 22px;position:relative}
+.ag-body::before{content:"";position:absolute;left:-8px;top:22px;width:13px;height:13px;border-radius:50%;background:var(--naranja);border:3px solid #fff;box-shadow:0 0 0 2px var(--lago)}
+.ag-body b{font-family:var(--font-subtitulo);font-weight:400;color:var(--nocturno)}
+.ag-body small{display:block;color:var(--onix)}
+.ag-part{background:var(--morazul);color:#fff;border-radius:10px;padding:8px 16px;font-family:var(--font-mono);font-size:.8rem;margin:14px 0;display:inline-block}
+
+/* ===== Stats / impacto ===== */
+.stat{background:#fff;border-top:5px solid var(--naranja);border-radius:12px;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(28,28,28,.06)}
+.stat .big{font-family:var(--font-titulo);font-size:2rem;color:var(--morazul);font-weight:700}
+.stat .lab{font-family:var(--font-mono);font-size:.72rem;color:var(--onix);letter-spacing:.03em;text-transform:uppercase}
+.stat p{font-size:.88rem;color:var(--gris);margin:8px 0 0}
+
+/* mitos */
+.mito{cursor:pointer;border:1.5px solid var(--lago);border-radius:12px;padding:16px;background:#fff;transition:all .2s}
+.mito:hover{border-color:var(--naranja)}
+.mito .veredicto{display:none;margin-top:10px;padding:10px 12px;border-radius:8px;font-size:.88rem}
+.mito.abierto .veredicto{display:block}
+.mito .q{font-family:var(--font-subtitulo);font-size:.95rem}
+.v-falso{background:var(--tofu);border-left:4px solid var(--naranja)}
+.v-cierto{background:#e8f2ee;border-left:4px solid #2e7d64}
+.pill{font-family:var(--font-mono);font-size:.68rem;padding:2px 10px;border-radius:99px;font-weight:700}
+.pill-c{background:var(--tofu);color:#a05a20}
+.pill-st{background:#e3ebf2;color:var(--morazul)}
+
+/* ===== Definiciones ===== */
+.def{border-left:6px solid var(--naranja);background:#fff;border-radius:0 12px 12px 0;padding:18px}
+.def h4{color:var(--morazul);margin-bottom:6px;font-size:1rem}
+.def p{font-size:.9rem;color:var(--gris);margin:0}
+.banner-cero{background:var(--nocturno);color:#fff;border-radius:14px;padding:22px 26px;display:flex;gap:18px;align-items:center;margin-top:16px}
+.banner-cero .material-icons{font-size:40px;color:var(--naranja)}
+.banner-cero b{color:var(--magico)}
+
+/* pasos */
+.pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:16px}
+.paso{background:#fff;border-radius:12px;padding:14px;text-align:center;border-bottom:4px solid var(--lago)}
+.paso .n{font-family:var(--font-mono);font-weight:700;color:#fff;background:var(--naranja);width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px}
+.paso b{display:block;font-family:var(--font-subtitulo);font-weight:400;font-size:.88rem;color:var(--morazul)}
+.paso small{color:var(--onix);font-size:.75rem}
+
+/* ===== Cadena de valor ===== */
+.flujo{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;justify-content:center}
+.nodo{flex:1;min-width:150px;max-width:210px;background:#fff;border:2px solid var(--morazul);border-radius:12px;padding:14px 12px;text-align:center;position:relative}
+.nodo .material-icons{font-size:28px;color:var(--naranja)}
+.nodo b{display:block;font-family:var(--font-subtitulo);font-weight:400;font-size:.86rem;color:var(--morazul);margin-top:6px}
+.nodo small{color:var(--onix);font-size:.72rem;display:block;margin-top:4px}
+.flecha{align-self:center;color:var(--naranja);font-size:26px}
+.corp{background:#fff;border-radius:12px;border:1.5px solid var(--lago);padding:12px;text-align:center}
+.corp b{font-family:var(--font-subtitulo);font-weight:400;color:var(--morazul);font-size:.85rem;display:block}
+.corp small{font-family:var(--font-mono);font-size:.68rem;color:var(--onix)}
+.hot{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:12px;padding:14px 16px;border-left:5px solid var(--naranja)}
+.hot .material-icons{color:var(--naranja);font-size:22px;margin-top:2px}
+.hot b{font-family:var(--font-subtitulo);font-weight:400;font-size:.92rem;color:var(--nocturno)}
+.hot small{color:var(--onix);display:block}
+
+/* ===== Taller ===== */
+.ronda-head{display:flex;align-items:center;gap:12px;background:var(--morazul);color:#fff;border-radius:12px 12px 0 0;padding:12px 18px}
+.ronda-head .rn{font-family:var(--font-mono);background:var(--naranja);border-radius:8px;padding:3px 10px;font-size:.78rem;font-weight:700}
+.ronda-head h3{font-size:1.05rem;color:#fff}
+.ronda-head .mins{margin-left:auto;font-family:var(--font-mono);font-size:.75rem;color:var(--magico)}
+.ronda-body{background:#fff;border:1px solid #eee;border-top:none;border-radius:0 0 12px 12px;padding:20px}
+
+/* casos */
+.caso{border:1.5px solid var(--lago);border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.caso-top{background:var(--jengibre);padding:12px 16px;display:flex;gap:10px;align-items:center}
+.caso-top .material-icons{color:var(--naranja);font-size:22px}
+.caso-top b{font-family:var(--font-subtitulo);font-weight:400;font-size:.9rem;color:var(--morazul)}
+.caso-mid{padding:14px 16px;font-size:.9rem;color:var(--gris);flex:1}
+.caso-btn{border:none;background:var(--plata);font-family:var(--font-mono);font-size:.75rem;font-weight:700;color:var(--morazul);padding:10px;cursor:pointer}
+.caso-btn:hover{background:var(--tofu)}
+.caso .guia{display:none;padding:12px 16px;background:var(--tofu);font-size:.85rem}
+.caso.abierto .guia{display:block}
+.caso .guia li{margin-left:18px;margin-bottom:4px}
+.guia-fac{display:none;padding:12px 16px;background:#e8f2ee;border-top:2px solid #2e7d64;font-size:.85rem;text-align:justify}
+.guia-fac ul{margin-left:18px;margin-top:4px}
+.guia-fac li{margin-bottom:5px}
+.guia-fac .gf-tit{font-family:var(--font-mono);font-size:.66rem;font-weight:700;color:#20543f;letter-spacing:.04em}
+.caso-btn.fac{background:transparent;color:#e3e3e3;border:none;font-size:.6rem;padding:1px 8px 3px;text-align:right;cursor:default;line-height:1}
+.caso-btn.fac:hover{background:transparent;color:#c9c9c9}
+.proc-tag{font-family:var(--font-mono);font-size:.66rem;background:var(--morazul);color:#fff;border-radius:99px;padding:2px 10px;margin-left:auto;white-space:nowrap}
+
+/* escalas y calculadora */
+table.escala{width:100%;border-collapse:collapse;font-size:.85rem}
+table.escala th{background:var(--morazul);color:#fff;font-family:var(--font-subtitulo);font-weight:400;padding:8px 10px;text-align:left}
+table.escala td{padding:8px 10px;border-bottom:1px solid var(--plata)}
+table.escala td:first-child{font-family:var(--font-mono);font-weight:700;color:var(--naranja);white-space:nowrap}
+.calc{background:var(--morazul);border-radius:14px;padding:22px;color:#fff}
+.calc label{font-family:var(--font-mono);font-size:.72rem;display:block;margin-bottom:6px;color:var(--magico)}
+.calc select{width:100%;padding:10px;border-radius:8px;border:none;font-family:var(--font-parrafo);font-size:.9rem;color:var(--nocturno)}
+.calc-res{margin-top:18px;background:rgba(255,255,255,.1);border-radius:10px;padding:16px;text-align:center}
+.calc-res .sev{font-family:var(--font-titulo);font-size:2.4rem;font-weight:700}
+.calc-res .zona{font-family:var(--font-mono);font-size:.85rem;padding:4px 16px;border-radius:99px;display:inline-block;margin-top:6px;font-weight:700}
+.mapa{display:grid;grid-template-columns:auto repeat(3,1fr);gap:4px;font-family:var(--font-mono);font-size:.7rem}
+.mapa .cel{border-radius:6px;padding:10px 4px;text-align:center;color:#fff;font-weight:700}
+.mapa .eje{display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--onix)}
+.z-bajo{background:#5f9e8f}
+.z-mod{background:#e9b949;color:#4a3a08 !important}
+.z-alto{background:var(--naranja)}
+.z-ext{background:#b3402a}
+
+/* dilemas */
+.dilema{background:#fff;border-radius:12px;border:1.5px solid var(--lago);padding:18px;margin-bottom:14px}
+.dilema h4{color:var(--morazul);font-size:.98rem;margin-bottom:10px}
+.dilema .ops{display:grid;gap:8px}
+.op{border:1.5px solid var(--plata);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:.88rem;background:var(--plata);transition:all .15s}
+.op:hover{border-color:var(--naranja)}
+.op.ok{background:#e8f2ee;border-color:#2e7d64}
+.op.mal{background:#fbe9e4;border-color:#b3402a}
+.op .fb{display:none;margin-top:6px;font-size:.8rem;color:var(--gris)}
+.op.rev .fb{display:block}
+
+/* cronómetro */
+.crono{display:flex;flex-wrap:wrap;align-items:center;gap:16px;background:var(--nocturno);border-radius:14px;padding:18px 24px;color:#fff}
+.crono .tiempo{font-family:var(--font-mono);font-size:2.4rem;font-weight:700;color:var(--magico);min-width:150px}
+.crono button{font-family:var(--font-mono)}
+
+/* tabla banco riesgos */
+.tabla-wrap{overflow-x:auto}
+table.banco{width:100%;border-collapse:collapse;font-size:.82rem;background:#fff}
+table.banco th{background:var(--nocturno);color:#fff;padding:9px 10px;text-align:left;font-family:var(--font-subtitulo);font-weight:400;white-space:nowrap}
+table.banco td{padding:9px 10px;border-bottom:1px solid var(--plata);vertical-align:top}
+table.banco td:first-child{font-family:var(--font-mono);color:var(--onix);white-space:nowrap}
+
+/* matriz integral por compañía */
+.ent-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 8px}
+.ent-tab{font-family:var(--font-mono);font-size:.72rem;font-weight:700;border:1.5px solid var(--lago);background:#fff;color:var(--gris);border-radius:99px;padding:7px 14px;cursor:pointer;transition:all .15s}
+.ent-tab:hover{border-color:var(--naranja);color:var(--naranja)}
+.ent-tab.act{background:var(--morazul);border-color:var(--morazul);color:#fff}
+.ent-desc{font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-bottom:10px;letter-spacing:.02em}
+table.matriz select{font-family:var(--font-mono);font-size:.74rem;font-weight:700;padding:4px 6px;border-radius:6px;border:1px solid #ddd;background:var(--plata);color:var(--nocturno);cursor:pointer}
+table.matriz td{vertical-align:middle}
+table.matriz .ev{font-size:.82rem}
+table.matriz .meta{font-family:var(--font-mono);font-size:.64rem;color:var(--onix);display:block;margin-top:2px}
+.sev-badge{font-family:var(--font-mono);font-weight:700;color:#fff;border-radius:8px;padding:3px 0;display:inline-block;min-width:44px;text-align:center}
+.matriz .edit{outline:none;border-bottom:1px dashed transparent;cursor:text}
+.matriz .edit:hover,.matriz .edit:focus{border-bottom:1px dashed var(--naranja);background:var(--jengibre)}
+.fila-x{background:transparent;border:none;color:#cfcfcf;cursor:pointer;padding:2px}
+.fila-x:hover{color:#b3402a}
+.zona-badge{font-family:var(--font-mono);font-size:.66rem;font-weight:700;border-radius:99px;padding:2px 10px;white-space:nowrap}
+#mapaVivo .cel{min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 3px}
+#mapaVivo .cel .sv{opacity:.75;font-size:.6rem;line-height:1}
+#mapaVivo .fichas{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.rchip{display:inline-block;background:rgba(255,255,255,.94);color:var(--nocturno);border-radius:6px;padding:1px 6px;font-size:.62rem;font-weight:700;line-height:1.5;cursor:help;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.rz-card{background:#fff;border-radius:10px;padding:10px 14px;border-left:5px solid;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(28,28,28,.05)}
+.rz-card b{font-family:var(--font-titulo);font-size:1.35rem;color:var(--nocturno)}
+.rz-card span{font-family:var(--font-mono);font-size:.66rem;color:var(--onix)}
+.top-riesgo{background:var(--tofu);border-left:5px solid var(--naranja);border-radius:0 10px 10px 0;padding:12px 14px;font-size:.85rem;margin-top:12px}
+.top-riesgo .tr-lab{font-family:var(--font-mono);font-size:.66rem;color:#a05a20;font-weight:700;display:block}
+
+/* checklist */
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--plata);font-size:.9rem}
+.check input{margin-top:5px;accent-color:var(--naranja)}
+
+/* compromiso */
+.compromiso{background:linear-gradient(120deg,var(--naranja),#e0672f);color:#fff;border-radius:16px;padding:30px;text-align:center}
+.compromiso h3{color:#fff;font-size:1.3rem;margin-bottom:8px}
+.compromiso p{max-width:640px;margin:0 auto .6rem}
+
+footer{background:var(--nocturno);color:var(--onix);padding:26px 20px;text-align:center;font-size:.8rem}
+footer img{height:44px;display:block;margin:0 auto 10px;background:#fff;border-radius:10px;padding:6px 14px}
+footer .fmono{font-family:var(--font-mono);font-size:.7rem}
+
+@media(max-width:640px){
+  .hero{padding:28px 20px}
+  .hero h1{font-size:1.5rem}
+  .top-inner img{height:40px}
+  nav.secciones{top:66px}
+  .ag-row{grid-template-columns:86px 1fr}
+}
+@media print{
+  header.top,nav.secciones,.no-print{display:none !important}
+  body{background:#fff}
+  .card,.stat,.caso,.dilema{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Encabezado ===== -->
+<header class="top">
+  <div class="top-inner">
+    <img id="logo4h" alt="4Hands Partners" src="">
+    <div class="top-title">
+      <div class="t1">Formación PTEE · riesgos de soborno y corrupción</div>
+      <div class="t2">GRUPO RETORNA · TALLER VIRTUAL 120 MIN · MEMORIA Y SOPORTE</div>
+    </div>
+    <button class="btn btn-primary no-print" onclick="descargarHTML()"><span class="material-icons">download</span> Descargar</button>
+    <button class="btn btn-ghost no-print" onclick="window.print()"><span class="material-icons">print</span></button>
+  </div>
+</header>
+
+<nav class="secciones no-print">
+  <div class="nav-inner">
+    <a href="#inicio">Inicio</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#impacto">1 · Apertura</a>
+    <a href="#conceptos">2 · Conceptos</a>
+    <a href="#cadena">3 · Cadena de valor</a>
+    <a href="#metodologia">4 · Taller</a>
+    <a href="#herramientas">Herramientas</a>
+    <a href="#cierre">Cierre</a>
+    <a href="#memoria">Memoria</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== Hero ===== -->
+<section id="inicio">
+  <div class="hero">
+    <h1>La integridad también se gestiona: riesgos de soborno y corrupción en nuestra operación</h1>
+    <p class="sub">Formación taller de riesgos del Programa de Transparencia y Ética Empresarial (PTEE), conectada con la cadena de valor y los procesos de la Asociación Grupo Retorna y sus corporaciones.</p>
+    <div class="chips">
+      <span class="chip"><span class="material-icons">schedule</span> 2 horas</span>
+      <span class="chip"><span class="material-icons">videocam</span> Sesión virtual</span>
+      <span class="chip"><span class="material-icons">groups</span> Todos los roles</span>
+      <span class="chip"><span class="material-icons">construction</span> Metodología taller</span>
+      <span class="chip"><span class="material-icons">recycling</span> Sector posconsumo · REP</span>
+      <span class="chip"><span class="material-icons">verified_user</span> Tolerancia cero C/ST</span>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:var(--naranja)">flag</span> Objetivo</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Que cada participante identifique y priorice riesgos de corrupción y soborno (C/ST) de sus propios procesos, aplicando las prácticas y marco de prevención del PTEE.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:var(--naranja)">diversity_3</span> Público</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Equipo diverso de las entidades: dirección, proyectos y alianzas, educación ambiental, administrativo y financiero, jurídico, comunicaciones y colaboradores de las corporaciones asociadas.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:var(--naranja)">devices</span> Cómo trabajaremos</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Sesión presencial con facilitación virtual, con espacios de construcción en grupos. Todo lo necesario está integrado en este documento: casos de contexto, esquema matriz integral interactiva por compañía y mapa de calor. Puedes descargar los resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Agenda ===== -->
+<section id="agenda">
+  <div class="sec-head">
+    <span class="chip-num">AGENDA</span>
+    <h2>Ruta de las 2 horas</h2>
+    <span class="mins">120 min</span>
+  </div>
+  <div class="card">
+    <span class="ag-part">PARTE 1 · CONTEXTO (40 MIN)</span>
+    <div class="agenda">
+      <div class="ag-row"><div class="ag-time">00:00–00:10</div><div class="ag-body"><b>Apertura</b><small>Por qué esto nos toca a todos · mitos y verdades</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:10–00:25</div><div class="ag-body"><b>Conceptos esenciales C/ST</b><small>Corrupción, soborno y soborno transnacional · factor vs. evento · tolerancia cero</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:25–00:40</div><div class="ag-body"><b>Nuestra cadena de valor y sus puntos débiles</b><small>De los asociados a la certificación posconsumo: dónde se esconde el riesgo</small></div></div>
+    </div>
+    <span class="ag-part">PARTE 2 · TALLER — LO CLAVE DE NUESTRAS OPERACIONES (80 MIN)</span>
+    <div class="agenda">
+      <div class="ag-row"><div class="ag-time">00:40–00:45</div><div class="ag-body"><b>Metodología y salas grupales</b><small>Grupos mixtos por compañía en salas grupales · ruta del riesgo</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:45–01:05</div><div class="ag-body"><b>Ronda 1 · Identifique el riesgo</b><small>Tarjetas de caso por proceso de la cadena de valor</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:05–01:20</div><div class="ag-body"><b>Ronda 2 · Mida y construya la matriz</b><small>Matriz integral de 10 riesgos críticos por compañía · mapa de calor en vivo</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:20–01:40</div><div class="ag-body"><b>Ronda 3 · Los controles: primera mirada</b><small>Introducción general al mecanismo de gestión · dilemas "¿qué haría usted?" · puente al segundo taller</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:40–01:55</div><div class="ag-body"><b>Plenaria</b><small>Cada grupo presenta su riesgo prioritario y primeras ideas de gestión</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:55–02:00</div><div class="ag-body"><b>Cierre y compromisos</b><small>Canal ético · evaluación exprés</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Parte 1.1 Impacto ===== -->
+<section id="impacto">
+  <div class="sec-head">
+    <span class="chip-num">1</span>
+    <h2>Apertura: por qué esto nos toca a todos</h2>
+    <span class="mins">10 min</span>
+  </div>
+  <div class="grid g3">
+    <div class="stat">
+      <div class="big">0</div>
+      <div class="lab">Tolerancia frente a C/ST</div>
+      <p>La alta dirección declara tolerancia cero frente a la materialización de actos de corrupción y soborno transnacional.</p>
+    </div>
+    <div class="stat">
+      <div class="big">200.000</div>
+      <div class="lab">SMMLV · multa máxima (Ley 1778 de 2016)</div>
+      <p>Las personas jurídicas responden por soborno transnacional: multas, inhabilidad para contratar y publicación de la sanción.</p>
+    </div>
+    <div class="stat">
+      <div class="big">6+1</div>
+      <div class="lab">Entidades cuya reputación está en juego</div>
+      <p>Un solo acto indebido compromete la confianza de asociados, autoridades y ciudadanía en todo el sistema de recolección selectiva.</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--morazul);margin:20px 0 12px">Si el riesgo se materializa: consecuencias</h3>
+  <div class="grid g3">
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">policy</span> Administrativas</h4>
+      <p style="font-size:.84rem;margin:0">Multas, suspensión de actividades, revocación de licencias y restricciones a la contratación estatal. Órdenes de cumplimiento del regulador.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">person_off</span> Disciplinarias</h4>
+      <p style="font-size:.84rem;margin:0">Inhabilitación, suspensión o destitución en entidades con participación estatal. Inhabilidades generales y especiales. Sanción por omisión del deber de vigilancia.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">account_balance</span> Fiscales</h4>
+      <p style="font-size:.84rem;margin:0">Responsabilidad por daño al patrimonio público, reparación integral del daño e inhabilidad para contratar con el Estado.</p>
+      <p style="font-family:var(--font-mono);font-size:.66rem;color:var(--onix);margin:6px 0 0;text-align:left">LEY 610 DE 2000 · ART. 268 C.P.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">savings</span> Patrimonial personal</h4>
+      <p style="font-size:.84rem;margin:0">Responsabilidad civil solidaria e ilimitada de administradores. Acción social e individual de responsabilidad. El patrimonio personal responde por actuaciones dolosas o negligentes.</p>
+      <p style="font-family:var(--font-mono);font-size:.66rem;color:var(--onix);margin:6px 0 0;text-align:left">LEY 222 DE 1995</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">trending_down</span> Reputacionales y operacionales</h4>
+      <p style="font-size:.84rem;margin:0">Deterioro del rating ESG, pérdida de financiamiento internacional o nacional, ruptura de relaciones comerciales, bloqueos, intervención o liquidación forzada y pérdidas financieras.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja);padding:16px">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">gavel</span> Penales</h4>
+      <p style="font-size:.84rem;margin:0">Soborno transnacional (art. 433 CP): 9 a 15 años · LA/FT (art. 323 CP): 10 a 30 años · Corrupción privada (art. 250A CP): 4 a 8 años (6 a 10 si hay daño económico). Responsabilidad penal individual de administradores, extinción de dominio y sin subrogados penales.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="color:var(--morazul);margin-bottom:12px"><span class="material-icons" style="color:var(--naranja)">psychology_alt</span> Dinámica flash: ¿mito o verdad? <span style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix)">(haga clic en cada tarjeta)</span></h3>
+    <div class="grid g2">
+      <div class="mito" onclick="this.classList.toggle('abierto')">
+        <div class="q">"Como somos entidades sin ánimo de lucro, los riesgos de corrupción no aplican para nosotros."</div>
+        <div class="veredicto v-falso"><b>Mito.</b> Las ESAL pueden ser instrumentalizadas o verse involucradas en actos de C/ST. Por eso se promueve el PTEE y la supervisión sobre el sector.</div>
+      </div>
+      <div class="mito" onclick="this.classList.toggle('abierto')">
+        <div class="q">"Un regalo o una atención a un funcionario, si es pequeño, no es soborno."</div>
+        <div class="veredicto v-falso"><b>Mito.</b> Cualquier dádiva ofrecida para que alguien realice, omita o retarde un acto de sus funciones puede constituir soborno, sin importar su valor.</div>
+      </div>
+      <div class="mito" onclick="this.classList.toggle('abierto')">
+        <div class="q">"El riesgo también puede entrar por un tercero: un gestor, un contratista o un intermediario que actúa a nuestro nombre."</div>
+        <div class="veredicto v-cierto"><b>Verdad.</b> Los terceros que obran por cuenta de la entidad son una de las principales fuentes de riesgo. Por eso la debida diligencia es obligatoria.</div>
+      </div>
+      <div class="mito" onclick="this.classList.toggle('abierto')">
+        <div class="q">"Denunciar es responsabilidad exclusiva del oficial de cumplimiento."</div>
+        <div class="veredicto v-falso"><b>Mito.</b> Todos los colaboradores deben reportar señales de alerta por el canal ético. El oficial de cumplimiento gestiona, pero los ojos son de todos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Parte 1.2 Conceptos ===== -->
+<section id="conceptos">
+  <div class="sec-head">
+    <span class="chip-num">2</span>
+    <h2>Conceptos esenciales C/ST</h2>
+    <span class="mins">15 min</span>
+  </div>
+  <div class="grid g3">
+    <div class="def">
+      <h4><span class="pill pill-c">C</span> Corrupción</h4>
+      <p>Posibilidad de que, por acción u omisión, se desvíen los propósitos de la administración pública o se afecte el patrimonio público hacia un beneficio privado.</p>
+    </div>
+    <div class="def">
+      <h4><span class="pill pill-c">C</span> Soborno</h4>
+      <p>Dar, ofrecer, prometer, solicitar o recibir cualquier dádiva o beneficio a cambio de que se realice, omita o retarde un acto, para obtener una ventaja ilegítima propia o de un tercero.</p>
+    </div>
+    <div class="def">
+      <h4><span class="pill pill-st">ST</span> Soborno transnacional</h4>
+      <p>Dar, ofrecer o prometer a un servidor público extranjero dinero o cualquier beneficio para que realice, omita o retarde un acto relacionado con un negocio o transacción internacional.</p>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:1rem;margin-bottom:8px"><span class="material-icons" style="color:var(--naranja)">device_hub</span> Factor de riesgo</h3>
+      <p style="font-size:.9rem;margin:0">La fuente o condición del entorno que hace posible el riesgo: debilidad contractual, relacionamiento con el sector público, gestión financiera débil, conflictos de interés, transacciones internacionales.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:1rem;margin-bottom:8px"><span class="material-icons" style="color:var(--naranja)">bolt</span> Evento de riesgo</h3>
+      <p style="font-size:.9rem;margin:0">El hecho detonante concreto: el pago de facilitación, la factura ficticia, el certificado adulterado, la dádiva al funcionario. En el taller trabajaremos siempre en pareja factor → evento.</p>
+    </div>
+  </div>
+
+  <div class="banner-cero">
+    <span class="material-icons">block</span>
+    <div>
+      <b>Tolerancia cero, gestión priorizada.</b> La entidad no acepta ningún acto de C/ST. Como no todo se mitiga de inmediato, el PTEE aplica un enfoque basado en riesgos: primero los escenarios de mayor severidad, hasta llevarlos a la zona de aceptación.
+    </div>
+  </div>
+
+  <h3 style="color:var(--morazul);margin-top:20px">El sistema de gestión de riesgos C/ST en 5 pasos</h3>
+  <div class="pasos">
+    <div class="paso"><span class="n">1</span><b>Identificación y análisis</b><small>Reconocer escenarios C/ST en el contexto y la cadena de valor</small></div>
+    <div class="paso"><span class="n">2</span><b>Apetito y tolerancia</b><small>Definir límites de exposición aceptables</small></div>
+    <div class="paso"><span class="n">3</span><b>Medición y valoración</b><small>Probabilidad × impacto = severidad</small></div>
+    <div class="paso"><span class="n">4</span><b>Tratamiento y control</b><small>Prevenir, detectar y gestionar</small></div>
+    <div class="paso"><span class="n">5</span><b>Evaluación y mejora</b><small>Monitoreo y mejora continua del PTEE</small></div>
+  </div>
+  <p style="font-family:var(--font-mono);font-size:.75rem;color:var(--onix);margin-top:10px">Hoy practicaremos los pasos 1, 3 y 4. La gestión es responsabilidad permanente de la dirección y del responsable del PTEE o el Oficial de Cumplimiento.</p>
+</section>
+
+<!-- ===== Parte 1.3 Cadena de valor ===== -->
+<section id="cadena">
+  <div class="sec-head">
+    <span class="chip-num">3</span>
+    <h2>Nuestra cadena de valor y sus puntos débiles</h2>
+    <span class="mins">15 min</span>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--morazul);margin-bottom:14px">De la responsabilidad extendida del productor al cierre del ciclo</h3>
+    <div class="flujo">
+      <div class="nodo"><span class="material-icons">factory</span><b>Empresas asociadas</b><small>Productores e importadores que financian los sistemas (aportes)</small></div>
+      <span class="flecha material-icons">arrow_forward</span>
+      <div class="nodo"><span class="material-icons">hub</span><b>Corporaciones y Grupo Retorna</b><small>6 sistemas de recolección selectiva + procesos transversales, apoyados por la ANDI</small></div>
+      <span class="flecha material-icons">arrow_forward</span>
+      <div class="nodo"><span class="material-icons">local_shipping</span><b>Gestores y operadores</b><small>Recolección, transporte, puntos de acopio, tratamiento</small></div>
+      <span class="flecha material-icons">arrow_forward</span>
+      <div class="nodo"><span class="material-icons">recycling</span><b>Aprovechamiento y certificación</b><small>Toneladas gestionadas, certificados, reporte de metas</small></div>
+    </div>
+    <div style="text-align:center;margin-top:10px">
+      <span class="chip" style="background:var(--tofu);border:1px solid var(--magico);color:var(--gris)"><span class="material-icons" style="color:var(--morazul)">account_balance</span> Transversal: autoridades ambientales y de vigilancia — licencias, metas, informes, visitas</span>
+    </div>
+  </div>
+
+  <div class="grid g6" style="margin-top:14px">
+    <div class="corp"><b>Cierra el Ciclo</b><small>PLAGUICIDAS DOMÉSTICOS</small></div>
+    <div class="corp"><b>EcoCómputo</b><small>RAEE · RESIDUOS DE APARATOS ELÉCTRICOS Y ELECTRÓNICOS</small></div>
+    <div class="corp"><b>Pilas con el Ambiente</b><small>PILAS USADAS</small></div>
+    <div class="corp"><b>Red Verde</b><small>ELECTRODOMÉSTICOS</small></div>
+    <div class="corp"><b>Recoenergy</b><small>BATERÍAS PLOMO ÁCIDO</small></div>
+    <div class="corp"><b>Rueda Verde</b><small>LLANTAS USADAS</small></div>
+  </div>
+
+  <h3 style="color:var(--morazul);margin:20px 0 12px">Dónde se puede esconder el riesgo: seis puntos débiles</h3>
+  <div class="grid g2">
+    <div class="hot"><span class="material-icons">gavel</span><div><b>Contratación de gestores y proveedores</b><small>Colusión en procesos de selección, empresas fachada, terceros sin debida diligencia, pagos a intermediarios sin justificación.</small></div></div>
+    <div class="hot"><span class="material-icons">verified</span><div><b>Certificación de toneladas y reporte de metas</b><small>Certificados adulterados, doble reporte del mismo residuo, información falseada ante la autoridad ambiental.</small></div></div>
+    <div class="hot"><span class="material-icons">account_balance</span><div><b>Relacionamiento con el sector público</b><small>Dádivas o atenciones para agilizar licencias, aprobaciones de planes o visitas de inspección; tráfico de influencias.</small></div></div>
+    <div class="hot"><span class="material-icons">payments</span><div><b>Recaudo de aportes y gestión financiera</b><small>Facturación ficticia, gastos sin soporte, desvío de recursos de los sistemas, doble contabilidad.</small></div></div>
+    <div class="hot"><span class="material-icons">diversity_3</span><div><b>Gobierno corporativo y conflictos de interés</b><small>Miembros de órganos de gobierno con intereses en gestores o proveedores contratados; decisiones concentradas sin controles.</small></div></div>
+    <div class="hot"><span class="material-icons">public</span><div><b>Operaciones y movimientos internacionales</b><small>Pagos de facilitación en fronteras o trámites de exportación de residuos; intermediarios internacionales como fachada.</small></div></div>
+  </div>
+</section>
+
+<!-- ===== Parte 2 Metodología ===== -->
+<section id="metodologia">
+  <div class="sec-head">
+    <span class="chip-num">4</span>
+    <h2>Taller: lo clave de nuestras operaciones</h2>
+    <span class="mins">80 min</span>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="color:var(--morazul);margin-bottom:10px"><span class="material-icons" style="color:var(--naranja)">groups</span> Metodología (5 min)</h3>
+    <p style="font-size:.92rem">Se conforman <b>grupos mixtos de 4 a 6 personas</b> en salas grupales, combinando roles distintos (dirección, financiero, proyectos, educación, jurídico, corporaciones). Cada grupo trabaja con <b>una compañía y su tarjeta de caso</b> dentro de este mismo documento, siguiendo la ruta del riesgo:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--font-mono);font-size:.75rem;margin-top:8px">
+      <span class="chip" style="background:var(--morazul);border:none">FACTOR</span>→
+      <span class="chip" style="background:var(--morazul);border:none">EVENTO</span>→
+      <span class="chip" style="background:var(--naranja);border:none">PROBABILIDAD × IMPACTO</span>→
+      <span class="chip" style="background:var(--naranja);border:none">ZONA</span>→
+      <span class="chip" style="background:#2e7d64;border:none">CONTROL</span>→
+      <span class="chip" style="background:#2e7d64;border:none">RESPONSABLE</span>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-top:8px">HOY DESARROLLAMOS HASTA LA ZONA DE SEVERIDAD. LOS PASOS DE CONTROL Y RESPONSABLE SE PROFUNDIZAN EN EL SEGUNDO TALLER.</p>
+  </div>
+
+  <div class="crono no-print" style="margin-bottom:16px">
+    <span class="material-icons" style="font-size:30px;color:var(--naranja)">timer</span>
+    <div class="tiempo" id="cronoDisp">20:00</div>
+    <button class="btn btn-primary" onclick="cronoSet(20)">R1 · 20 min</button>
+    <button class="btn btn-primary" onclick="cronoSet(15)">R2 · 15 min</button>
+    <button class="btn btn-primary" onclick="cronoSet(20)">R3 · 20 min</button>
+    <button class="btn btn-ghost" onclick="cronoToggle()" id="cronoBtn"><span class="material-icons">play_arrow</span></button>
+    <button class="btn btn-ghost" onclick="cronoReset()"><span class="material-icons">replay</span></button>
+  </div>
+
+  <!-- Ronda 1 -->
+  <div style="margin-bottom:18px">
+    <div class="ronda-head">
+      <span class="rn">RONDA 1</span>
+      <h3>Identifique el riesgo en su proceso</h3>
+      <span class="mins">20 MIN</span>
+    </div>
+    <div class="ronda-body">
+      <p style="font-size:.92rem">En su sala grupal, seleccionen un proceso y lean la tarjeta, discutan el caso disparador y definan al menos <b>dos escenarios de riesgo</b> (factor → evento). Usen el botón de cada tarjeta para ver las preguntas guía.</p>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">gavel</span><b>Caso 1 · El gestor "eficiente"</b><span class="proc-tag">ABASTECIMIENTO</span></div>
+          <div class="caso-mid">En la selección de un operador logístico para recolección de RAEE, uno de los proponentes ofrece "reconocer la gestión" del comité evaluador si resulta adjudicado, y presenta certificaciones de capacidad que nadie ha verificado.</div>
+          <div class="guia"><ul><li>¿Qué factor de riesgo está presente? ¿Qué evento lo detonaría?</li><li>¿Qué señales de alerta hay en la propuesta?</li><li>¿Qué debida diligencia faltó?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(1)">·</button>
+          <div class="guia-fac" id="fac1"></div>
+        </div>
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">verified</span><b>Caso 2 · Las toneladas de papel</b><span class="proc-tag">CERTIFICACIÓN</span></div>
+          <div class="caso-mid">Faltando poco para el cierre del reporte de metas, un gestor ofrece certificados de toneladas "ya listos" que no coinciden con los manifiestos de transporte. Sugiere que "todos lo hacen así" para cumplirle a la autoridad.</div>
+          <div class="guia"><ul><li>¿Quiénes resultan afectados si se acepta el certificado?</li><li>¿Qué consecuencias tendría frente a la autoridad ambiental y los asociados?</li><li>¿Cómo debería reaccionar quien recibe la oferta?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(2)">·</button>
+          <div class="guia-fac" id="fac2"></div>
+        </div>
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">account_balance</span><b>Caso 3 · El trámite que "camina solo"</b><span class="proc-tag">SECTOR PÚBLICO</span></div>
+          <div class="caso-mid">Un contratista sugiere que, por un "apoyo logístico" a un funcionario público, la aprobación pendiente del plan de gestión ambiental puede salir en la mitad del tiempo. "No es soborno —dice—, es agilizar".</div>
+          <div class="guia"><ul><li>¿Es esto un pago de facilitación? ¿Qué dice nuestra política?</li><li>¿Qué responsabilidad asume la entidad si el tercero paga a su nombre?</li><li>¿A quién se debe reportar de inmediato?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(3)">·</button>
+          <div class="guia-fac" id="fac3"></div>
+        </div>
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">payments</span><b>Caso 4 · La factura del evento</b><span class="proc-tag">FINANCIERO</span></div>
+          <div class="caso-mid">Tras una jornada de sensibilización, el proveedor de logística envía una factura con sobrecosto del 40% y propone "devolver" la diferencia en efectivo para "gastos varios del equipo". El soporte del evento es incompleto.</div>
+          <div class="guia"><ul><li>¿Qué controles financieros fallan en este escenario?</li><li>¿Qué papel juegan la segregación de funciones y los soportes?</li><li>¿Cómo se registra y reporta esta situación?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(4)">·</button>
+          <div class="guia-fac" id="fac4"></div>
+        </div>
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">diversity_3</span><b>Caso 5 · El voto con interés</b><span class="proc-tag">GOBIERNO</span></div>
+          <div class="caso-mid">En un órgano colegiado se decidirá la contratación de un gestor. Uno de los miembros es socio de una empresa vinculada al proponente favorito y no lo ha declarado. Nadie pregunta y la votación sigue su curso.</div>
+          <div class="guia"><ul><li>¿Qué es un conflicto de interés y cómo se declara?</li><li>¿Qué debió pasar antes de la votación?</li><li>¿Qué control lo habría evitado?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(5)">·</button>
+          <div class="guia-fac" id="fac5"></div>
+        </div>
+        <div class="caso">
+          <div class="caso-top"><span class="material-icons">public</span><b>Caso 6 · La frontera lenta</b><span class="proc-tag">INTERNACIONAL</span></div>
+          <div class="caso-mid">Un embarque de residuos para tratamiento en el exterior lleva semanas detenido. El agente aduanero del país de destino insinúa que un "pago administrativo" informal a un inspector lo liberaría en dos días.</div>
+          <div class="guia"><ul><li>¿Por qué esto es soborno transnacional aunque ocurra fuera de Colombia?</li><li>¿Qué exposición legal genera para la entidad (Ley 1778 de 2016)?</li><li>¿Qué alternativas legítimas existen?</li></ul></div>
+          <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
+          <button class="caso-btn fac" onclick="verFacilitador(6)">·</button>
+          <div class="guia-fac" id="fac6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ronda 2 -->
+  <div style="margin-bottom:18px">
+    <div class="ronda-head">
+      <span class="rn">RONDA 2</span>
+      <h3>Mida y construya la matriz</h3>
+      <span class="mins">15 MIN</span>
+    </div>
+    <div class="ronda-body">
+      <p style="font-size:.92rem">Primero repasamos la escala de valoración (la <b>severidad</b> es el producto de la probabilidad por el impacto). Luego, cada grupo toma <b>una compañía del grupo</b> y trabaja sobre su análisis base para construir una <b>matriz de riesgos</b> de la entidad.</p>
+      <div class="grid g2" style="margin-top:12px">
+        <div>
+          <h4 style="color:var(--morazul);margin-bottom:8px">Escala de probabilidad</h4>
+          <table class="escala">
+            <tr><th>Nivel</th><th>Descripción</th></tr>
+            <tr><td>1 · Rara vez</td><td>Ocurre de manera excepcional (menos del 5%)</td></tr>
+            <tr><td>2 · Poco probable</td><td>Ocurre de manera no habitual (5% a 30%)</td></tr>
+            <tr><td>3 · Posible</td><td>Ocurre de manera ocasional (30% a 60%)</td></tr>
+            <tr><td>4 · Probable</td><td>Ocurre con cierta regularidad (60% a 90%)</td></tr>
+            <tr><td>5 · Casi seguro</td><td>Ocurre la mayoría de las veces (más del 90%)</td></tr>
+          </table>
+          <h4 style="color:var(--morazul);margin:14px 0 8px">Escala de impacto</h4>
+          <table class="escala">
+            <tr><th>Nivel</th><th>Descripción</th></tr>
+            <tr><td>5 · Moderado</td><td>Afectación operativa o económica limitada, gestionable internamente</td></tr>
+            <tr><td>10 · Mayor</td><td>Afectación legal, económica o reputacional significativa</td></tr>
+            <tr><td>20 · Catastrófico</td><td>Sanciones, pérdida de licencias o daño reputacional severo del sistema</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="calc no-print">
+            <h4 style="color:#fff;margin-bottom:12px"><span class="material-icons" style="color:var(--magico)">calculate</span> Calculadora de severidad</h4>
+            <label for="selProb">PROBABILIDAD</label>
+            <select id="selProb" onchange="calcular()">
+              <option value="1">1 · Rara vez</option>
+              <option value="2">2 · Poco probable</option>
+              <option value="3" selected>3 · Posible</option>
+              <option value="4">4 · Probable</option>
+              <option value="5">5 · Casi seguro</option>
+            </select>
+            <label for="selImp" style="margin-top:12px">IMPACTO</label>
+            <select id="selImp" onchange="calcular()">
+              <option value="5">5 · Moderado</option>
+              <option value="10" selected>10 · Mayor</option>
+              <option value="20">20 · Catastrófico</option>
+            </select>
+            <div class="calc-res">
+              <div class="sev" id="sevNum">30</div>
+              <div class="zona" id="sevZona">Alto</div>
+            </div>
+          </div>
+          <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-top:10px">ZONAS DE SEVERIDAD: BAJO ≤20 · MODERADO 21–30 · ALTO 31–50 · EXTREMO &gt;50. LOS RIESGOS RESIDUALES DEBEN LLEGAR A ZONA BAJA.</p>
+        </div>
+      </div>
+
+      <!-- ===== Matriz integral por compañía ===== -->
+      <div id="matrizModulo" style="margin-top:26px">
+        <h4 style="color:var(--morazul);margin-bottom:6px;font-size:1.1rem"><span class="material-icons" style="color:var(--naranja)">grid_view</span> Matriz integral de riesgos por compañía</h4>
+        <p style="font-size:.9rem;color:var(--gris)">Seleccione una compañía. Encontrará un <b>análisis base predeterminado</b> con 10 posibles riesgos más críticos de corrupción y/o soborno. El grupo los debe analizar, validar o ajustar la <b>probabilidad</b> y el <b>impacto</b> de cada riesgo según su realidad operativa: la severidad se recalcula y el <b>mapa de calor se actualiza en vivo</b>. Los textos de cada riesgo son editables, y pueden eliminarse o agregarse riesgos según el análisis del grupo. El resultado de la ronda es una matriz inicial de la entidad.</p>
+        <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix)">ALCANCE: TODOS LOS EVENTOS CORRESPONDEN EXCLUSIVAMENTE A RIESGOS DE CORRUPCIÓN, SOBORNO Y SOBORNO TRANSNACIONAL (C/ST). OTRAS TIPOLOGÍAS (LA/FT, OPERATIVOS, AMBIENTALES) SE GESTIONAN EN SUS PROPIOS SISTEMAS.</p>
+        <div class="ent-tabs no-print" id="entTabs"></div>
+        <div class="ent-desc" id="entDesc"></div>
+        <div class="tabla-wrap" style="background:#fff;border-radius:12px;border:1px solid #eee">
+          <table class="banco matriz" id="tablaMatriz"></table>
+        </div>
+        <div class="no-print" style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;flex-wrap:wrap;gap:8px">
+          <p style="font-family:var(--font-mono);font-size:.66rem;color:var(--onix);margin:0">HAGA CLIC SOBRE EL PROCESO, EL FACTOR O EL EVENTO PARA EDITAR EL TEXTO.</p>
+          <button class="btn btn-ghost" onclick="agregarRiesgo()" style="padding:6px 14px;font-size:.8rem"><span class="material-icons">add</span> Agregar riesgo</button>
+        </div>
+        <div class="grid g2" style="margin-top:16px;align-items:start">
+          <div>
+            <h4 style="color:var(--morazul);margin-bottom:8px"><span class="material-icons" style="color:var(--naranja)">local_fire_department</span> Mapa de calor en vivo</h4>
+            <div class="mapa" id="mapaVivo"></div>
+            <p style="font-family:var(--font-mono);font-size:.68rem;color:var(--onix);margin-top:8px">CADA FICHA (R1…R10) SE UBICA SEGÚN LA CALIFICACIÓN DEL GRUPO. PASE EL CURSOR SOBRE UNA FICHA PARA VER EL RIESGO.</p>
+          </div>
+          <div>
+            <h4 style="color:var(--morazul);margin-bottom:8px"><span class="material-icons" style="color:var(--naranja)">insights</span> Lectura de la matriz</h4>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px" id="resumenZonas"></div>
+            <div class="top-riesgo" id="topRiesgo"></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px" class="no-print">
+              <button class="btn btn-primary" onclick="descargarMatriz()"><span class="material-icons">table_view</span> Descargar matriz (Excel)</button>
+              <button class="btn btn-ghost" onclick="restablecerMatriz()"><span class="material-icons">replay</span> Restablecer análisis base</button>
+            </div>
+            <p style="font-family:var(--font-mono);font-size:.72rem;color:#a05a20;background:var(--tofu);border-radius:8px;padding:9px 12px;margin-top:10px;text-align:left"><span class="material-icons" style="font-size:14px">outgoing_mail</span> Descarga el resultado y envíalo a <b>info@4hands.co</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ronda 3 -->
+  <div>
+    <div class="ronda-head">
+      <span class="rn">RONDA 3</span>
+      <h3>Los controles: primera mirada</h3>
+      <span class="mins">20 MIN</span>
+    </div>
+    <div class="ronda-body">
+      <p style="font-size:.92rem">En esta ronda hacemos una <b>primera mirada general</b> a los controles como mecanismo de gestión del PTEE: qué son, qué tipos existen y qué características deben cumplir. El desarrollo de los <b>controles clave para cada riesgo de la matriz</b> será el foco del <b>segundo taller</b>.</p>
+
+      <div class="grid g3" style="margin-top:12px">
+        <div class="card" style="border-top:4px solid #2e7d64">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">shield</span> Qué es un control</h4>
+          <p style="font-size:.86rem;margin:0">Actividad o mecanismo definido por la entidad para modificar el riesgo: reducir su probabilidad, su impacto o ambos, hasta llevarlo a la zona de aceptación.</p>
+        </div>
+        <div class="card" style="border-top:4px solid #2e7d64">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">category</span> Tipos de control</h4>
+          <p style="font-size:.86rem;margin:0"><b>Preventivos</b>: evitan que el riesgo ocurra. <b>Detectivos</b>: lo identifican a tiempo. <b>Correctivos</b>: responden, sancionan y remedian cuando se materializa.</p>
+        </div>
+        <div class="card" style="border-top:4px solid #2e7d64">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">rule</span> Características mínimas</h4>
+          <p style="font-size:.86rem;margin:0">Responsable definido, periodicidad clara, evidencia verificable y conexión directa con el riesgo que mitiga.</p>
+        </div>
+      </div>
+
+      <h4 style="color:var(--morazul);margin:18px 0 8px">Familias de controles del PTEE <span style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix)">(SOLO MENCIÓN — SE DESARROLLARÁN EN EL SEGUNDO TALLER)</span></h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">travel_explore</span> Debida diligencia de terceros</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">call_split</span> Segregación de funciones</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">assignment_ind</span> Declaración de conflictos de interés</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">fact_check</span> Verificación de certificados y metas</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">card_giftcard</span> Regalos y pagos de facilitación</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">gavel</span> Cláusulas anticorrupción</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">support_agent</span> Canal ético y denuncias</span>
+        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">receipt_long</span> Trazabilidad documental</span>
+      </div>
+
+      <div class="banner-cero" style="background:var(--morazul);margin-top:18px">
+        <span class="material-icons" style="color:var(--magico)">route</span>
+        <div>
+          <b>Puente al segundo taller.</b> El próximo encuentro estará dedicado a los <b>controles clave</b>: partiremos de las matrices integrales construidas hoy y, para los riesgos priorizados de cada compañía, definiremos el control, su tipo, su responsable y su evidencia.
+        </div>
+      </div>
+
+      <h4 style="color:var(--morazul);margin:18px 0 8px">Mientras llega el segundo taller, entrenemos el criterio — ¿qué haría usted? <span style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix)">(haga clic en una opción)</span></h4>
+      <div class="dilema">
+        <h4>1 · El funcionario que inspecciona un punto de acopio comenta que "un almuerzo arreglaría el acta con observaciones".</h4>
+        <div class="ops">
+          <div class="op" data-r="mal" onclick="responder(this)">Invitarlo: un almuerzo no es dinero y mantiene la buena relación.<div class="fb">Incorrecto. Es una dádiva a cambio de alterar un acto oficial: soborno, sin importar el monto. Además expone a la entidad y a usted personalmente.</div></div>
+          <div class="op" data-r="ok" onclick="responder(this)">Declinar con respeto, dejar constancia de lo ocurrido y reportarlo por el canal ético.<div class="fb">Correcto. Se rechaza, se documenta y se reporta. El oficial de cumplimiento evalúa el escalamiento ante las autoridades.</div></div>
+          <div class="op" data-r="mal" onclick="responder(this)">No hacer nada: si no acepto, no hay problema y no vale la pena el conflicto.<div class="fb">Incompleto. El intento de soborno es una señal de alerta que debe reportarse para proteger a otros colaboradores y a la entidad.</div></div>
+        </div>
+      </div>
+      <div class="dilema">
+        <h4>2 · Un gestor clave amenaza con retrasar la operación si no se le adjudica el nuevo contrato "como siempre ha sido, sin tanto papeleo".</h4>
+        <div class="ops">
+          <div class="op" data-r="mal" onclick="responder(this)">Adjudicar directo: la continuidad de la operación está primero.<div class="fb">Incorrecto. La contratación directa sin criterios objetivos es un evento típico de corrupción (favoritismo) y debilita todo el sistema.</div></div>
+          <div class="op" data-r="mal" onclick="responder(this)">Pedirle que al menos mejore el precio a cambio de la adjudicación.<div class="fb">Incorrecto. Negociar por fuera del proceso formal mantiene la opacidad y puede configurar colusión.</div></div>
+          <div class="op" data-r="ok" onclick="responder(this)">Mantener el proceso competitivo, documentar la presión recibida e informar al comité y al canal ético.<div class="fb">Correcto. El proceso objetivo protege a la entidad; la presión indebida es una señal de alerta que se documenta y reporta.</div></div>
+        </div>
+      </div>
+      <div class="dilema">
+        <h4>3 · Al revisar soportes, usted detecta que un compañero aprobó dos veces el mismo gasto de un proyecto ante dos financiadores distintos.</h4>
+        <div class="ops">
+          <div class="op" data-r="mal" onclick="responder(this)">Hablar solo con él para que lo corrija en silencio: es mejor no escalar.<div class="fb">Incompleto. La corrección silenciosa impide evaluar si hubo intención, patrón o daño a terceros. El canal existe para esto.</div></div>
+          <div class="op" data-r="ok" onclick="responder(this)">Preservar la evidencia y reportar el hallazgo por el canal ético para que se investigue con debido proceso.<div class="fb">Correcto. El doble cobro de gastos es un evento de corrupción. Reportar protege la presunción de inocencia y la integridad del proceso.</div></div>
+          <div class="op" data-r="mal" onclick="responder(this)">Ignorarlo: no es su área ni su responsabilidad.<div class="fb">Incorrecto. Todos los colaboradores tienen el deber de reportar señales de alerta. Callar puede hacerlo partícipe por omisión.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Herramientas ===== -->
+<section id="herramientas">
+  <div class="sec-head">
+    <span class="chip-num">ANEXO</span>
+    <h2>Banco de riesgos de referencia para la plenaria</h2>
+  </div>
+  <p style="font-size:.9rem;color:var(--gris)">Extracto adaptado del modelo de PTEE construído por 4Hands Partners S.A.S BIC para el sector ESAL, contextualizado a los procesos de las entidades.</p>
+  <div class="tabla-wrap card" style="padding:0">
+    <table class="banco">
+      <tr><th>ID</th><th>Tipo</th><th>Proceso</th><th>Factor de riesgo</th><th>Evento de riesgo</th></tr>
+      <tr><td>R-01</td><td><span class="pill pill-c">C</span></td><td>Abastecimiento</td><td>Debilidad jurídica y contractual</td><td>Colusión de proveedores o gestores para manipular procesos de selección o precios</td></tr>
+      <tr><td>R-02</td><td><span class="pill pill-c">C</span></td><td>Abastecimiento</td><td>Debilidad jurídica y contractual</td><td>Contratación con empresas fachada o terceros sin debida diligencia</td></tr>
+      <tr><td>R-03</td><td><span class="pill pill-st">ST</span></td><td>Abastecimiento</td><td>Transacciones internacionales</td><td>Pagos a intermediarios sin justificación o con fines de soborno</td></tr>
+      <tr><td>R-04</td><td><span class="pill pill-c">C</span></td><td>Operaciones / certificación</td><td>Gestión operativa débil</td><td>Adulteración o doble reporte de certificados de toneladas gestionadas</td></tr>
+      <tr><td>R-05</td><td><span class="pill pill-c">C</span></td><td>Relacionamiento público</td><td>Relacionamiento con sector público</td><td>Ofrecimiento de dádivas o atenciones para agilizar licencias, aprobaciones o inspecciones</td></tr>
+      <tr><td>R-06</td><td><span class="pill pill-c">C</span></td><td>Relacionamiento público</td><td>Relacionamiento con sector público</td><td>Tráfico de influencias para obtener beneficios o direccionar decisiones regulatorias</td></tr>
+      <tr><td>R-07</td><td><span class="pill pill-c">C</span></td><td>Gestión financiera</td><td>Gestión financiera débil</td><td>Facturación ficticia o sobrecostos para justificar egresos indebidos</td></tr>
+      <tr><td>R-08</td><td><span class="pill pill-c">C</span></td><td>Gestión financiera</td><td>Gestión financiera débil</td><td>Alteración u omisión intencional en libros contables; doble contabilidad</td></tr>
+      <tr><td>R-09</td><td><span class="pill pill-c">C</span></td><td>Gestión financiera</td><td>Donantes y cooperantes</td><td>Uso de recursos o aportes para fines distintos a los pactados; doble cobro ante financiadores</td></tr>
+      <tr><td>R-10</td><td><span class="pill pill-c">C</span></td><td>Gobierno corporativo</td><td>Conflictos de interés</td><td>Decisiones de contratación con intereses no declarados de miembros de órganos de gobierno</td></tr>
+      <tr><td>R-11</td><td><span class="pill pill-c">C</span></td><td>Gestión de talento</td><td>Vulnerabilidad en selección</td><td>Vinculación de personas por presiones o vínculos con funcionarios, sin idoneidad</td></tr>
+      <tr><td>R-12</td><td><span class="pill pill-st">ST</span></td><td>Logística internacional</td><td>Transacciones internacionales</td><td>Pagos irregulares para facilitar paso de fronteras o liberar embarques de residuos</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== Cierre ===== -->
+<section id="cierre">
+  <div class="sec-head">
+    <span class="chip-num">5</span>
+    <h2>Cierre y compromisos</h2>
+    <span class="mins">5 min</span>
+  </div>
+  <div class="compromiso">
+    <span class="material-icons" style="font-size:44px">handshake</span>
+    <h3>Mi compromiso con la integridad</h3>
+    <p>"Conozco los riesgos de soborno y corrupción de mi proceso, aplico los controles que me corresponden y reporto por el canal ético cualquier señal de alerta, sin excepciones."</p>
+    <p style="font-family:var(--font-mono);font-size:.78rem;opacity:.9">CANAL ÉTICO · OFICIAL DE CUMPLIMIENTO · TOLERANCIA CERO C/ST</p>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">campaign</span> Recuerde el canal</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">Reporte confidencial y sin represalias. Ante la duda, pregunte antes de actuar: el oficial de cumplimiento existe para acompañarlo.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">fact_check</span> Evaluación exprés</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">Tres preguntas en el chat antes de cerrar: ¿qué riesgo identificó en su proceso?, ¿qué control aplicará desde mañana?, ¿qué le quedó sonando?</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">event_repeat</span> Siguientes pasos</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">Las matrices construidas por los grupos alimentan la matriz de riesgos del PTEE y son el insumo directo del segundo taller, dedicado a reconocer controles clave por compañía.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Memoria y soporte ===== -->
+<section id="memoria">
+  <div class="sec-head">
+    <span class="chip-num">MEMORIA</span>
+    <h2>Este documento como memoria de la formación</h2>
+  </div>
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">history_edu</span> Qué queda como soporte</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">Este archivo (presentación y herramienta de la sesión), las matrices de riesgos por compañía descargadas y los compromisos de los participantes. Constituyen evidencia de divulgación y capacitación del PTEE, y el insumo directo del segundo taller sobre controles clave.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">touch_app</span> Consúltelo cuando lo necesite</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">El documento sigue siendo interactivo después de la sesión: puede repasar los conceptos, volver a los casos, recalcular severidades en la matriz de su compañía y descargar de nuevo los resultados.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">forward_to_inbox</span> Ante cualquier duda o alerta</h3>
+      <p style="font-size:.88rem;margin:8px 0 0">Contacte al responsable de cumplimiento, el oficial de cumplimiento o use el canal ético de su entidad. Recuerde: ante la duda, pregunte antes de actuar; ante una señal de alerta, reporte.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <img id="logo4hFoot" alt="4Hands Partners" src="">
+  <div>Formación diseñada por 4Hands Partners para la Asociación Grupo Retorna y sus corporaciones.</div>
+  <div class="fmono">MEMORIA Y SOPORTE DE FORMACIÓN · PTEE · USO INTERNO · NO SE AUTORIZA COMPARTIR A TERCERAS PARTES©</div>
+</footer>
+
+<script>
+/* ===== Logo 4Hands Partners embebido en formato hexadecimal (autocontenido) ===== */
+const LOGO_HEX = [
+'89504e470d0a1a0a0000000d4948445200000384000002c90803000000db211d0f0000002d504c5445fffffff08446f08346f18446f18346f08345f18445f49758f08445f18345fdd696fddb9afddb9bfeda9afdda9a03b704e60000000174524e530040',
+'e6d866000026804944415478daeddd8982a2bad686e10a94467b77f5fd5fee2eb5b41432ac9519799ff38f5d1002e43361fef800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+'00000000000000000000000000000000000000000000000000000020c2dc4ca6774580e28c99e7f9737e7198e7e308addd4c97dad86b9d6e55b497ffbafc6736b319a18a403a339de63873eed4d2cf0741edae35ecbd21013d236cdebd9afa2ccd1f49c4',
+'1625e4efa1c5f19849f985b8e9bd6981b8734e027f543d54ccac9ba543c4c8d23b18478f3872057b6f68c0c97ce637eeba6d7de4ba01b98ce424688273b11a4ea5abc6a81423a913c0927d8efe54a880ad326406d4ea26f02ab3d319b76640019586a12b',
+'e935ac5c317a437455f26c68cc29add36950337a4374d3328257fa4ee7e78ed0ca2c314417ad139810c376f53af5de1bd8a1e6bde08d55c4f0d8b66abdf70876a653046f64316c5fafde3b05bbd23382b3e8f25c8f5f094b0cd14ae7085e9921ab687bef',
+'1aec43f1bbbfd21c0255ec3958eebd7bb003e56fd22edededb5c96d0d60a28a377ee5e78aecef5ae56ef7d84f736503778e51a93f6ae13f7b1a1a2de8d5bd4e0073864e52c296ae97a6dd06b79ab4aeffadcf4de57784b6346705e5e34ec5d9bbbdebb0b',
+'6fa8ca33b1853c1f19f6aecb43ef1d86b7336c3f786306ac67ef5d8637d3bb418b9bfc40a76fb97b0605f56ece22b7aa76bd4cbfc4438628a5775b162a54d79231eebde7f02e8a1f66d5eaad2e6749338b309797f0dfbe8d36afbe2195a0f7bec37b2811',
+'8f6bec9c5f1833d7866f0b0533a3b6debb5ccc9cf1b3c171210a28100dc95d5c25be5f714961ca4c8243373e1f837ef42dfaa5bdea3eb034d51baa6604f0ee9c56b7de7b105b97d0aaaf2134764efce274c30b7d09af6eab1b7360c524fcf6ffcc93d3f4',
+'dae430b16e09770ef5de8dd8b2a41f7e5be4c7bf7202736aa87e875bb94fda607792fa4153aac9d5eb0fb31ff7d31eb976de8fd8aea4065ef408a8460e3f8bd450b9d03e3b109ba76fdf35be1356fa7c69b11f09dd0f44cb1d87b7a16eddb51e272ff91a',
+'eda2fdb466c1bcf0027a9a967d51f38d0ea55e5851fa62c1a4e8a4abee2cbc25cd89f84b060ff98b0c2911c31ae728158bafbb81f07e741d8cf933588d1c2afd4a28eeb6abbf8df04e74271d1a44f0222b83036caa365b09ef427742b259b592af587cd6',
+'acd578db096f4095c1961553a7f0e07980aa286965b88914629a9332ad4fbd6b53d8a652c25fadc6db0adb355c1b4faf5eab1a4a4fde76d85cd8a4d15af892724c3a529dba6c2f6c8fbc79f7ba0b44f980559b3a0d54176c9dfc80b063254f9a10b6391f',
+'22aa0a6f9c81c0462e7ba9bac23629141d1772821471d2867dca5f549b8ab6fbbd18a82ad832f160b47745bf87a4c3dd3d2dd978556f1bc03b900e4687783067bcbe50f2b3d07bab617463b5e952b56d57e3716a82ad1236e861ce2e68ae180e53a1de1b',
+'0d63db5806c5356e57eb617e0eb051b2d63cd6fbfb3698c2de9b0c239335e6deb54caa74bb8a47abc1057bf8497a93e13238dced05f16a547e1308364cd298ed48c7837783f5858354035b2469c5635e6a16df61706c519bf88fd988bf6418816854d7bb',
+'921ee2aeb049f3dfec66446f922f430ffb132e0d619b9322841049241d6193d15cbdea376bffd107ad86fd314357a334e09af56fb612b13a0c71eb2d863348f3adba021557e3f561c268bfdc7b6361448247d547fff99686b0fc58509c7f428880776838',
+'7d1290f0950ccbe57aac095a52ef2a0a7448a13e811763dd7e8b31c47fbc65ede6bfbf5f177fffebb31ad267ed4b2d2ff5b5fc9c1dc54aa4311923bb5ded96c09b2e316cfc6200d53bdf6afc08e08dc47eb8459f73f8f7f5ea6f871511a6b0cc35fbd408',
+'124238c44228f90aefdfafa51e9d61bb1868bed2bb30f04d0fe8261ac278115f0e3d5228bd99bbf226a32384c763b4f63abe8c0de24cbcd9fcfb1a25856d9290934142b85bebab108f20c64218ff12efdfafafada530eb0c2519845ab825c642f82f5afe',
+'974f8fb333f53f1698fcc56032b85ba1e3a4cbd9fa589b8a2ee03f6f08bf3aac6efd53a41911e40d33bb146b16263649fc26abafafa15228cc43f2cd631919e43afd1e096e483b855b55e2a9d10df48589778f1141a8e4fc68dfc597f2355a0aab6622f5',
+'02a12583bb542283f196f3dfd74653987480c6cd6a50c83a89a7683bb1107648a170d553baa6e43b65da6f057497f0a49b83e066e768083ba450b876fa14a66f4906a3fb53a61f94fc7ec743d82185d251a3b6dcba9b12efa5590663276686ee0badf2b1',
+'a623218458990cca86508210764861953b67eaffa2e16d94198c0a0f63fe0942d8fe0636e93171b3cdcadd32fb52e6a48c787192aeb07d5f587c353f3ece6db627de41db0cca42d83e85e54fce34dba2d8bce40bcabf7427d445216c3f222d1e0e4208a9',
+'9c566266d12b655e09ae52bcc58834fd9d16847067c41fec2bd74a24e7663aa450b8dac2373a669fee6abdfae8a74733193485d2df23d9cb97082184fa341359089ba7503a80145db4cfcc2021dc8f9c66927183e3a02994aeb92485b921e4f6d1bd907c',
+'73b7ca8ff59829940e2125c7858410327917ea73963c660a0bae3b21844c5e3bc95af4bba73037848d571cddf46c28c214367e1fa978dd63ef7eca0d213de15e746d271b4f61e427884b1410e9dc5084296c3b24156f93c8a76f08214432db4976431186',
+'30fe6efd921427ab6a6edca6eb8c7e326fdece7fe86dc8be507e275ff083a879db966fd5ef45e68f75feaff5df2153586613e46dda425f08c6f0ba8770d0beb0c836c83b286cbabee86880100a1f6c6a7b92d4681e43f2f659bd372d366180108e9942dd',
+'9d4435b66ec3954557b94fd517a98438852d87a467455fe8fb7044ce78b4e1aaa2afcc0c166a2ae2b3332d53a87bd8f9b3f4e66db8a6e86b8c108ed9172afb31d72585e4ed6ab9676d3f46b9ab43de17363c30d40667ce2ea2fc86c5060c1242f9958aaf',
+'7fe36e9c750c53b72b1de19ee465b0645b11a7b0e19034ff77296dbbda3fa47047f24258b42ae210fe6937244d7a6be1730149e37dfba7edd12ffaeaf764fd9abc2f6c97c2eced9232fb25835f7f1b3fc1857e060aa12285eddecfdd2185b6fd39287435',
+'500635296c375a6b9fc20e07bfe82ae322c5a97c6d14296cd64ffc3117e929d4cefbe7f7e0b7d52aa2b3f410d63883f74711c3565be83b85561dc2a78da39bf74f8f1f1af495de1556a98ef00df94d5398d213be6c9dc40c3220dd8dd40c56ba94a54961',
+'ab9e22a1274c4ba15d8c04b85cb813aa67e77cadac20f92d6cedce92a66ca39702646f3ab7cbf56b787b10ba4acc60b518ca6fe76e17c3ec8d23b9206bd7abd766edd05f72082b9c1fbd1a308593be2f5c94101ed11a570409e17e645ca6a85423cd90b4',
+'5143cd3b35132dc2f65c370c203d84b552a80961a3f333ea33a4ae32666b8dbd94648d79bafe687d97669aac1986901ec25ae7ef547de1909da1fba5ac97e05dceb59adbff6142092484fb923c22adf60cb8e65245abceb0d420e178c9e0e54e9c7f7f6c',
+'f8f68426ab8541e85ea9226b6b9954296cd35c55972a0aac22b7ccec4b7208474961a3ce501ec3022bd86495308ee4470bebddd6a14b619bab15057f9c06e9de3192e1ba42e58161a36b86c2e3e7e86f537ce5188dee50626758eb9afd87f2ee9956cdb6',
+'cc4f93e007a6c5ca603889afe4ae5823650a9b345cc125431bfb3910fcbcb458158c28298435eff6d7a6b0c94dcfe7e8099a4801820c3218dd31a33803d8a02bd41e188e31268d7c5e5032cc6eb11618d87c9a7551ac5919dddd33cddaaf49df1e64105a',
+'bd53a81e92763f4f1a9e4f92c1762f94c326083268eba650df19361993faced084e71aa733c776f41f91aaaf55346bc6953248478857b2eb87367f4121fa147efd31ffe67fd5dfd332bd7687b1e58dd38f6353645d61e50f7a25a4f0ebebf2dc5efd8f1c',
+'2946e523f5e2d81261082bb7f68421e9776f78797aef337fe1519707044bad4283ea6273c4972bea5623ad33bcf486e7de5b50537f0e08e120beabf490bfac90a4cef03226b5952b56b2f21c10c2491ac2da7d615a0abffe54af589cf8ce9fde15c5a8e4',
+'29ac7c1ae49fe67b154f31acf6220e19f9af47d76a62649a176fd6ad496267f855f9124a98fc06d89eb5c4e0e419ac3ef2d3df3f73d3edadf28adf8d5e55c4266852583986b3bc51bfea73de71f80a622b74af45ac7c04969ac20ee71e87ae1c3646f9f6',
+'8bba95493d326cdddba886ce7c850931ca57508f78e5be718fa37b20990c224ed715469f2fcf9513c316dda1f29d008c4521a14de1780f383dabbbadb4e770e90721a3cda0addc1be6a5b05ee7a3ff79a01f8450d297636a5628b333acd21f9a840b9964',
+'1062699fb8af76c162f27d5eb35f02927e16188b42e19c12c23ae768ccf517c19688e1d7df32676a123b66fa41a8a485f0f26ddac2f5b0e6a75bb669f774afbba3bc2cfc4dbd9d8efb64a09598c26fa76239fcef8f7dfadc74b11826774ae901fce27e51',
+'24484f619971e9cf7b899f4f12992263d2df246aa2987b6ea8f7eec42665a5f03b42191de2f4f93833f47aa6b6cca1a12a8a7fffcbe9ff7e3014459abc145e25bcf5655a47ef39da05c7a4cba0fcfbef99faeb18a1a0f7de95d8aca4eb85ebdc48fb4473',
+'9e25d746eac5b05abc7bef486c589114de1d274f188d990faa927a874aa9f75ec4c6954ce1cfa9163bfff932d69acbbb42adf2bb5037ffcc867a4386a2c895f859df20f32367fef26768eae8bdfff00eaa85d02687f07af5b0c289d2f2381a4411693792',
+'c6839417e2eb60b677c6627aef3abc8f1a214c1f8c5e7b427b9b7fe8187234888252ce9e5474c9e0bd271d3786bd771ade4cd16b150542f838adf3fdbfc63c534a3788e27a072fe46bb818724206358cd519beb834f902377896d37b5fe16dd5b86498cd',
+'3e5eba58f2664f2288418dd819be7c19b477fc2e3818445d839d265ddf1bde7b544a0451df586352c7c3c33d63c8f9183431d298d453c5fc372426e9bd67b023a3c430f49862f31c320e455bca4f379572b94fe67ec35afc49e186674bff1041b4d7a7eb',
+'fb7d044af626a936fd21eff445271d06a5d76ef01a4279356be79004a2a7e631bc66d0fe53bfc6ad5a10335f240c14d03884dffffd27ed4d8a15724800318896e76854e3d0b5926f31e48a2046d266546a0a7d0531bf4b2cf45519a0a8063934253f8098',
+'fc526d86a01858e51c56f8f6e15fd5f054f5e10aa013a37b85af5cdd6afffd2fd0315efed87bbb021ae658f2398b4b5135be3b0abcb98203d3deab026cd767de950b4b008112cc31ede1c37385b330c08e7d1f26fef46d9ea3c5df7f3ed438090ae0ce4c',
+'474fd7670ce10300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080ed98d7a6de750276c511c2b9779d805d7164f0d8bb4ec0aefc31c6301c053a5a87d0d213022d194b4f087465',
+'d6c3514ecc002d5d7a4263e909816ecc3585f484c8f4db7ccce3bfcff2d96f33fcfecf5d3544b31e8f7262067aae0bce8a10ba66dfcd90cc7ef7847b5d7714e44a91c99b5d91e16de38e1914e16a488a3195dd7343ccdb74c08fcc10d213321c45aecc83',
+'3ad7ec7bee0977b3ee28283345991de9b6d113a2088e09d3add79c7b479180e1683a7a4214c17034dd9e7f805050668a5cb3eff9ece86e7e805010c3d1740c4751446657464ff8c21242e8953f26b47bee0977b3ee288863c2741c13a2880a21dc4d6fc0',
+'31218a98f35a123de14e7f805050664fc81d330c4791abc27074370dd1f10bc470147a1c13a6dbf30f100a62389a6ecfeb8e82188ea65baf3a17eb91c09522ce8e26af3c21845ef99e903b6600950ac784ca9ef0f6eecee9fb7ff5de16de1ace879f557b',
+'ade29e87e228a8c231a1b837984e558773dfd9be86c7cce9f95e7d6bc23e95953c1c35b7d72c7fd7ebfbc7a7e01a639b2a8450d4134eb38f68e94f4b73be27d51c56e516da384f4525fd00b956fc481277ad4b4f388758495e9ea79e5731f494abec6667',
+'ebade3e45b4c64d34dfe32c9e17ef99b58f2ecb19e7016d02ef7e94fe6d35f6ce6bbc5170bd46eba40aa89e19eb95a43cd9ed0cc3246b9dc708d1e3eb356ec893d6b87a391085eca2486fb54218447e5f4ee0639eb962b2e3f79b5d625a98a171529fe8d',
+'c03bc90ca1eeb6b57867208d8b676249b182eee62029c7c9371c9dc425b46e00e82f3384aa76a46dd19ae51af902a2294c8ea0b7ce85d61aefa942088ff24993dba36b5ae9e166ac996744d073efe8b1d05ae33db95a4195571e26356ac5723fcef2b1ae',
+'7e95b28a3eaa46e1a470772a84f02c9d306e922f577ed4156ee6bae3d62aebdebb4da0b1cc56e098d9f95194d446adaab69cffb0503ca69557b8d43ae35db95a81a227949e1d2dd9a8b3cabbb1aaeda1301528b17793406bc296a499ddd51326773046be',
+'dc02c506cab5b271aab2aa565202de9cb02569663f8a9713698e81bac4d310898cbbd8c06f85114ce33a26f44e69cced212edf72b01baef6d1eeece86f8b33beb6ad58eecb3a7cb7f0d0b91aa32a76b145262b9c30bedeab50776905e84ade40c5b39fa5',
+'530aca9aed41bc5c49130f37767960cfd2628d154c4406f74ddc40c5b35bd9c57a47cb9ee437c10522289c545eaa73606084d3ca32fdf1337ce616ee5d12b73af9ec82e32dcfedd9cef1a3112fd7b36cf784465ca862d5ed59305560f390c15d7286d088',
+'b966f7ddf5f61bb1b3a63607e984de062e9d549541e1ef97a640ec94af354bcec7bba7b1de88dd231ba88ee408ca5f6dd585076ff5a4913192c9e595c46e65dda4e511585cec954bd2e274cb15c5457f78bc9e7a7503b7d195885daa90c1ac97ff3aca73',
+'e556da6306d652b629b4db2e3e49ab3d8bcda810c2ac776f0a83a0ccbeabd465b665dd65a4d4293e49b35d8bada810c2ac66769095a75cac2460fa5511cce038dfcb9bf2b1502183593da12b2ec26a6b577331896b841b3e8275ccb04cd8145f2e76af42',
+'08b38e09bb85503f1a955422a1548cccdbeaab149a21a73ee9210cbff2335a6cc29a3866588e02b4973d30b63a8dbe4206f33e8d961cc2cc9eb04c082517eb67ae156e55a0d5572a3691cdfb3291ec09bb3621d45fd45c85d0731df694b58dd0c9664298',
+'39da9295a7bc4e2818e526ac886416ffd387f4869b53abd157c8605e4f285b3fed66480aa1fd0873ccb2ea0983ef9f22879b126cf5d50ade5108534e633a627b144cf4ec400e3723fc3ebf9c921bdf3b1ad72b848e0d110b88a34ce193f5e536179aa9b7',
+'175de555fe349ac3e54d1407cdfa150f61ca8695cd124fa1e5269a0da8f853ea2a2fef35f89ab3a3e66c040f4d09abad5dcde804091f5a3ccb165d761fa2819a3b30b3c08cd92f5fb4960d8665cb0d7627ad7ac249361931dc9ae83b3b730a779557e1bd',
+'a392f93243587e38aa3f2674bfb623633d3188aa3b2f3545a1ba65afd06643e8de74e2371f73aa7454757f419b8730e15ddcc2e56a971a2db0c8d9d1ebd2a5e7a049e198045f1bca293eb329b85a5728c349afc39755bbfc31614208b3bf9d91b32f514b',
+'e51d971942d7ec47dde4a542183c97e908a18dd62cb61d1cbf408a6fb991c2cda8bddf94291255cf3771eaa7e085cb0dd5b3d58999a3aa06290b4573a98d346b01753e975df4f3688ea9ceda7abe4cf0a92df1433d26165e91c9d99ba840f6f9d99c25b8',
+'caab72c74cc6d73745cbb5793de12961c3aa67f17ec1e2d9e10343496ea4794b90cf2efe7a443483815e42566ded31e16bb107e182239588fd7e9943d20d42e84796c1d186a3ae3444baf4a77702278730af2774755205cf8ebe5625e9db89e84298c1c1',
+'86a3ae9313be7ed0ae5b7a7208f37ac2328f32097fbf22c3829cfd89b2c44751390bc92c5038bba2e6755e6fd12a84e2dfaf507fc809d271881ff5cb5988abbce267475d5359f9c7726553e5f584b55e6f11a07a760b5dc84f27e62cc5559e62382a3b31',
+'e39a48f1052561b5b51b33afc48f8ce1e8ddd9d31b26ee4b94268e60f9102a9eca15d54715f491deb656e0958729db8f100e4273592d67399905bae63e4a26d294289a2a7c9df0335a6c9910aaf785ab8cd80ba6d048cf10663e592ff864f4a7bfc45e3d',
+'e159fb16c5223da1f895e368cf790347ab10163e26744c1138ff275b3fc772334fcc387ff5b41f844979f131211c94ec76b55a21cc1c8e9ee3d3e84a944d951942fd96709599f0caa6836ea9684595c1c186a3995fab4d0e61e6d9d1321fea4dd8175389',
+'42509c376ee53ff2e32a2ff306ee78eb36ba1285cbd5d653b22a075d91292f3ee6b3f643f21e105638a39d59a0a421aea7f8d495289a2af3290adfa6f0fe5eb87745c27074b2d19aa139ef8951d3288485ef9851d558788e52bb199243a87b5f45ca6b7c',
+'8b241985f93238d7b8b6eb2aaffed951ddba0ba7d3aee6721af7d37eceaed0ffe626dfd2fd23f0b2fb13450432b8cde1a8eccadf85670c205c6ea89ea2ab71e25c7977917310f1f308a127861c120e2894c14d0c476d7c38ea397ef33d782e5b6ef01285',
+'e38e192b29f43aa1114d76e5184444f653e1fd8902bc0784e70f4d4f21266c499ad997f571d5da48cb9287307b382afa2279ec0a6e78878a16c9934cbd05f76ea31066dec0bd9cddd96e8da4a472218cdf3bea9b4a27fa1857e67aa08170436c14c2d20f',
+'f53a277a4961f84e59d972f3deb616d9fc52ab41c46acd9e3f0bea2c22e1cb7228c93bd8b9edb946212cfdde516f933d9b6ff321e19d2bdacd20eb09f343b8dc74fecb4df3ccc38443f27708b7bfcb1ba998abbcd25f65f2b7d9929f460bfe74489f5550',
+'e44d54577d015c24ec2cb66ba7e05fcb2d523e7bfa93f5e90ddb57a272359d4fed699e20b3eb529717eb7537e267ef4ce4f3be93ec7e185161bfb9ca2bfe8e19d5fbefd76fe6942d37f7298ae026766ff6f5bf2d42287e4d50917d897cde5fe1c75dc415',
+'769cabbcc297283e729bb670b9da6dab5823cfe26217da15abfd83cb139dd9e88ef137876499050a6757bdb46a8a9757af27d4bd7179b5cb8e4965397635ba08efeeab736c82324badf05526692b744d6c45e5e53f45a1aaab67d249b05c3f32d8596c7f',
+'07a629bdd81adf2794b4c1fbb1af60fdb49b41357df448ee117841a18a0ce6ec471410bb3a71d52884e58f093f448df13ee9142faf6a08a3750dec35cd9e25838311ed9a46212c7f4c185cc31ffe3b49848569eb99b23796332e3b4de7ef9728860c45bb',
+'93ed9b4d84d0ffc63169cb4e0b61b0ff56afa5aca2a233b91f972fa211c1e1a5eef23a212c7dc7cc43e09d018b627f7b18dba327f46f6ce754f6f7de9f4071de43cd53ce0e4421a203c28f117b423b3b1a576886d5f5071b1fc209abad5ccdf87bae17bb',
+'e5d3d7cd7dff8498cbffbcfc27529e2388748263f06670b1832a5ca2e8c13c92388ddf02cdf952cd72f534e7c3693b6bbf1fde0c0a6f07ee5d7f60eb266906092150873883ef321c0506231e8cd21302552832484f085420bd3a717524844071de0c2a5e',
+'0ad87b1d802dd30c465f6e2421844011ba0c321c058ad36590e128509ab223e4ec285098f8a1823b86a34051dedbd5bcf7f7331c058ad20e46092150963782fe673c3926040ad2f783f4844049fedbd5024f7a72620628c7fbc291436026ee98018a4919',
+'8c724c089473f46630f8da118e098142026f830dce474f08149298414ecc0085a46690e1285086ffed6ab1f7501242a088e48e90e12850447a06e9098112fc198cbf14bd78086781cff9f45d37ded88eb7917a75e26a4a9dd1471242d5cf0430beac06de',
+'a5277c66359f4d038694d30f0e10c2ccc501fdf95bf63963f6f4fa4cee01ae9dafa3e6db0d3aa7cfe59fe90db15d5907841f35cf8e4e9102a7e24b04bac81de2153f31e32eda79786acc28293474c648e6cfa0f0b463bd9ef0a56cdf14768c147eff5e58',
+'428824fee797a44dba6f085f3be27edbb1f78f00362c3b833587a392107e945f6a0a86a348e5cfa0b84575ee095f2bd07743765b3a36ec3057b37af34c4afd44b33f9f9c39c8cb2eebb270eedd41827a195c3965d64f369515175d98e5c40cd2bc5d087b',
+'0d09af07c68410098c26469952ea279cbd7f086f37f3f45936b6edac8ad1a83de100219ce909918a101671ed082d3d2152b40b61cde1e8f349de2ea7283fe90991ecfd7ac22e49b0fdf28fcd7bbf10f6188ffef4c40c4791a2e1999994ea6d2484332144',
+'86b7eb093b0c473b2e1aef60ec103eddfb265d89f60766f725737614699a85f06d2fd6f7cc3fde42b30c76bf4ef898e29c1a16339f66735cccfd7ba77ad2bda33ff72ca966fd9927edb5ab26b8952663becb6560dd56b31bd7929e6f48188e0a5752df80',
+'8d6b112f65aa9bee9450a3d7d5f8542e31b8b8d7a21fff6a7944abb65621ec371c4da99031e63c4f87d373535cce7a7909b893753673f3612eef913b3c166c56cf7b45b787eed7c498e9f6723ae79638c636d3e9f1cf8cb32b6b95c1a41d296ba0c1761c',
+'aa536c62fb9864f1e0a5916c39b32ad43e2fd6f52c67cabe3ac4a772ffc144cb363fff4c086bcb49965cda837eb2f6197ad7d36fdf713984ba1cf184a65e07e3f6ef9fae7f8eadf23a84cf6586e771312f2518ef4cb37b819e7a2c67fa1e0398e9dec79f',
+'e3b54211052216975d35ff448117231ad7dc93bf544fbdef19342fcbb1b7aeed39d4f6fa9f9fff1d0ca17e3badd7d1acfee5caf34bf2f37f4f6676ccb6fa8761de25b91bfe2f8416927ab64dd73abda11217eb0ec5a385bae7fb8cd4d155e6730c642f4f',
+'9d9e67592e3a77255c8bf677b5188e2777a5cb964c63dd7f3281791c05be84e2e3d61aedc15f9dc7d2433f35e6f379de45198214467e351c0b7ceaa2ef535e57c275c6d9ceae030642b8199d43f8bccc456339fb678d94fb7bedef3eede55f8dbb3ac275',
+'7e9a6c5dd9d88a1adf5f7faa195d477bcfa06b51d7ff67f29790b917515ddff78e869669fdf39a70b9e7a73f5ffeefd362a697043dfe393ce85e5c5e58fc601ce6608dbc8b9865eb383d96f87ccbfe4b2181c5d2138ece9dc132218c5dac775cbd73d4cc',
+'75663652cfa73fff4ee4e9098d709d43198cf4a781bfc942f8bb159e56e2fc3ca1f38ea69f89b5b704a0b59a210c9567168f61ad9af56403951187f0fcd4ffb86b73f0d620b0a1027f5dcf69024b10ade379765d3179fd17679d3fcbed4b54d428840b82',
+'770bcbfe3805176c3f9e6777171829cab932a13f9fbd7f7275e9c65fe4ef70fcf9ef8ffb7c0e2fc57beeed95fcbaa0bb9a21b4b390ab999c43958954f4b1e0cbbd6566f5cfeea2e42134c13f2fff121eeffafff85bb19745da9f5fb1c574814ae7ed44d4',
+'d7e8c44c2881ee5feadfb66b4325c717bcfcf74557750817e52ad3f5e793f7afc1ec4a42685fff3a2d260f14cebda3dbe04946cdb2ef0debdbe7e46f21a263c229bae0d89d06d2099f7e355c7f9ebcb50d6fd393b754e9fe084e4108b7a059082fadf438',
+'1faffff3fbff3b469fa77bcce9788cea18aea8664d1e3f0be2103affec1d74ced2aa2eff22fd7e6ab45a847074bdbf4f28983d58726cc1d125eb2f51e88a490ee1d33a041fa90e2fa0e3577620d5a8274c9adf780753f29e30da0d18e194a18ef9b918eb',
+'9bcf848b0d853058b5e79f519ea9dfa491432829d9f967e123fdaf459db3a6f3f584cea71e9e8bf5de1824de7aaf7beec4f07373b617c2d7cbfcd90bd686d09a4839beaac47ac2e5f27f7f4922034ad7fea34bdc929a21d474482246f80561cd8a1c84ed',
+'3612265f4f18a9c9c15f557f3cbd8bfef5bd9d4e04712b063e31f3ca7cca2baa59eea3d94a43182be7f59fc5372cac8e357fff223e8fbc0a2217ea37c1b3034b975da796beeecb2a96abbd77d43336349e633b710657f7592b562290740e10376003215c',
+'0d424fc753b860cd721fe12ad413268750796d43ba145238beb39534883445ca7b3e6ab2f736152958b35cf531a1fbcff163c2d9dedf62f3f37a9bfb3b6e7efedd1b42c9a3488a70633835775c81f23c3fea53b860cd721fe9915ea2d0fd3dbd4bd28ca9',
+'3f82314cddf868e45c71bf6597f774d6e8e02939bc6041c37f4c1be9096d785512cf8e16a89863510b8c480737724ff898db7a876a911bb805cdef3e1c8d7d9549da13face8eaaef1e4bc99039389ed5a42b1cddc0210ccc1d29d82a162bed7022ab52be',
+'27bcaf8436bd8ecb865c311cdbb8210ccd1c2958b3d8c76b34a4f78eeafe9ebe0992bbd08f7510138a403bc38630381a2b1842cf70d42c674fec096d703d4284ddb9b1d1b353847070a386303cab3084924ee451d22a84f6e09c2e568eafa6da31a170db',
+'25fc306030a3deb6169ef5146ed99ac57a4272f9174d087d0dfe9cbc0d843de12134c9bd569c1f1ddaa03da1b0abab371c3d2f6797f684dee709b5c776f93de16f21847068354398f11445bb10fa7bc2d75826f684c26bee8ebf4a7b422b4821211cdaee',
+'7b424f51aba62bed09fdb780066a6342d74225f58ffc99100e6d93218c15dc2184fe9320928de00a8a70250ee1890aee4ed432e68919139eb37e08575728928f0903f7fdbc4eb2fc47e1703432912184e31bb3270c87305a51cd62cfce890fabae491ac2',
+'c01bb87db3ba83225c899f890ec13f2b373fda1a3384c2db654a84d0fd40c67aeee410c6374364b670fdef677783afbed16e7e34357c08575702cff18a6aee1d753676c7cc9155f1bef230be1d62bf35b2eadbc09f392fb35bcf5939a7cf1b28d5d34475',
+'778a388a728d0f2365869e7034a1ea9af0bf8b43183a7a566e7cbc8dd7ac285338f9daedcf3f2d7acad76b7abf7f947401eb25b93238bd2e30508a092e6219886bbf6e83c90daf84092d99d332fb34874cdf64717c9ae9e94d9f8f86fcf4cda69f07e8dc',
+'3510a4705a4c6e5c733e8f815d2b1059e6cb46702c5b5d60bce8a7e20bec556cca1c252ac63c3f9b6a2ebd8f99cd5301cb4757af0d759ad7575c0ed7e88716b57c97e26ba8cd7799abb72d7e2fe8f1fddfe9ec5ea67fab7c17693e8c719f97fd988deb6d',
+'07d3147de1e9aa28cdf6c63b8966f0945bcef5cf8bb66702f3d859d3992c5b6eb81ace37efde96faba8ce574769ed52f490c7de0f0f704cded838f3c41b167d1104a5b4564eec9f1afcaf67b6742d3a7867016ae8fff4e197908edc95f93deed011d140b',
+'a1b3a8a776f8dbe80eab7fd18570b9243b872b719b28b64ce1a6516c40e74a9c7e0b7154928b13c8646e91b84763d90a8d245f322faf5fadd7725fba6f5b64492f4136f3f316e3fa208a30d36136f3a7a9dfa06e5f43acbe1c735b4ebd2f989140000000',
+'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c8f53f7fedc955d04881240000000049454e44ae426082'
+].join('');
+function hexABlobURL(hex){
+  const bytes = new Uint8Array(hex.length/2);
+  for(let i=0;i<hex.length;i+=2){ bytes[i/2] = parseInt(hex.substr(i,2),16); }
+  return URL.createObjectURL(new Blob([bytes],{type:'image/png'}));
+}
+(function(){
+  const url = hexABlobURL(LOGO_HEX);
+  document.getElementById('logo4h').src = url;
+  document.getElementById('logo4hFoot').src = url;
+  const link = document.createElement('link'); link.rel='icon'; link.href=url; document.head.appendChild(link);
+})();
+
+/* ===== Calculadora de severidad ===== */
+function calcular(){
+  const p = parseInt(document.getElementById('selProb').value);
+  const i = parseInt(document.getElementById('selImp').value);
+  const s = p*i;
+  const el = document.getElementById('sevNum');
+  const z = document.getElementById('sevZona');
+  el.textContent = s;
+  let zona, cls;
+  if(s<=20){zona='Bajo';cls='z-bajo'} else if(s<=30){zona='Moderado';cls='z-mod'} else if(s<=50){zona='Alto';cls='z-alto'} else {zona='Extremo';cls='z-ext'}
+  z.textContent = zona.toUpperCase();
+  z.className = 'zona '+cls;
+}
+calcular();
+
+/* ===== Matriz integral de riesgos por compañía =====
+   Análisis base predeterminado: 10 riesgos críticos C/ST por entidad.
+   Formato de cada riesgo: [tipo, proceso, factor, evento, probabilidad, impacto] */
+const ENTIDADES = {
+ gr:{n:'Grupo Retorna',d:'ARTICULACIÓN DE LA ALIANZA · PROCESOS TRANSVERSALES · EDUCACIÓN, ALIANZAS Y RELACIONAMIENTO INSTITUCIONAL',r:[
+  ['C','Gobierno corporativo','Conflictos de interés','Miembro de órgano de gobierno con intereses en gestores o proveedores decide sin declararse impedido, favoreciendo indebidamente su contratación',3,20],
+  ['C','Gestión financiera','Gestión financiera débil','Facturación ficticia o sobrecostos en eventos y campañas para encubrir pagos indebidos o desviar recursos hacia beneficio privado',3,10],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Ofrecimiento de dádivas o atenciones a funcionarios para agilizar conceptos, trámites o requerimientos ante autoridades ambientales',2,20],
+  ['C','Recaudo y aportes','Aportantes de los sistemas','Desvío de aportes de los sistemas de recolección hacia fines o beneficios privados distintos a los pactados por los asociados',2,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Contratación directa de proveedores por favoritismo o intereses particulares, evadiendo criterios objetivos y comité',3,10],
+  ['C','Gestión de talento','Vulnerabilidad en selección','Vinculación de personas por presiones o tráfico de influencias de asociados o funcionarios, a cambio de favores y sin idoneidad',2,10],
+  ['C','Educación y comunicaciones','Estructura y gobernanza débil','Manipulación deliberada de cifras de impacto o cobertura para obtener aliados, recursos o reconocimiento de manera indebida',2,10],
+  ['ST','Alianzas internacionales','Transacciones internacionales','Pagos a consultores o aliados internacionales usados como fachada de sobornos a servidores públicos extranjeros',2,20],
+  ['C','Gobierno corporativo','Estructura y gobernanza débil','Concentración de decisiones y aprobaciones en una sola persona que facilita aprobaciones indebidas y oculta actos de corrupción',3,10],
+  ['C','Cumplimiento y reporte','Relacionamiento con sector público','Información falseada o incompleta en informes a entes de inspección, vigilancia y control para ocultar incumplimientos o actos indebidos',4,10]]},
+ cc:{n:'Cierra el Ciclo',d:'PLAGUICIDAS DOMÉSTICOS · RESIDUOS PELIGROSOS (RESPEL) · GESTORES LICENCIADOS Y DESTRUCCIÓN CONTROLADA',r:[
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Contratación de gestores RESPEL con licencias falsas o capacidad simulada, facilitada por dádivas o favorecimiento indebido',3,20],
+  ['C','Certificación y metas','Gestión operativa débil','Adulteración de certificados de incineración o tratamiento para engañar a la autoridad y simular el cumplimiento de metas',3,20],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Ofrecimiento de dádivas a funcionarios para flexibilizar visitas, hallazgos o requerimientos sobre residuos peligrosos',2,20],
+  ['C','Logística','Gestión operativa débil','Colusión con gestores para simular la destrucción certificada y desviar plaguicidas al mercado informal a cambio de beneficios',2,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión entre gestores para repartirse zonas y manipular tarifas de recolección y transporte',3,10],
+  ['C','Gestión financiera','Gestión financiera débil','Sobrecostos en jornadas de recolección y campañas para justificar egresos indebidos',3,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Decisiones de contratación con intereses no declarados de miembros de junta en empresas gestoras',2,20],
+  ['ST','Movimientos transfronterizos','Transacciones internacionales','Pagos irregulares para permisos de movimiento transfronterizo de residuos peligrosos (Convenio de Basilea)',2,20],
+  ['C','Reporte de metas','Relacionamiento con sector público','Doble reporte de kilos gestionados ante la autoridad ambiental para inflar cumplimiento',2,10],
+  ['C','Puntos de acopio','Debilidad jurídica y contractual','Aliados de acopio que, en colusión con personal interno, reportan y cobran recolecciones inexistentes',3,5]]},
+ ec:{n:'EcoCómputo',d:'RAEE (RESIDUOS DE APARATOS ELÉCTRICOS Y ELECTRÓNICOS) · APROVECHAMIENTO DE COMPONENTES Y METALES DE VALOR · TRAZABILIDAD Y EXPORTACIÓN',r:[
+  ['C','Certificación y metas','Gestión operativa débil','Certificados de aprovechamiento RAEE duplicados o adulterados frente a manifiestos de transporte',3,20],
+  ['C','Logística','Gestión operativa débil','Colusión de personal o gestores, a cambio de beneficios, para desviar equipos y componentes de valor a mercados informales de chatarra',4,10],
+  ['ST','Exportación','Transacciones internacionales','Pagos de facilitación en aduanas para liberar embarques de residuos o componentes electrónicos',2,20],
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Gestores fachada sin capacidad real de tratamiento, con soportes de operación simulados',3,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión de proveedores en procesos de recolección, transporte y bodegaje',3,10],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Atenciones indebidas a funcionarios para acelerar licencias o conceptos de gestores aliados',2,20],
+  ['C','Gestión financiera','Gestión financiera débil','Facturación ficticia por toneladas transportadas o tratadas no ejecutadas',3,10],
+  ['C','Tecnología y datos','Sistemas de información vulnerables','Alteración deliberada de los sistemas de trazabilidad para inflar metas reportadas a la autoridad u ocultar actos indebidos',2,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Intereses no declarados de directivos en comercializadoras de chatarra electrónica',2,20],
+  ['ST','Alianzas internacionales','Transacciones internacionales','Intermediarios internacionales de "reciclaje" usados como fachada de pagos indebidos',1,20]]},
+ pa:{n:'Pilas con el Ambiente',d:'PILAS USADAS · RED DE PUNTOS DE RECOLECCIÓN · TRATAMIENTO Y EXPORTACIÓN PARA APROVECHAMIENTO',r:[
+  ['C','Certificación y metas','Gestión operativa débil','Certificados de tratamiento o exportación de pilas adulterados frente a lo realmente gestionado',3,20],
+  ['ST','Exportación','Transacciones internacionales','Pagos irregulares en frontera para embarques de pilas hacia tratamiento en el exterior',2,20],
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Gestores sin licencia o con capacidad de tratamiento simulada mediante soportes falsos',2,20],
+  ['C','Puntos de recolección','Debilidad jurídica y contractual','Aliados comerciales que, en colusión con personal del sistema, reportan kilos inexistentes para obtener beneficios indebidos',3,10],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Dádivas para suavizar hallazgos en visitas de inspección y control de la autoridad',2,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión de precios y reparto de rutas entre transportadores contratados',3,10],
+  ['C','Gestión financiera','Gestión financiera débil','Sobrecostos logísticos con retornos en efectivo a modo de soborno para quien aprueba el gasto',3,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Conflicto de interés no declarado que favorece indebidamente la selección del operador logístico principal',2,20],
+  ['C','Reporte de metas','Gestión operativa débil','Doble conteo intencional de kilos entre campañas y el reporte regular para engañar a la autoridad y a los aportantes',2,10],
+  ['C','Gestión de talento','Vulnerabilidad en selección','Vinculación de recomendados de aliados comerciales por favoritismo o compromisos indebidos, sin proceso objetivo',2,5]]},
+ rv:{n:'Red Verde',d:'ELECTRODOMÉSTICOS · LOGÍSTICA INVERSA · EXTRACCIÓN DE GASES REFRIGERANTES Y CHATARRIZACIÓN',r:[
+  ['C','Certificación y metas','Gestión operativa débil','Certificados de chatarrización adulterados, incluyendo manejo simulado de neveras con gases refrigerantes',3,20],
+  ['C','Logística','Gestión operativa débil','Colusión con transportadores o gestores, a cambio de beneficios, para desviar electrodomésticos al mercado de segunda',4,10],
+  ['C','Gestión ambiental','Gestión operativa débil','Simulación de la extracción de gases refrigerantes con soportes técnicos falsos para engañar a la autoridad ambiental',2,20],
+  ['ST','Alianzas internacionales','Transacciones internacionales','Pagos a intermediarios internacionales por tecnología o tratamiento usados como fachada',1,20],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Atenciones indebidas a funcionarios para agilizar aprobaciones o informes del sistema',2,20],
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Gestores fachada o vinculados a redes informales de chatarra sin debida diligencia',3,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión para manipular tarifas entre operadores de logística inversa',3,10],
+  ['C','Gestión financiera','Gestión financiera débil','Facturas ficticias de transporte y bodegaje de unidades no movilizadas',3,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Intereses no declarados de directivos en comercializadoras de repuestos y partes',2,20],
+  ['C','Reporte de metas','Gestión operativa débil','Doble reporte de unidades entre canales de recolección para inflar cumplimiento',2,10]]},
+ re:{n:'Recoenergy',d:'BATERÍAS PLOMO ÁCIDO · MATERIAL DE ALTO VALOR · RIESGO DE ECONOMÍA INFORMAL E ILEGAL DEL PLOMO',r:[
+  ['C','Logística','Gestión operativa débil','Desvío de baterías recolectadas a fundidoras informales o ilegales, mediante colusión o sobornos al personal a cambio de sobreprecio',4,20],
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Gestores con licencias falsas o vínculos con la economía ilegal del plomo',3,20],
+  ['C','Certificación y metas','Gestión operativa débil','Emisión de certificados de aprovechamiento sin tratamiento real, en colusión con gestores, para engañar a la autoridad',2,20],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Sobornos para omitir controles al transporte de residuos peligrosos en carretera',2,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión de precios de compra de baterías usadas entre gestores y comercializadores',3,10],
+  ['ST','Exportación','Transacciones internacionales','Pagos irregulares para exportación de plomo o baterías (Convenio de Basilea)',2,20],
+  ['C','Gestión financiera','Gestión financiera débil','Compras de baterías en efectivo sin trazabilidad, que facilitan sobornos y pagos indebidos por fuera de los registros oficiales',4,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Intereses no declarados de tomadores de decisión en comercializadoras de plomo',2,10],
+  ['C','Operaciones','Sistemas de información vulnerables','Alteración de registros de pesaje y básculas, en colusión con terceros, para ocultar desvíos de material',3,10],
+  ['C','Gestión de talento','Vulnerabilidad en selección','Soborno de personal operativo por compradores informales para que facilite el desvío de material',3,10]]},
+ rw:{n:'Rueda Verde',d:'LLANTAS USADAS · GRANDES VOLÚMENES · APROVECHAMIENTO (GCR) Y CONVENIOS CON ENTES TERRITORIALES',r:[
+  ['C','Contratación de gestores','Debilidad jurídica y contractual','Gestores informales que queman o abandonan llantas amparados en certificados falsos',3,20],
+  ['C','Certificación y metas','Gestión operativa débil','Certificados de aprovechamiento (GCR) adulterados o duplicados frente a lo procesado',3,20],
+  ['C','Relacionamiento público','Relacionamiento con sector público','Dádivas a funcionarios municipales para convenios de puntos de recolección',2,10],
+  ['C','Contratación estatal','Relacionamiento con sector público','Pagos indebidos para incluir asfalto-caucho u otros derivados en contratos de obra pública',2,20],
+  ['C','Abastecimiento','Debilidad jurídica y contractual','Colusión para repartirse zonas y manipular tarifas entre transportadores de llantas',3,10],
+  ['C','Logística','Gestión operativa débil','Colusión con transportadores, a cambio de beneficios, para desviar llantas usadas al mercado informal de reencauche o reventa',4,10],
+  ['C','Gestión financiera','Gestión financiera débil','Sobrecostos en operación de puntos limpios con retornos indebidos a modo de soborno para quien autoriza',3,10],
+  ['C','Gobierno corporativo','Conflictos de interés','Intereses no declarados de directivos en empresas de aprovechamiento de caucho',2,20],
+  ['C','Reporte de metas','Gestión operativa débil','Doble reporte intencional de toneladas entre la corporación y sus gestores para inflar el cumplimiento ante la autoridad',2,10],
+  ['ST','Exportación','Transacciones internacionales','Pagos indebidos a intermediarios extranjeros para facilitar la exportación de GCR o derivados',1,20]]}
+};
+let entAct = 'gr';
+let trabajo = {};            /* matriz de trabajo editable por entidad */
+function estadoDe(ent){
+  if(!trabajo[ent]) trabajo[ent] = ENTIDADES[ent].r.map(r=>({t:r[0], pr:r[1], f:r[2], e:r[3], p:r[4], i:r[5]}));
+  return trabajo[ent];
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function zonaDe(s){
+  if(s<=20) return {n:'Bajo', c:'#5f9e8f', tx:'#fff'};
+  if(s<=30) return {n:'Moderado', c:'#e9b949', tx:'#4a3a08'};
+  if(s<=50) return {n:'Alto', c:'#F18446', tx:'#fff'};
+  return {n:'Extremo', c:'#b3402a', tx:'#fff'};
+}
+function renderTabs(){
+  document.getElementById('entTabs').innerHTML = Object.keys(ENTIDADES).map(k=>
+    '<button class="ent-tab'+(k===entAct?' act':'')+'" onclick="cambiarEnt(\''+k+'\')">'+ENTIDADES[k].n+'</button>').join('');
+}
+function cambiarEnt(k){ entAct = k; renderMatriz(); }
+function renderMatriz(){
+  renderTabs();
+  const e = ENTIDADES[entAct], st = estadoDe(entAct);
+  document.getElementById('entDesc').textContent = e.d;
+  let filas = '<tr><th>ID</th><th>Tipo</th><th>Proceso / factor</th><th>Evento de riesgo</th><th>Prob.</th><th>Imp.</th><th>Sev.</th><th>Zona</th><th></th></tr>';
+  st.forEach(function(r,ix){
+    const s = r.p * r.i, z = zonaDe(s);
+    const selP = [1,2,3,4,5].map(v=>'<option value="'+v+'"'+(v===r.p?' selected':'')+'>'+v+'</option>').join('');
+    const selI = [5,10,20].map(v=>'<option value="'+v+'"'+(v===r.i?' selected':'')+'>'+v+'</option>').join('');
+    const selT = '<select onchange="editarCampo('+ix+',\'t\',this.value)"><option value="C"'+(r.t==='C'?' selected':'')+'>C</option><option value="ST"'+(r.t==='ST'?' selected':'')+'>ST</option></select>';
+    filas += '<tr>'
+      +'<td>R'+(ix+1)+'</td>'
+      +'<td>'+selT+'</td>'
+      +'<td><span class="ev edit" contenteditable="true" onblur="editarCampo('+ix+',\'pr\',this.innerText)">'+esc(r.pr)+'</span><span class="meta edit" contenteditable="true" onblur="editarCampo('+ix+',\'f\',this.innerText)">'+esc(r.f.toUpperCase())+'</span></td>'
+      +'<td class="ev"><span class="edit" contenteditable="true" style="display:block" onblur="editarCampo('+ix+',\'e\',this.innerText)">'+esc(r.e)+'</span></td>'
+      +'<td><select onchange="editarCampo('+ix+',\'p\',this.value)">'+selP+'</select></td>'
+      +'<td><select onchange="editarCampo('+ix+',\'i\',this.value)">'+selI+'</select></td>'
+      +'<td><span class="sev-badge" style="background:'+z.c+';color:'+z.tx+'">'+s+'</span></td>'
+      +'<td><span class="zona-badge" style="background:'+z.c+'22;color:'+z.c+';border:1px solid '+z.c+'">'+z.n.toUpperCase()+'</span></td>'
+      +'<td><button class="fila-x no-print" title="Eliminar riesgo" onclick="eliminarRiesgo('+ix+')"><span class="material-icons" style="font-size:16px">delete_outline</span></button></td>'
+      +'</tr>';
+  });
+  document.getElementById('tablaMatriz').innerHTML = filas;
+  renderMapa();
+  renderResumen();
+}
+function editarCampo(ix,campo,val){
+  const st = estadoDe(entAct);
+  if(campo==='p'||campo==='i'){ st[ix][campo] = parseInt(val); }
+  else { st[ix][campo] = String(val).trim() || st[ix][campo]; }
+  renderMatriz();
+}
+function eliminarRiesgo(ix){
+  const st = estadoDe(entAct);
+  if(confirm('¿Eliminar el riesgo R'+(ix+1)+' de la matriz de trabajo?')){ st.splice(ix,1); renderMatriz(); }
+}
+function agregarRiesgo(){
+  estadoDe(entAct).push({t:'C', pr:'Proceso', f:'Factor de riesgo', e:'Describa aquí el evento de riesgo identificado por el grupo', p:3, i:10});
+  renderMatriz();
+}
+function renderMapa(){
+  const st = estadoDe(entAct);
+  const IMPS = [5,10,20];
+  let html = '';
+  for(let p=5;p>=1;p--){
+    html += '<div class="eje">P'+p+'</div>';
+    IMPS.forEach(function(i){
+      const s = p*i, z = zonaDe(s);
+      const fichas = st.map(function(r,ix){
+        return (r.p===p && r.i===i)
+          ? '<span class="rchip" title="R'+(ix+1)+' · '+esc(r.e)+'">R'+(ix+1)+'</span>' : '';
+      }).join('');
+      html += '<div class="cel" style="background:'+z.c+';color:'+z.tx+'"><span class="sv">'+s+'</span><span class="fichas">'+fichas+'</span></div>';
+    });
+  }
+  html += '<div class="eje"></div><div class="eje" style="justify-content:center">I5</div><div class="eje" style="justify-content:center">I10</div><div class="eje" style="justify-content:center">I20</div>';
+  document.getElementById('mapaVivo').innerHTML = html;
+}
+function renderResumen(){
+  const e = ENTIDADES[entAct], st = estadoDe(entAct);
+  const cnt = {Bajo:0, Moderado:0, Alto:0, Extremo:0};
+  let topIx = -1, topS = -1;
+  st.forEach(function(r,ix){
+    const s = r.p*r.i;
+    cnt[zonaDe(s).n]++;
+    if(s>topS){ topS = s; topIx = ix; }
+  });
+  document.getElementById('resumenZonas').innerHTML = ['Extremo','Alto','Moderado','Bajo'].map(function(znm){
+    const zc = {Extremo:'#b3402a', Alto:'#F18446', Moderado:'#e9b949', Bajo:'#5f9e8f'}[znm];
+    return '<div class="rz-card" style="border-color:'+zc+'"><span>'+znm.toUpperCase()+'</span><b>'+cnt[znm]+'</b></div>';
+  }).join('');
+  const tr = document.getElementById('topRiesgo');
+  if(topIx<0){ tr.innerHTML = '<span class="tr-lab">SIN RIESGOS EN LA MATRIZ</span>Agregue riesgos o restablezca el análisis base.'; return; }
+  const zTop = zonaDe(topS);
+  tr.innerHTML = '<span class="tr-lab">RIESGO MÁS CRÍTICO DE '+e.n.toUpperCase()+'</span>'
+    +'<b>R'+(topIx+1)+'</b> · '+esc(st[topIx].e)+' — severidad <b>'+topS+'</b> ('+zTop.n+'). Será insumo prioritario del segundo taller de controles clave.';
+}
+function restablecerMatriz(){ delete trabajo[entAct]; renderMatriz(); }
+function descargarMatrizCSV(){
+  const e = ENTIDADES[entAct], st = estadoDe(entAct);
+  let csv = '\ufeffID;Tipo;Proceso;Factor de riesgo;Evento de riesgo;Probabilidad;Impacto;Severidad;Zona\n';
+  st.forEach(function(r,ix){
+    const s = r.p*r.i;
+    csv += 'R'+(ix+1)+';'+r.t+';"'+r.pr+'";"'+r.f+'";"'+r.e+'";'+r.p+';'+r.i+';'+s+';'+zonaDe(s).n+'\n';
+  });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download = 'Matriz_riesgos_' + e.n.replace(/ /g,'_') + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+async function descargarMatriz(){
+  if(typeof ExcelJS === 'undefined'){ descargarMatrizCSV(); return; }
+  const e = ENTIDADES[entAct], st = estadoDe(entAct);
+  const AZUL='FF093E5E', NEGRO='FF1C1C1C', GRIS='FF4B4B4C', BLANCO='FFFFFFFF', NARANJA='FFF18446';
+  const ZC = {Bajo:'FF5F9E8F', Moderado:'FFE9B949', Alto:'FFF18446', Extremo:'FFB3402A'};
+  const txtZona = function(z){ return z==='Moderado' ? 'FF4A3A08' : BLANCO; };
+  const borde = function(){ return {top:{style:'thin',color:{argb:'FFDDDDDD'}},left:{style:'thin',color:{argb:'FFDDDDDD'}},bottom:{style:'thin',color:{argb:'FFDDDDDD'}},right:{style:'thin',color:{argb:'FFDDDDDD'}}}; };
+  const wb = new ExcelJS.Workbook();
+
+  /* Hoja 1: matriz con el diseño del documento */
+  const ws = wb.addWorksheet('Matriz de riesgos', {views:[{showGridLines:false}]});
+  ws.columns = [{width:6},{width:6},{width:24},{width:28},{width:64},{width:7},{width:7},{width:8},{width:12}];
+  ws.mergeCells('A1:I1');
+  let c = ws.getCell('A1');
+  c.value = 'Matriz integral de riesgos C/ST · ' + e.n;
+  c.font = {bold:true,size:14,color:{argb:BLANCO}};
+  c.fill = {type:'pattern',pattern:'solid',fgColor:{argb:AZUL}};
+  c.alignment = {vertical:'middle',horizontal:'center'};
+  ws.getRow(1).height = 28;
+  ws.mergeCells('A2:I2'); c = ws.getCell('A2'); c.value = e.d; c.font={size:9,color:{argb:GRIS}}; c.alignment={horizontal:'center'};
+  ws.mergeCells('A3:I3'); c = ws.getCell('A3'); c.value = 'Taller PTEE · Grupo Retorna · '+new Date().toLocaleDateString('es-CO'); c.font={size:9,italic:true,color:{argb:GRIS}}; c.alignment={horizontal:'center'};
+  const H = ['ID','Tipo','Proceso','Factor de riesgo','Evento de riesgo','Prob.','Imp.','Sev.','Zona'];
+  const hr = ws.getRow(5); hr.height = 18;
+  H.forEach(function(t,i){ const cc=hr.getCell(i+1); cc.value=t; cc.font={bold:true,size:10,color:{argb:BLANCO}}; cc.fill={type:'pattern',pattern:'solid',fgColor:{argb:NEGRO}}; cc.alignment={vertical:'middle',horizontal:i>=5?'center':'left'}; cc.border=borde(); });
+  st.forEach(function(r,ix){
+    const s=r.p*r.i, z=zonaDe(s), zc=ZC[z.n], row=ws.getRow(6+ix);
+    ['R'+(ix+1), r.t, r.pr, r.f, r.e, r.p, r.i, s, z.n.toUpperCase()].forEach(function(v,i){
+      const cc=row.getCell(i+1); cc.value=v; cc.border=borde();
+      cc.alignment={vertical:'top',horizontal:i>=5?'center':'left',wrapText:(i>=2&&i<=4)};
+      cc.font={size:9,color:{argb:GRIS}};
+    });
+    row.getCell(1).font={size:9,bold:true,color:{argb:AZUL}};
+    row.getCell(2).font={size:9,bold:true,color:{argb:(r.t==='C'?'FFA05A20':AZUL)}};
+    const cs=row.getCell(8); cs.fill={type:'pattern',pattern:'solid',fgColor:{argb:zc}}; cs.font={bold:true,size:10,color:{argb:txtZona(z.n)}};
+    row.getCell(9).font={bold:true,size:9,color:{argb:zc}};
+  });
+  const finFila = 6+st.length+1;
+  ws.mergeCells(finFila,1,finFila,9); c=ws.getCell(finFila,1);
+  c.value='Descarga el resultado y envíalo a info@4hands.co';
+  c.font={bold:true,italic:true,size:10,color:{argb:NARANJA}};
+  c.alignment={horizontal:'center'};
+
+  /* Hoja 2: mapa de calor dibujado */
+  const wm = wb.addWorksheet('Mapa de calor', {views:[{showGridLines:false}]});
+  wm.columns=[{width:8},{width:26},{width:26},{width:26}];
+  wm.mergeCells('A1:D1'); c=wm.getCell('A1'); c.value='Mapa de calor · '+e.n; c.font={bold:true,size:13,color:{argb:BLANCO}}; c.fill={type:'pattern',pattern:'solid',fgColor:{argb:AZUL}}; c.alignment={vertical:'middle',horizontal:'center'}; wm.getRow(1).height=26;
+  const IMPS=[5,10,20];
+  ['Probabilidad','Impacto 5','Impacto 10','Impacto 20'].forEach(function(t,i){ const cc=wm.getRow(3).getCell(i+1); cc.value=t; cc.font={bold:true,size:9,color:{argb:GRIS}}; cc.alignment={horizontal:'center'}; });
+  for(let p=5;p>=1;p--){
+    const row=wm.getRow(4+(5-p)); row.height=42;
+    const cp=row.getCell(1); cp.value='P'+p; cp.font={bold:true,size:10,color:{argb:GRIS}}; cp.alignment={vertical:'middle',horizontal:'center'};
+    IMPS.forEach(function(i,j){
+      const s=p*i, z=zonaDe(s);
+      const fichas = st.map(function(r,ix){ return (r.p===p&&r.i===i)?('R'+(ix+1)):''; }).filter(Boolean).join(', ');
+      const cc=row.getCell(2+j);
+      cc.value = s + (fichas ? '  ·  ' + fichas : '');
+      cc.fill={type:'pattern',pattern:'solid',fgColor:{argb:ZC[z.n]}};
+      cc.font={bold:true,size:10,color:{argb:txtZona(z.n)}};
+      cc.alignment={vertical:'middle',horizontal:'center',wrapText:true};
+      cc.border=borde();
+    });
+  }
+  [['BAJO ≤20','Bajo'],['MODERADO 21–30','Moderado'],['ALTO 31–50','Alto'],['EXTREMO >50','Extremo']].forEach(function(par,i){
+    const cc=wm.getRow(10).getCell(i+1);
+    cc.value=par[0]; cc.fill={type:'pattern',pattern:'solid',fgColor:{argb:ZC[par[1]]}}; cc.font={bold:true,size:8,color:{argb:txtZona(par[1])}}; cc.alignment={horizontal:'center'};
+  });
+  wm.mergeCells('A12:D12'); c=wm.getCell('A12'); c.value='Descarga el resultado y envíalo a info@4hands.co'; c.font={bold:true,italic:true,size:10,color:{argb:NARANJA}}; c.alignment={horizontal:'center'};
+
+  const buf = await wb.xlsx.writeBuffer();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}));
+  a.download = 'Matriz_riesgos_' + e.n.replace(/ /g,'_') + '.xlsx';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+renderMatriz();
+
+/* ===== Orientación del facilitador (protegida con clave, contenido en hexadecimal) ===== */
+const FAC_PIN = '31323334';
+const FAC_GUIA = [
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20313c2f7370616e3e3c756c3e3c6c693e3c623e466163746f7220e28692206576656e746f3a3c2f623e20646562696c6964616420636f6e747261637475616c20656e2073656c65636369c3b36e206465207465726365726f7320e28692206f66726563696d69656e746f20646520736f626f726e6f20616c20636f6d6974c3a920792063657274696669636163696f6e6573206e6f2076657269666963616461732e3c2f6c693e3c6c693e3c623e5365c3b1616c657320646520616c657274613a3c2f623e20227265636f6e6f636572206c61206765737469c3b36e222028657566656d69736d6f20646520736f626f726e6f292c20646f63756d656e746f732073696e207665726966696361722c206166c3a16e20706f722063657272617220656c2070726f6365736f2e3c2f6c693e3c6c693e3c623e4465626964612064696c6967656e6369612066616c74616e74653a3c2f623e206c6963656e63696173207920636170616369646164207265616c2c206c6973746173207265737472696374697661732c2062656e65666963696172696f2066696e616c2c207265666572656e636961732e3c2f6c693e3c6c693e3c623e5265737075657374612065737065726164613a3c2f623e2072656368617a61722c20646f63756d656e7461722c207265706f7274617220706f7220656c2063616e616c20c3a97469636f2079206578636c75697220616c2070726f706f6e656e74653b20646563697369c3b36e20636f6c65676961646120636f6e20637269746572696f73206f626a657469766f732e3c2f6c693e3c2f756c3e',
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20323c2f7370616e3e3c756c3e3c6c693e3c623e466163746f7220e28692206576656e746f3a3c2f623e206765737469c3b36e206f70657261746976612064c3a962696c20656e206365727469666963616369c3b36e20e2869220636572746966696361646f73206164756c74657261646f7320717565206e6f206372757a616e20636f6e206d616e6966696573746f732e3c2f6c693e3c6c693e3c623e416665637461646f733a3c2f623e206175746f726964616420616d6269656e74616c2028696e666f726d616369c3b36e2066616c7361292c2061736f636961646f732028706167616e206765737469c3b36e20696e6578697374656e7465292c206c6120636f72706f72616369c3b36e202873616e63696f6e65732c206c6963656e636961292079206c6120637265646962696c696461642064656c2065737175656d61205245502e3c2f6c693e3c6c693e3c623e436f6e73656375656e636961733a3c2f623e2073616e63696f6e65732061646d696e697374726174697661732c20706f7369626c652066616c736564616420646f63756d656e74616c2c2070c3a9726469646120646520636f6e6669616e7a612064656c20726567756c61646f722e3c2f6c693e3c6c693e3c623e5265737075657374612065737065726164613a3c2f623e2072656368617a6172206c6f7320636572746966696361646f732c20636f6e63696c696172206d616e6966696573746f732076732e2061637461732c207265706f727461722079206576616c756172207465726d696e616369c3b36e2064656c20636f6e747261746f2e2022546f646f73206c6f20686163656e22206e756e6361206a75737469666963613a20746f6c6572616e636961206365726f2e3c2f6c693e3c2f756c3e',
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20333c2f7370616e3e3c756c3e3c6c693e3c623e53c3ad206573207061676f20646520666163696c6974616369c3b36e3a3c2f623e206375616c7175696572202261706f796f22206120756e2066756e63696f6e6172696f2070617261206163656c6572617220756e206163746f206465207375732066756e63696f6e657320657320736f626f726e6f2c2073696e20696d706f72746172206e6f6d627265206f206d6f6e746f2e204c6120706f6cc3ad74696361206c6f2070726f68c3ad62652e3c2f6c693e3c6c693e3c623e5465726365726f2071756520706167612061206e75657374726f206e6f6d6272653a3c2f623e206c6120656e746964616420726573706f6e64652061646d696e69737472617469766120792068617374612070656e616c6d656e74653b206c6f73207465726365726f7320736f6e20657874656e7369c3b36e206465206e75657374726f2072696573676f2e3c2f6c693e3c6c693e3c623e5265737075657374612065737065726164613a3c2f623e206e6567617273652c20696e73747275697220706f72206573637269746f20616c20636f6e747261746973746120286365726f207061676f7320696e64656269646f73292c207265706f7274617220646520696e6d65646961746f20616c206f66696369616c2064652063756d706c696d69656e746f20792073656775697220656c207472c3a16d69746520666f726d616c2061756e7175652064656d6f72652e3c2f6c693e3c2f756c3e',
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20343c2f7370616e3e3c756c3e3c6c693e3c623e466163746f7220e28692206576656e746f3a3c2f623e206765737469c3b36e2066696e616e63696572612064c3a962696c20e2869220736f627265636f73746f20636f6e207265746f726e6f20656e20656665637469766f20286b69636b6261636b292079207265637572736f7320667565726120646520726567697374726f2e3c2f6c693e3c6c693e3c623e436f6e74726f6c6573207175652066616c6c616e3a3c2f623e2076657269666963616369c3b36e2064652070726563696f732c20736f706f7274657320616e7465732064656c207061676f2c20736567726567616369c3b36e20656e74726520717569656e20636f6e74726174612f617072756562612f706167612c2070726f686962696369c3b36e20646520656665637469766f2e3c2f6c693e3c6c693e3c623e5265737075657374612065737065726164613a3c2f623e206e6f207472616d69746172206c6120666163747572612c2065786967697220736f706f727465732c207265706f7274617220656c20696e74656e746f20646520636f727275706369c3b36e2c20646f63756d656e7461722065766964656e63696120792072656576616c75617220616c2070726f766565646f722e20546f646f206d6f76696d69656e746f20656e206c6120636f6e746162696c69646164206f66696369616c2e3c2f6c693e3c2f756c3e',
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20353c2f7370616e3e3c756c3e3c6c693e3c623e436f6e666c6963746f20646520696e746572c3a9733a3c2f623e20656c20696e746572c3a97320706572736f6e616c2028736f63696f20646520656d70726573612076696e63756c6164612920707565646520696e666c75697220656e206c6120646563697369c3b36e20696e737469747563696f6e616c3b2073652067657374696f6e6120636f6e206465636c6172616369c3b36e20707265766961206520696d706564696d656e746f2e3c2f6c693e3c6c693e3c623e5175c3a92064656269c3b32070617361723a3c2f623e206465636c6172617220656c2076c3ad6e63756c6f20616e7465732064652064656c696265726172207920726574697261727365206465206c6120766f74616369c3b36e3b20656c20c3b37267616e6f20646562652070726567756e746172206163746976616d656e746520706f7220636f6e666c6963746f732e3c2f6c693e3c6c693e3c623e436f6e74726f6c20717565206c6f2065766974613a3c2f623e206465636c6172616369c3b36e20616e75616c207920706f72206576656e746f2c20726567697374726f2064652076c3ad6e63756c6f732c2063727563652064652070726f706f6e656e74657320636f6e747261206465636c61726163696f6e65732c20616374617320636f6e20696d706564696d656e746f732e3c2f6c693e3c6c693e3c623e536920796120766f74c3b33a3c2f623e207265706f727461722c2072657669736172206c612076616c6964657a206465206c612061646a75646963616369c3b36e2079207265686163657220656c2070726f6365736f2073696e20656c206d69656d62726f20696d70656469646f2e3c2f6c693e3c2f756c3e',
+'3c7370616e20636c6173733d2267662d746974223e4f5249454e54414349c3934e20c2b7204341534f20363c2f7370616e3e3c756c3e3c6c693e3c623e457320736f626f726e6f207472616e736e6163696f6e616c3a3c2f623e206c61204c6579203137373820646520323031362073616e63696f6e612061206c6120706572736f6e61206a7572c3ad6469636120636f6c6f6d6269616e61207175652c2064697265637461206f20706f7220696e7465726d6564696172696f732c206f6672657a63612062656e65666963696f73206120756e207365727669646f722070c3ba626c69636f2065787472616e6a65726f2e3c2f6c693e3c6c693e3c623e4578706f73696369c3b36e3a3c2f623e206d756c746173206861737461203230302e30303020534d4d4c562c20696e686162696c69646164207061726120636f6e7472617461722c207075626c6963616369c3b36e206465206c612073616e6369c3b36e3b20706572736f6e61733a203920612031352061c3b16f7320286172742e20343333204350292e3c2f6c693e3c6c693e3c623e416c7465726e617469766173206c6567c3ad74696d61733a3c2f623e2063616e616c657320666f726d616c6573206465206c6120616475616e612c206167656e7465206163726564697461646f20636f6e20696e73747275636369c3b36e2065736372697461206465206365726f207061676f732c2061706f796f20636f6e73756c6172206f206772656d69616c2c207265706c616e74656172207469656d706f732e3c2f6c693e3c6c693e3c623e5265737075657374612065737065726164613a3c2f623e206e6567617273652c20646f63756d656e746172206c6120696e73696e75616369c3b36e2c207265706f7274617220792072657669736172206c61206465626964612064696c6967656e6369612064656c206167656e746520656e2064657374696e6f2e3c2f6c693e3c2f756c3e'
+];
+let facOK = false;
+function hexATexto(hx){const b=new Uint8Array(hx.length/2);for(let i=0;i<hx.length;i+=2)b[i/2]=parseInt(hx.substr(i,2),16);return new TextDecoder().decode(b);}
+function verFacilitador(n){
+  if(!facOK){
+    const p = prompt('Clave del facilitador:');
+    if(!p) return;
+    let hx=''; for(const ch of new TextEncoder().encode(p.trim())) hx+=ch.toString(16).padStart(2,'0');
+    if(hx!==FAC_PIN){ alert('Clave incorrecta'); return; }
+    facOK = true;
+  }
+  const d = document.getElementById('fac'+n);
+  if(!d.innerHTML) d.innerHTML = hexATexto(FAC_GUIA[n-1]);
+  d.style.display = (d.style.display==='block') ? 'none' : 'block';
+}
+
+/* ===== Dilemas ===== */
+function responder(op){
+  const ops = op.parentElement.querySelectorAll('.op');
+  ops.forEach(o=>{o.classList.add('rev'); o.classList.add(o.dataset.r==='ok'?'ok':'mal');});
+}
+
+/* ===== Cronómetro ===== */
+let cronoSeg = 20*60, cronoInt = null;
+function cronoPintar(){
+  const m = String(Math.floor(cronoSeg/60)).padStart(2,'0');
+  const s = String(cronoSeg%60).padStart(2,'0');
+  document.getElementById('cronoDisp').textContent = m+':'+s;
+}
+function cronoSet(min){ clearInterval(cronoInt); cronoInt=null; cronoSeg=min*60; cronoPintar(); document.getElementById('cronoBtn').innerHTML='<span class="material-icons">play_arrow</span>'; }
+function cronoToggle(){
+  if(cronoInt){ clearInterval(cronoInt); cronoInt=null; document.getElementById('cronoBtn').innerHTML='<span class="material-icons">play_arrow</span>'; }
+  else{
+    cronoInt = setInterval(function(){
+      if(cronoSeg>0){ cronoSeg--; cronoPintar(); }
+      else{ clearInterval(cronoInt); cronoInt=null; document.getElementById('cronoDisp').textContent='\u00a1FIN!'; }
+    },1000);
+    document.getElementById('cronoBtn').innerHTML='<span class="material-icons">pause</span>';
+  }
+}
+function cronoReset(){ cronoSet(20); }
+cronoPintar();
+
+/* ===== Descarga del archivo ===== */
+function descargarHTML(){
+  const contenido = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([contenido],{type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Formacion_PTEE_riesgos_soborno_corrupcion_Grupo_Retorna.html';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+</script>
+</body>
+</html>
