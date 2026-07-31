@@ -26,11 +26,11 @@
   --font-mono:'Courier New',ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;zoom:1.3}
 body{font-family:var(--font-parrafo);color:var(--nocturno);background:var(--jengibre);line-height:1.6;font-size:16px}
 .material-icons{font-size:inherit;vertical-align:middle;line-height:1}
 
-h1,h2{font-family:var(--font-titulo);font-weight:700;line-height:1.2}
+h1,h2{font-family:var(--font-titulo);font-weight:400;line-height:1.2}
 h3,h4{font-family:var(--font-subtitulo);font-weight:400;line-height:1.3}
 p{margin-bottom:.8rem}
 
@@ -39,13 +39,15 @@ header.top{background:#fff;border-bottom:4px solid var(--naranja);position:stick
 .top-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 20px}
 .top-inner img{height:54px;width:auto}
 .top-title{flex:1;min-width:0}
-.top-title .t1{font-family:var(--font-titulo);font-size:1.05rem;color:var(--morazul);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-title .t1{font-family:var(--font-titulo);font-size:1.15rem;color:var(--morazul);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .top-title .t2{font-family:var(--font-mono);font-size:.72rem;color:var(--onix);letter-spacing:.04em}
 .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;border-radius:10px;padding:10px 18px;font-family:var(--font-parrafo);font-weight:700;font-size:.9rem;transition:all .2s}
 .btn-primary{background:var(--naranja);color:#fff}
 .btn-primary:hover{background:#d96e33;box-shadow:0 4px 14px rgba(241,132,70,.4)}
 .btn-ghost{background:var(--plata);color:var(--gris)}
 .btn-ghost:hover{background:#e2e2e2}
+.btn-zoom-act{background:var(--morazul);color:#fff}
+.btn-zoom-act:hover{background:#072e46}
 
 /* ===== Nav ===== */
 nav.secciones{background:var(--morazul);position:sticky;top:78px;z-index:50}
@@ -58,7 +60,7 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
 section{margin-bottom:46px;scroll-margin-top:140px}
 .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .sec-head .chip-num{font-family:var(--font-mono);background:var(--morazul);color:#fff;border-radius:8px;padding:4px 10px;font-size:.8rem;font-weight:700}
-.sec-head h2{font-size:1.5rem;color:var(--morazul)}
+.sec-head h2{font-size:1.75rem;color:var(--morazul)}
 .sec-head .mins{margin-left:auto;font-family:var(--font-mono);font-size:.78rem;color:var(--naranja);font-weight:700;white-space:nowrap}
 
 .card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(28,28,28,.06);border:1px solid #eee}
@@ -72,7 +74,7 @@ section{margin-bottom:46px;scroll-margin-top:140px}
 .hero{background:linear-gradient(120deg,var(--morazul) 55%,#0d5580);color:#fff;border-radius:18px;padding:42px 36px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:rgba(241,132,70,.25)}
 .hero::before{content:"";position:absolute;right:60px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(254,219,155,.18)}
-.hero h1{font-size:2.1rem;margin-bottom:10px;max-width:720px}
+.hero h1{font-size:2.6rem;margin-bottom:10px;max-width:720px}
 .hero .sub{font-family:var(--font-subtitulo);color:var(--magico);font-size:1.05rem;max-width:680px;margin-bottom:20px}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chip{font-family:var(--font-mono);font-size:.78rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:99px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px}
@@ -100,7 +102,7 @@ section{margin-bottom:46px;scroll-margin-top:140px}
 .mito.abierto .veredicto{display:block}
 .mito .q{font-family:var(--font-subtitulo);font-size:.95rem}
 .v-falso{background:var(--tofu);border-left:4px solid var(--naranja)}
-.v-cierto{background:#e8f2ee;border-left:4px solid #2e7d64}
+.v-cierto{background:#e8f0ee;border-left:4px solid #3a7068}
 .pill{font-family:var(--font-mono);font-size:.68rem;padding:2px 10px;border-radius:99px;font-weight:700}
 .pill-c{background:var(--tofu);color:#a05a20}
 .pill-st{background:#e3ebf2;color:var(--morazul)}
@@ -153,10 +155,10 @@ section{margin-bottom:46px;scroll-margin-top:140px}
 .caso .guia{display:none;padding:12px 16px;background:var(--tofu);font-size:.85rem}
 .caso.abierto .guia{display:block}
 .caso .guia li{margin-left:18px;margin-bottom:4px}
-.guia-fac{display:none;padding:12px 16px;background:#e8f2ee;border-top:2px solid #2e7d64;font-size:.85rem;text-align:justify}
+.guia-fac{display:none;padding:12px 16px;background:#e8f0ee;border-top:2px solid #3a7068;font-size:.85rem;text-align:justify}
 .guia-fac ul{margin-left:18px;margin-top:4px}
 .guia-fac li{margin-bottom:5px}
-.guia-fac .gf-tit{font-family:var(--font-mono);font-size:.66rem;font-weight:700;color:#20543f;letter-spacing:.04em}
+.guia-fac .gf-tit{font-family:var(--font-mono);font-size:.66rem;font-weight:700;color:var(--morazul);letter-spacing:.04em}
 .caso-btn.fac{background:transparent;color:#e3e3e3;border:none;font-size:.6rem;padding:1px 8px 3px;text-align:right;cursor:default;line-height:1}
 .caso-btn.fac:hover{background:transparent;color:#c9c9c9}
 .proc-tag{font-family:var(--font-mono);font-size:.66rem;background:var(--morazul);color:#fff;border-radius:99px;padding:2px 10px;margin-left:auto;white-space:nowrap}
@@ -186,7 +188,7 @@ table.escala td:first-child{font-family:var(--font-mono);font-weight:700;color:v
 .dilema .ops{display:grid;gap:8px}
 .op{border:1.5px solid var(--plata);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:.88rem;background:var(--plata);transition:all .15s}
 .op:hover{border-color:var(--naranja)}
-.op.ok{background:#e8f2ee;border-color:#2e7d64}
+.op.ok{background:#e8f0ee;border-color:#3a7068}
 .op.mal{background:#fbe9e4;border-color:#b3402a}
 .op .fb{display:none;margin-top:6px;font-size:.8rem;color:var(--gris)}
 .op.rev .fb{display:block}
@@ -203,7 +205,7 @@ table.banco th{background:var(--nocturno);color:#fff;padding:9px 10px;text-align
 table.banco td{padding:9px 10px;border-bottom:1px solid var(--plata);vertical-align:top}
 table.banco td:first-child{font-family:var(--font-mono);color:var(--onix);white-space:nowrap}
 
-/* matriz integral por compañía */
+/* matriz integral por entidad */
 .ent-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 8px}
 .ent-tab{font-family:var(--font-mono);font-size:.72rem;font-weight:700;border:1.5px solid var(--lago);background:#fff;color:var(--gris);border-radius:99px;padding:7px 14px;cursor:pointer;transition:all .15s}
 .ent-tab:hover{border-color:var(--naranja);color:var(--naranja)}
@@ -244,10 +246,12 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
 
 @media(max-width:640px){
   .hero{padding:28px 20px}
-  .hero h1{font-size:1.5rem}
+  .hero h1{font-size:1.8rem}
+  .hero-v h1{font-size:1.8rem}
   .top-inner img{height:40px}
   nav.secciones{top:66px}
   .ag-row{grid-template-columns:86px 1fr}
+  .ctl-grid{grid-template-columns:1fr}
 }
 @media print{
   header.top,nav.secciones,.no-print{display:none !important}
@@ -255,6 +259,69 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
   .card,.stat,.caso,.dilema{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
   section{page-break-inside:avoid}
 }
+
+/* ═════ Pestañas de sesión ═════ */
+#ses-tabs{background:var(--naranja);position:sticky;top:78px;z-index:55;border-bottom:3px solid rgba(0,0,0,.18);box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.ses-inner{max-width:1120px;margin:0 auto;display:flex;padding:0 16px;align-items:flex-end;gap:4px}
+.ses-tab{border:none;background:rgba(0,0,0,.2);color:rgba(255,255,255,.85);font-family:var(--font-parrafo);font-size:.92rem;font-weight:700;letter-spacing:.01em;padding:10px 22px 11px;cursor:pointer;border-radius:10px 10px 0 0;border-bottom:3px solid transparent;transition:all .2s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.3);margin-top:6px}
+.ses-tab:hover{background:rgba(0,0,0,.32);color:#fff}
+.ses-tab.act{background:#fff;color:var(--morazul);border-bottom-color:var(--morazul);font-weight:800;text-shadow:none;box-shadow:0 -2px 8px rgba(0,0,0,.12);padding-bottom:13px}
+nav.secciones{top:127px !important}
+@media(max-width:640px){nav.secciones{top:115px !important}}
+
+/* ═════ Sección 2 — layout base ═════ */
+#s2-wrap section{scroll-margin-top:182px}
+#s2-wrap main{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+.hero-v{background:linear-gradient(120deg,var(--morazul) 55%,#0d5580);color:#fff;border-radius:18px;padding:42px 36px;position:relative;overflow:hidden}
+.hero-v::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:rgba(9,62,94,.25)}
+.hero-v h1{font-size:2.6rem;margin-bottom:10px;max-width:720px;font-family:var(--font-titulo)}
+.hero-v .sub{font-family:var(--font-subtitulo);color:var(--magico);font-size:1.05rem;max-width:680px;margin-bottom:20px}
+.compromiso-v{background:linear-gradient(120deg,var(--morazul),#0d5580);color:#fff;border-radius:16px;padding:30px;text-align:center}
+.compromiso-v h3{color:#fff;font-size:1.3rem;margin-bottom:8px}
+.compromiso-v p{max-width:640px;margin:0 auto .6rem}
+
+/* ═════ Tarjetas de control ═════ */
+.ctl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.ctl-card{background:#fff;border-radius:14px;padding:18px;border-left:6px solid #ddd;box-shadow:0 2px 10px rgba(28,28,28,.06);cursor:pointer;transition:all .2s}
+.ctl-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(28,28,28,.12)}
+.ctl-card.cprev{border-color:#3a7068}.ctl-card.cdet{border-color:var(--morazul)}.ctl-card.ccorr{border-color:var(--naranja)}.ctl-card.cdir{border-color:#7c3aed}.ctl-card.cmix{border-color:#c8a000}
+.ctl-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.ctl-id{font-family:var(--font-mono);font-size:.68rem;font-weight:700;background:var(--plata);color:var(--gris);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.ctl-tipo{font-family:var(--font-mono);font-size:.66rem;font-weight:700;border-radius:99px;padding:2px 10px;white-space:nowrap}
+.tp{background:#e8f0ee;color:#3a7068}.td{background:#e3ebf2;color:var(--morazul)}.tc{background:var(--tofu);color:#a05a20}.tdir{background:#f3e8ff;color:#7c3aed}.tmix{background:#fdf4d6;color:#7a6200}
+.ctl-name{font-family:var(--font-subtitulo);color:var(--morazul);font-size:.95rem;line-height:1.3;flex:1}
+.ctl-body{display:none;margin-top:12px;border-top:1px solid var(--plata);padding-top:10px;font-size:.86rem;color:var(--gris)}
+.ctl-card.abierto .ctl-body{display:block}
+.ctl-fact{background:var(--jengibre);border-radius:8px;padding:9px 12px;margin-top:10px}
+.ctl-fact-t{font-family:var(--font-mono);font-size:.64rem;font-weight:700;color:#a05a20;display:block;margin-bottom:3px}
+
+/* ═════ Casos de uso S2 ═════ */
+.caso-ctrl .caso-top{background:#f0f5f4}.caso-ctrl .caso-top b{color:var(--morazul)}.caso-ctrl .caso-top .material-icons{color:#3a7068}
+.ctrl-chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 16px 10px}
+.ctrl-chip{font-family:var(--font-mono);font-size:.63rem;font-weight:700;border-radius:6px;padding:3px 8px;white-space:nowrap}
+.chip-p{background:#e8f0ee;color:#3a7068;border:1px solid #3a7068}.chip-d{background:#e3ebf2;color:var(--morazul);border:1px solid var(--morazul)}.chip-c{background:var(--tofu);color:#a05a20;border:1px solid #c07030}
+.guia-ctrl{display:none;padding:12px 16px;background:#e8f0ee;border-top:2px solid #3a7068;font-size:.85rem;text-align:justify}
+.guia-ctrl ul{margin-left:18px;margin-top:4px}.guia-ctrl li{margin-bottom:5px}
+.guia-ctrl .gc-tit{font-family:var(--font-mono);font-size:.64rem;font-weight:700;color:var(--morazul);letter-spacing:.04em}
+.guia-ctrl .gc-tip{background:#d0e8e4;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:.82rem}
+.guia-ctrl .gc-vtit{font-family:var(--font-mono);font-size:.64rem;font-weight:700;color:#7a3800;letter-spacing:.04em;margin-top:12px;display:block}
+.guia-ctrl .gc-vinculo{background:#fef3e2;border-left:3px solid var(--naranja);border-radius:0 8px 8px 0;padding:8px 12px;margin-top:6px;font-size:.82rem}
+
+/* ═════ Tabla de mapeo ═════ */
+.mapeo-wrap{overflow-x:auto;margin-top:14px}
+table.tmapeo{width:100%;border-collapse:collapse;font-size:.78rem;min-width:560px}
+table.tmapeo th{background:var(--morazul);color:#fff;padding:9px 8px;font-family:var(--font-mono);font-size:.64rem;text-align:center;white-space:nowrap}
+table.tmapeo th:first-child{text-align:left;min-width:190px}
+table.tmapeo td{padding:7px 8px;border-bottom:1px solid var(--plata);text-align:center;vertical-align:middle}
+table.tmapeo td:first-child{text-align:left;font-size:.84rem;color:var(--morazul);font-family:var(--font-subtitulo)}
+.dot-hi{display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--naranja)}
+.dot-md{display:inline-block;width:13px;height:13px;border-radius:50%;background:#e9b949}
+.dot-lo{display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--lago)}
+
+/* Cronómetro sesión 2 (reutiliza .crono) */
+@media(max-width:640px){.hero-v{padding:28px 20px}}
+@media print{#ses-tabs{display:none !important}}
+
 </style>
 </head>
 <body>
@@ -264,14 +331,24 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
   <div class="top-inner">
     <img id="logo4h" alt="4Hands Partners" src="">
     <div class="top-title">
-      <div class="t1">Formación PTEE · riesgos de soborno y corrupción</div>
-      <div class="t2">GRUPO RETORNA · TALLER VIRTUAL 120 MIN · MEMORIA Y SOPORTE</div>
+      <div class="t1">Formación PTEE · Grupo Retorna — Sesiones 1 y 2</div>
+      <div class="t2">RIESGOS C/ST · CONTROLES CLAVE · 240 MIN · MEMORIA Y SOPORTE</div>
     </div>
+    <button class="btn btn-zoom-act no-print" id="btnZoom" onclick="toggleZoom()" title="Alternar zoom para proyección"><span class="material-icons">fullscreen</span> <span id="lblZoom">Proyección</span></button>
     <button class="btn btn-primary no-print" onclick="descargarHTML()"><span class="material-icons">download</span> Descargar</button>
     <button class="btn btn-ghost no-print" onclick="window.print()"><span class="material-icons">print</span></button>
   </div>
 </header>
 
+<!-- ===== Pestañas de sesión ===== -->
+<div id="ses-tabs">
+  <div class="ses-inner">
+    <button class="ses-tab act" id="tab-s1" onclick="cambiarSesion(1)"><span class="material-icons" style="font-size:18px">security</span> Sesión 1 &nbsp;·&nbsp; Riesgos C/ST</button>
+    <button class="ses-tab" id="tab-s2" onclick="cambiarSesion(2)"><span class="material-icons" style="font-size:18px">shield</span> Sesión 2 &nbsp;·&nbsp; Controles Clave PTEE</button>
+  </div>
+</div>
+
+<div id="s1-wrap">
 <nav class="secciones no-print">
   <div class="nav-inner">
     <a href="#inicio">Inicio</a>
@@ -314,7 +391,7 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
     </div>
     <div class="card">
       <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:var(--naranja)">devices</span> Cómo trabajaremos</h3>
-      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Sesión presencial con facilitación virtual, con espacios de construcción en grupos. Todo lo necesario está integrado en este documento: casos de contexto, esquema matriz integral interactiva por compañía y mapa de calor. Puedes descargar los resultados.</p>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Sesión presencial con facilitación virtual, con espacios de construcción en grupos. Todo lo necesario está integrado en este documento: casos de contexto, esquema matriz integral interactiva por entidad y mapa de calor. Puedes descargar los resultados.</p>
     </div>
   </div>
 </section>
@@ -335,9 +412,9 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
     </div>
     <span class="ag-part">PARTE 2 · TALLER — LO CLAVE DE NUESTRAS OPERACIONES (80 MIN)</span>
     <div class="agenda">
-      <div class="ag-row"><div class="ag-time">00:40–00:45</div><div class="ag-body"><b>Metodología y salas grupales</b><small>Grupos mixtos por compañía en salas grupales · ruta del riesgo</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:40–00:45</div><div class="ag-body"><b>Metodología y salas grupales</b><small>Grupos mixtos por entidad en salas grupales · ruta del riesgo</small></div></div>
       <div class="ag-row"><div class="ag-time">00:45–01:05</div><div class="ag-body"><b>Ronda 1 · Identifique el riesgo</b><small>Tarjetas de caso por proceso de la cadena de valor</small></div></div>
-      <div class="ag-row"><div class="ag-time">01:05–01:20</div><div class="ag-body"><b>Ronda 2 · Mida y construya la matriz</b><small>Matriz integral de 10 riesgos críticos por compañía · mapa de calor en vivo</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:05–01:20</div><div class="ag-body"><b>Ronda 2 · Mida y construya la matriz</b><small>Matriz integral de 10 riesgos críticos por entidad · mapa de calor en vivo</small></div></div>
       <div class="ag-row"><div class="ag-time">01:20–01:40</div><div class="ag-body"><b>Ronda 3 · Los controles: primera mirada</b><small>Introducción general al mecanismo de gestión · dilemas "¿qué haría usted?" · puente al segundo taller</small></div></div>
       <div class="ag-row"><div class="ag-time">01:40–01:55</div><div class="ag-body"><b>Plenaria</b><small>Cada grupo presenta su riesgo prioritario y primeras ideas de gestión</small></div></div>
       <div class="ag-row"><div class="ag-time">01:55–02:00</div><div class="ag-body"><b>Cierre y compromisos</b><small>Canal ético · evaluación exprés</small></div></div>
@@ -528,14 +605,14 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
 
   <div class="card" style="margin-bottom:16px">
     <h3 style="color:var(--morazul);margin-bottom:10px"><span class="material-icons" style="color:var(--naranja)">groups</span> Metodología (5 min)</h3>
-    <p style="font-size:.92rem">Se conforman <b>grupos mixtos de 4 a 6 personas</b> en salas grupales, combinando roles distintos (dirección, financiero, proyectos, educación, jurídico, corporaciones). Cada grupo trabaja con <b>una compañía y su tarjeta de caso</b> dentro de este mismo documento, siguiendo la ruta del riesgo:</p>
+    <p style="font-size:.92rem">Se conforman <b>grupos mixtos de 4 a 6 personas</b> en salas grupales, combinando roles distintos (dirección, financiero, proyectos, educación, jurídico, corporaciones). Cada grupo trabaja con <b>una entidad y su tarjeta de caso</b> dentro de este mismo documento, siguiendo la ruta del riesgo:</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--font-mono);font-size:.75rem;margin-top:8px">
       <span class="chip" style="background:var(--morazul);border:none">FACTOR</span>→
       <span class="chip" style="background:var(--morazul);border:none">EVENTO</span>→
       <span class="chip" style="background:var(--naranja);border:none">PROBABILIDAD × IMPACTO</span>→
       <span class="chip" style="background:var(--naranja);border:none">ZONA</span>→
-      <span class="chip" style="background:#2e7d64;border:none">CONTROL</span>→
-      <span class="chip" style="background:#2e7d64;border:none">RESPONSABLE</span>
+      <span class="chip" style="background:#3a7068;border:none">CONTROL</span>→
+      <span class="chip" style="background:#3a7068;border:none">RESPONSABLE</span>
     </div>
     <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-top:8px">HOY DESARROLLAMOS HASTA LA ZONA DE SEVERIDAD. LOS PASOS DE CONTROL Y RESPONSABLE SE PROFUNDIZAN EN EL SEGUNDO TALLER.</p>
   </div>
@@ -602,7 +679,7 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
         </div>
         <div class="caso">
           <div class="caso-top"><span class="material-icons">public</span><b>Caso 6 · La frontera lenta</b><span class="proc-tag">INTERNACIONAL</span></div>
-          <div class="caso-mid">Un embarque de residuos para tratamiento en el exterior lleva semanas detenido. El agente aduanero del país de destino insinúa que un "pago administrativo" informal a un inspector lo liberaría en dos días.</div>
+          <div class="caso-mid">Un embarque de residuos para tratamiento en el exterior lleva semanas detenido. El agente aduanero del país de destino insinúa que un "pago administrativo" informal a un inspector de la aduana —funcionario público del país de destino— lo liberaría en dos días.</div>
           <div class="guia"><ul><li>¿Por qué esto es soborno transnacional aunque ocurra fuera de Colombia?</li><li>¿Qué exposición legal genera para la entidad (Ley 1778 de 2016)?</li><li>¿Qué alternativas legítimas existen?</li></ul></div>
           <button class="caso-btn" onclick="this.parentElement.classList.toggle('abierto')">Ver preguntas guía</button>
           <button class="caso-btn fac" onclick="verFacilitador(6)">·</button>
@@ -620,7 +697,7 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
       <span class="mins">15 MIN</span>
     </div>
     <div class="ronda-body">
-      <p style="font-size:.92rem">Primero repasamos la escala de valoración (la <b>severidad</b> es el producto de la probabilidad por el impacto). Luego, cada grupo toma <b>una compañía del grupo</b> y trabaja sobre su análisis base para construir una <b>matriz de riesgos</b> de la entidad.</p>
+      <p style="font-size:.92rem">Primero repasamos la escala de valoración (la <b>severidad</b> es el producto de la probabilidad por el impacto). Luego, cada grupo toma <b>una entidad del grupo</b> y trabaja sobre su análisis base para construir una <b>matriz de riesgos</b> de la entidad.</p>
       <div class="grid g2" style="margin-top:12px">
         <div>
           <h4 style="color:var(--morazul);margin-bottom:8px">Escala de probabilidad</h4>
@@ -666,10 +743,10 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
         </div>
       </div>
 
-      <!-- ===== Matriz integral por compañía ===== -->
+      <!-- ===== Matriz integral por entidad ===== -->
       <div id="matrizModulo" style="margin-top:26px">
-        <h4 style="color:var(--morazul);margin-bottom:6px;font-size:1.1rem"><span class="material-icons" style="color:var(--naranja)">grid_view</span> Matriz integral de riesgos por compañía</h4>
-        <p style="font-size:.9rem;color:var(--gris)">Seleccione una compañía. Encontrará un <b>análisis base predeterminado</b> con 10 posibles riesgos más críticos de corrupción y/o soborno. El grupo los debe analizar, validar o ajustar la <b>probabilidad</b> y el <b>impacto</b> de cada riesgo según su realidad operativa: la severidad se recalcula y el <b>mapa de calor se actualiza en vivo</b>. Los textos de cada riesgo son editables, y pueden eliminarse o agregarse riesgos según el análisis del grupo. El resultado de la ronda es una matriz inicial de la entidad.</p>
+        <h4 style="color:var(--morazul);margin-bottom:6px;font-size:1.1rem"><span class="material-icons" style="color:var(--naranja)">grid_view</span> Matriz integral de riesgos por entidad</h4>
+        <p style="font-size:.9rem;color:var(--gris)">Seleccione una entidad. Encontrará un <b>análisis base predeterminado</b> con 10 posibles riesgos más críticos de corrupción y/o soborno. El grupo los debe analizar, validar o ajustar la <b>probabilidad</b> y el <b>impacto</b> de cada riesgo según su realidad operativa: la severidad se recalcula y el <b>mapa de calor se actualiza en vivo</b>. Los textos de cada riesgo son editables, y pueden eliminarse o agregarse riesgos según el análisis del grupo. El resultado de la ronda es una matriz inicial de la entidad.</p>
         <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix)">ALCANCE: TODOS LOS EVENTOS CORRESPONDEN EXCLUSIVAMENTE A RIESGOS DE CORRUPCIÓN, SOBORNO Y SOBORNO TRANSNACIONAL (C/ST). OTRAS TIPOLOGÍAS (LA/FT, OPERATIVOS, AMBIENTALES) SE GESTIONAN EN SUS PROPIOS SISTEMAS.</p>
         <div class="ent-tabs no-print" id="entTabs"></div>
         <div class="ent-desc" id="entDesc"></div>
@@ -712,36 +789,36 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
       <p style="font-size:.92rem">En esta ronda hacemos una <b>primera mirada general</b> a los controles como mecanismo de gestión del PTEE: qué son, qué tipos existen y qué características deben cumplir. El desarrollo de los <b>controles clave para cada riesgo de la matriz</b> será el foco del <b>segundo taller</b>.</p>
 
       <div class="grid g3" style="margin-top:12px">
-        <div class="card" style="border-top:4px solid #2e7d64">
-          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">shield</span> Qué es un control</h4>
+        <div class="card" style="border-top:4px solid #3a7068">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#3a7068">shield</span> Qué es un control</h4>
           <p style="font-size:.86rem;margin:0">Actividad o mecanismo definido por la entidad para modificar el riesgo: reducir su probabilidad, su impacto o ambos, hasta llevarlo a la zona de aceptación.</p>
         </div>
-        <div class="card" style="border-top:4px solid #2e7d64">
-          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">category</span> Tipos de control</h4>
+        <div class="card" style="border-top:4px solid #3a7068">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#3a7068">category</span> Tipos de control</h4>
           <p style="font-size:.86rem;margin:0"><b>Preventivos</b>: evitan que el riesgo ocurra. <b>Detectivos</b>: lo identifican a tiempo. <b>Correctivos</b>: responden, sancionan y remedian cuando se materializa.</p>
         </div>
-        <div class="card" style="border-top:4px solid #2e7d64">
-          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#2e7d64">rule</span> Características mínimas</h4>
+        <div class="card" style="border-top:4px solid #3a7068">
+          <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#3a7068">rule</span> Características mínimas</h4>
           <p style="font-size:.86rem;margin:0">Responsable definido, periodicidad clara, evidencia verificable y conexión directa con el riesgo que mitiga.</p>
         </div>
       </div>
 
       <h4 style="color:var(--morazul);margin:18px 0 8px">Familias de controles del PTEE <span style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix)">(SOLO MENCIÓN — SE DESARROLLARÁN EN EL SEGUNDO TALLER)</span></h4>
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">travel_explore</span> Debida diligencia de terceros</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">call_split</span> Segregación de funciones</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">assignment_ind</span> Declaración de conflictos de interés</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">fact_check</span> Verificación de certificados y metas</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">card_giftcard</span> Regalos y pagos de facilitación</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">gavel</span> Cláusulas anticorrupción</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">support_agent</span> Canal ético y denuncias</span>
-        <span class="chip" style="background:#e8f2ee;border:1px solid #2e7d64;color:#20543f"><span class="material-icons" style="color:#2e7d64">receipt_long</span> Trazabilidad documental</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">travel_explore</span> Debida diligencia de terceros</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">call_split</span> Segregación de funciones</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">assignment_ind</span> Declaración de conflictos de interés</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">fact_check</span> Verificación de certificados y metas</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">card_giftcard</span> Regalos y pagos de facilitación</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">gavel</span> Cláusulas anticorrupción</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">support_agent</span> Canal ético y denuncias</span>
+        <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:var(--morazul)"><span class="material-icons" style="color:#3a7068">receipt_long</span> Trazabilidad documental</span>
       </div>
 
       <div class="banner-cero" style="background:var(--morazul);margin-top:18px">
         <span class="material-icons" style="color:var(--magico)">route</span>
         <div>
-          <b>Puente al segundo taller.</b> El próximo encuentro estará dedicado a los <b>controles clave</b>: partiremos de las matrices integrales construidas hoy y, para los riesgos priorizados de cada compañía, definiremos el control, su tipo, su responsable y su evidencia.
+          <b>Puente al segundo taller.</b> El próximo encuentro estará dedicado a los <b>controles clave</b>: partiremos de las matrices integrales construidas hoy y, para los riesgos priorizados de cada entidad, definiremos el control, su tipo, su responsable y su evidencia.
         </div>
       </div>
 
@@ -824,7 +901,7 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
     </div>
     <div class="card">
       <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">event_repeat</span> Siguientes pasos</h3>
-      <p style="font-size:.88rem;margin:8px 0 0">Las matrices construidas por los grupos alimentan la matriz de riesgos del PTEE y son el insumo directo del segundo taller, dedicado a reconocer controles clave por compañía.</p>
+      <p style="font-size:.88rem;margin:8px 0 0">Las matrices construidas por los grupos alimentan la matriz de riesgos del PTEE y son el insumo directo del segundo taller, dedicado a reconocer controles clave por entidad.</p>
     </div>
   </div>
 </section>
@@ -838,20 +915,460 @@ footer .fmono{font-family:var(--font-mono);font-size:.7rem}
   <div class="grid g3">
     <div class="card">
       <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">history_edu</span> Qué queda como soporte</h3>
-      <p style="font-size:.88rem;margin:8px 0 0">Este archivo (presentación y herramienta de la sesión), las matrices de riesgos por compañía descargadas y los compromisos de los participantes. Constituyen evidencia de divulgación y capacitación del PTEE, y el insumo directo del segundo taller sobre controles clave.</p>
+      <p style="font-size:.88rem;margin:8px 0 0">Este archivo (presentación y herramienta de la sesión), las matrices de riesgos por entidad descargadas y los compromisos de los participantes. Constituyen evidencia de divulgación y capacitación del PTEE, y el insumo directo del segundo taller sobre controles clave.</p>
     </div>
     <div class="card">
       <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">touch_app</span> Consúltelo cuando lo necesite</h3>
-      <p style="font-size:.88rem;margin:8px 0 0">El documento sigue siendo interactivo después de la sesión: puede repasar los conceptos, volver a los casos, recalcular severidades en la matriz de su compañía y descargar de nuevo los resultados.</p>
+      <p style="font-size:.88rem;margin:8px 0 0">El documento sigue siendo interactivo después de la sesión: puede repasar los conceptos, volver a los casos, recalcular severidades en la matriz de su entidad y descargar de nuevo los resultados.</p>
     </div>
     <div class="card">
       <h3 style="color:var(--morazul);font-size:.98rem"><span class="material-icons" style="color:var(--naranja)">forward_to_inbox</span> Ante cualquier duda o alerta</h3>
       <p style="font-size:.88rem;margin:8px 0 0">Contacte al responsable de cumplimiento, el oficial de cumplimiento o use el canal ético de su entidad. Recuerde: ante la duda, pregunte antes de actuar; ante una señal de alerta, reporte.</p>
     </div>
   </div>
+</div><!-- /s1-wrap -->
+
+<!-- ══════════════════════════════════════════════════════
+     SESIÓN 2 · CONTROLES CLAVE PARA LA GESTIÓN DE RIESGOS
+     ══════════════════════════════════════════════════════ -->
+<div id="s2-wrap" style="display:none">
+
+<nav class="secciones no-print" id="s2-nav">
+  <div class="nav-inner">
+    <a href="#s2-inicio">Inicio</a>
+    <a href="#s2-agenda">Agenda</a>
+    <a href="#s2-recon">1 · Reconexión</a>
+    <a href="#s2-banco">2 · Controles</a>
+    <a href="#s2-mapeo">3 · Mapeo</a>
+    <a href="#s2-taller">4 · Taller</a>
+    <a href="#s2-cierre">Cierre</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════ HERO S2 ═══════ -->
+<section id="s2-inicio">
+  <div class="hero-v">
+    <h1>Los controles que nos protegen: de la teoría a la práctica</h1>
+    <p class="sub">Segunda sesión del taller PTEE — mapeo, comprensión y aplicación práctica de los controles clave para la gestión de riesgos de soborno y corrupción (C/ST) en el Grupo Retorna y sus corporaciones.</p>
+    <div class="chips">
+      <span class="chip"><span class="material-icons">schedule</span> 2 horas</span>
+      <span class="chip"><span class="material-icons">shield</span> Controles clave PTEE</span>
+      <span class="chip"><span class="material-icons">cases</span> 3 casos reales por entidad</span>
+      <span class="chip"><span class="material-icons">link</span> Conectado con la Sesión 1</span>
+      <span class="chip"><span class="material-icons">recycling</span> Sector posconsumo · REP</span>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card" style="border-top:4px solid #3a7068">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:#3a7068">flag</span> Objetivos de la sesión</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Mapear y comprender los controles clave del PTEE, conectarlos con los riesgos priorizados en la Sesión 1 y practicar su aplicación ante situaciones reales.</p>
+    </div>
+    <div class="card" style="border-top:4px solid #3a7068">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:#3a7068">link</span> Conexión con la Sesión 1</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Cada control que analizamos hoy responde directamente a escenarios de riesgo que las entidades identificaron y midieron en sus matrices de la primera sesión.</p>
+    </div>
+    <div class="card" style="border-top:4px solid #3a7068">
+      <h3 style="color:var(--morazul);font-size:1rem"><span class="material-icons" style="color:#3a7068">school</span> Metodología</h3>
+      <p style="font-size:.9rem;margin:8px 0 0;text-align:justify">Comprensión didáctica de cada control, seguida de 3 casos de uso con situaciones reales adaptadas a la operación y a los riesgos más críticos de cada entidad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ AGENDA S2 ═══════ -->
+<section id="s2-agenda">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">AGENDA</span>
+    <h2>Ruta de las 2 horas — Sesión 2</h2>
+    <span class="mins">120 min</span>
+  </div>
+  <div class="card">
+    <span class="ag-part" style="background:var(--morazul)">PARTE 1 · MARCO DE CONTROLES (35 MIN)</span>
+    <div class="agenda">
+      <div class="ag-row"><div class="ag-time">00:00–00:10</div><div class="ag-body"><b>Reconexión con la Sesión 1</b><small>Revisión de matrices · riesgos más críticos por entidad · puente a los controles</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:10–00:30</div><div class="ag-body"><b>Banco de controles clave del PTEE</b><small>Tipología · características · explicación didáctica · señales de ausencia</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:30–00:35</div><div class="ag-body"><b>Mapeo: controles ↔ familias de riesgo</b><small>Qué controla qué · cobertura del banco de controles</small></div></div>
+    </div>
+    <span class="ag-part" style="background:var(--morazul)">PARTE 2 · TALLER POR ENTIDAD (75 MIN)</span>
+    <div class="agenda">
+      <div class="ag-row"><div class="ag-time">00:35–00:40</div><div class="ag-body"><b>Distribución de grupos y metodología</b><small>Cada grupo trabaja sobre su entidad · 3 casos de uso adaptados a su matriz</small></div></div>
+      <div class="ag-row"><div class="ag-time">00:40–01:05</div><div class="ag-body"><b>Ronda A · Identificar y aplicar el control</b><small>Casos 1 y 2 por entidad · ¿qué control protege este riesgo y cómo se activa?</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:05–01:25</div><div class="ag-body"><b>Ronda B · El control en profundidad</b><small>Caso 3 · diseñar el control: responsable · evidencia · periodicidad · ¿qué pasa si no existe?</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:25–01:45</div><div class="ag-body"><b>Plenaria</b><small>Cada grupo presenta su caso más retador y el control que definió</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:45–01:55</div><div class="ag-body"><b>Síntesis y aprendizajes</b><small>Los 3 controles más críticos del sector · señales de que no existen</small></div></div>
+      <div class="ag-row"><div class="ag-time">01:55–02:00</div><div class="ag-body"><b>Compromisos</b><small>Un control, un responsable, una fecha · evaluación exprés</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 1. RECONEXIÓN ═══════ -->
+<section id="s2-recon">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">1</span>
+    <h2>Reconexión: desde dónde partimos</h2>
+    <span class="mins">10 min</span>
+  </div>
+  <p style="font-size:.92rem;color:var(--gris)">En la primera sesión cada entidad construyó su <b>matriz de riesgos C/ST</b>. Hoy damos el siguiente paso: ¿qué mecanismos concretos existen para llevar esos riesgos a la zona de aceptación?</p>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card" style="border-left:6px solid var(--naranja)">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">looks_one</span> Lo que construimos en la Sesión 1</h4>
+      <p style="font-size:.86rem;margin:0">Identificamos escenarios de riesgo C/ST, los medimos por probabilidad × impacto y los ubicamos en el mapa de calor. Resultado: matrices de 10 riesgos críticos por entidad.</p>
+    </div>
+    <div class="card" style="border-left:6px solid #e9b949">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#c8a000">looks_two</span> La pregunta que quedó pendiente</h4>
+      <p style="font-size:.86rem;margin:0">Identificamos el riesgo y medimos su severidad. Pero, ¿qué control preventivo, detectivo o correctivo lo gestiona? Esa es la tarea de hoy.</p>
+    </div>
+    <div class="card" style="border-left:6px solid #3a7068">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:#3a7068">looks_3</span> El resultado esperado de hoy</h4>
+      <p style="font-size:.86rem;margin:0">Para riesgos relevantes de su entidad, definir bien el control clave, su tipo, su responsable y la evidencia de que opera. Fortalece el PTEE.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;background:var(--nocturno);color:#fff">
+    <h3 style="color:var(--magico);font-size:1rem;margin-bottom:10px"><span class="material-icons" style="color:var(--naranja)">psychology_alt</span> Recuerde: un control es efectivo si…</h3>
+    <div class="grid g3">
+      <div style="text-align:center;padding:8px">
+        <div style="font-family:var(--font-titulo);font-size:1.8rem;color:var(--naranja)">¿Qué?</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix);margin-top:4px">ACCIÓN CONCRETA Y VERIFICABLE</div>
+        <p style="font-size:.82rem;color:#bbb;margin:6px 0 0">No es una política general: es algo que alguien hace, en un momento específico, que deja evidencia.</p>
+      </div>
+      <div style="text-align:center;padding:8px">
+        <div style="font-family:var(--font-titulo);font-size:1.8rem;color:var(--naranja)">¿Quién?</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix);margin-top:4px">RESPONSABLE NOMINADO</div>
+        <p style="font-size:.82rem;color:#bbb;margin:6px 0 0">Si es "responsabilidad de todos", no es responsabilidad de nadie. El control tiene un dueño con nombre y cargo.</p>
+      </div>
+      <div style="text-align:center;padding:8px">
+        <div style="font-family:var(--font-titulo);font-size:1.8rem;color:var(--naranja)">¿Cuándo?</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix);margin-top:4px">PERIODICIDAD Y EVIDENCIA</div>
+        <p style="font-size:.82rem;color:#bbb;margin:6px 0 0">El control opera en un momento clave del proceso y deja un rastro documental: acta, reporte, validación, alerta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 2. BANCO DE CONTROLES ═══════ -->
+<section id="s2-banco">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">2</span>
+    <h2>Banco de controles clave del PTEE</h2>
+    <span class="mins">20 min</span>
+  </div>
+  <p style="font-size:.9rem;color:var(--gris)">Cada tarjeta presenta un control clave. Ingresa a cada una para conocer qué significa, cómo funciona en la práctica y cuál es la señal de alarma cuando <b>no existe</b>.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">
+    <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:#3a7068">⬤ Preventivo · evita que el riesgo ocurra</span>
+    <span class="chip" style="background:#e3ebf2;border:1px solid var(--morazul);color:var(--morazul)">⬤ Detectivo · lo identifica a tiempo</span>
+    <span class="chip" style="background:var(--tofu);border:1px solid #c07030;color:#a05a20">⬤ Prev/Correctivo · previene y sanciona</span>
+    <span class="chip" style="background:#f3e8ff;border:1px solid #7c3aed;color:#7c3aed">⬤ Control Directivo · decisión de alta dirección</span>
+    <span class="chip" style="background:#fdf4d6;border:1px solid #c8a000;color:#7a6200">⬤ Prev/Detectivo · doble cobertura</span>
+  </div>
+  <div class="ctl-grid">
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">01</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">travel_explore</span></div>
+      <div class="ctl-name">Debida diligencia (Due Diligence) vinculante</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Antes de iniciar cualquier relación o firmar cualquier contrato exige conocer a fondo con quienes trabajamos: validar en listas vinculantes (ONU, OFAC, UE), verificar licencias y capacidad de operar del tercero, e identificar las personas naturales que controlan la empresas (beneficiario final).</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Carpeta de conocimiento del proveedor actualizada periódicamente, búsqueda en listas restrictivas en cada vinculación y en renovación periódica, verificación de vigencia de licencias ambientales antes del contrato y en cada operación.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Contratos firmados sin carpeta de conocimiento del proveedor; gestores "de confianza" que llevan años sin revisión; se descubre que un gestor ya estaba sancionado cuando lo contrataron.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">02</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">call_split</span></div>
+      <div class="ctl-name">Segregación de funciones</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Ninguna persona controla sola un proceso completo de alto riesgo. Quien crea el proveedor en el sistema no puede autorizar el pago ni hacer la conciliación bancaria. Separa obligatoriamente las funciones de creación, autorización, pago y conciliación.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Matriz de roles con doble firma en aprobaciones, accesos diferenciados por perfil en el sistema contable, prohibición de que el mismo funcionario apruebe y ejecute giros superiores a umbrales definidos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Una sola persona crea al proveedor, aprueba la factura y realiza la transferencia; pagos por fuera de sistema por "agilidad"; el mismo funcionario concilia el extracto que autorizó.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">03</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">assignment_ind</span></div>
+      <div class="ctl-name">Declaración periódica de conflictos de interés</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Todos los directivos, miembros de junta y personal clave declaran anualmente sus vínculos con proveedores, gestores, aliados, el sector público, otros. Ante una decisión específica con potencial conflicto, se declara el impedimento y se retiran del proceso.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Formulario de declaración anual firmado y archivado, cruce de declaraciones contra lista de proveedores y contratistas activos, registro de impedimentos en actas de junta y comités, capacitación al inicio de cada año sobre qué declarar.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Nadie se ha declarado impedido nunca; no existe un formulario de conflictos de interés; se descubre después de la adjudicación que el decisor tenía vínculos con el contratista.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdet" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">04</span><span class="ctl-tipo td">Detectivo</span><span class="material-icons" style="font-size:22px;color:var(--morazul);margin-left:auto">fact_check</span></div>
+      <div class="ctl-name">Control presupuestal</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Revisión independiente y periódica del gasto ejecutado vs. presupuestos aprobados. Detecta facturas sin sustento, giros a proveedores sin contrato, sobrecostos recurrentes, doble facturación y coincidencias sospechosas entre ingresos y egresos.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Conciliación mensual entre contabilidad y aprobaciones de pago, análisis de varianza de gasto por línea presupuestal, revisión aleatoria de soportes de facturas de mayor valor, cruce entre lo pagado y lo reportado en proyectos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Nadie revisa si las facturas corresponden a servicios realmente prestados; se descubren sobrecostos sistemáticos solo en la auditoría anual; no hay análisis de varianza de gastos.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card ccorr" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">05</span><span class="ctl-tipo tc">Prev/Correctivo</span><span class="material-icons" style="font-size:22px;color:var(--naranja);margin-left:auto">gavel</span></div>
+      <div class="ctl-name">Cláusulas anticorrupción en contratos y convenios</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Incluye en todo contrato cláusulas vinculantes que obligan a la contraparte a adherirse al PTEE, no tolerar prácticas C/ST y permiten la terminación unilateral del contrato si se incurre en actos de corrupción o soborno. comparte el riesgo jurídico y reputacional con el tercero.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Cláusula estándar anticorrupción en toda minuta contractual (sin excepción de monto), declaración de no pago de sobornos firmada por el representante del contratista, causal expresa de terminación unilateral por C/ST.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Contratos sin cláusula anticorrupción; el contratista involucrado en actos C/ST continúa en operación porque "no hay causal contractual para terminarlo"; solo se confía en las normas legales generales.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdet" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">06</span><span class="ctl-tipo td">Detectivo</span><span class="material-icons" style="font-size:22px;color:var(--morazul);margin-left:auto">support_agent</span></div>
+      <div class="ctl-name">Canal Ético / Denuncias</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Canal seguro, confidencial y preferiblemente administrado por un tercero independiente para que cualquier persona (interna o externa) reporte sospechas de fraude, corrupción, presiones indebidas o soborno, sin temor a represalias.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Canal disponible 24/7 (formulario web, línea telefónica o correo), administrado por el oficial de cumplimiento o un tercero, con protocolo de recepción, clasificación, escalamiento e investigación de hallazgos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>No hay canal de denuncias o nadie lo conoce; las únicas denuncias llegan al jefe directo (quien puede ser el denunciado); nunca se ha recibido ni tramitado una denuncia interna.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">07</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">manage_accounts</span></div>
+      <div class="ctl-name">Identificación del beneficiario final</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Identifica obligatoriamente a las personas naturales que poseen o controlan en última instancia las estructuras jurídicas con las que se contrata o que hacen aportes: donantes, cooperantes, contratistas internacionales, intermediarios. Previene posible relación con fachadas.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Declaración de beneficiario final firmada por todos los terceros, cruce en bases de datos de sociedades para validar estructuras de propiedad, actualización ante cambios societarios.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Se sabe quién firma el contrato pero no quién controla la empresa; llegan fondos de una cooperante cuya identidad real no se conoce; se trabaja con intermediarios que "representan a alguien".</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">08</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">how_to_reg</span></div>
+      <div class="ctl-name">Procedimiento de selección basado en méritos</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Estandariza las contrataciones laborales y nombramientos mediante convocatorias abiertas con criterios objetivos y evaluación por competencias. Bloquea la injerencia de recomendados y el nepotismo. El proceso deja trazabilidad de quién fue evaluado y por qué criterio fue o no seleccionado.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Perfil del cargo publicado, proceso documentado con actas de evaluación, comité de selección con al menos dos personas, verificación de referencias, pruebas o entrevistas estructuradas.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Los cargos estratégicos se llenan por recomendación directa; no existe acta de selección; se contrata a familiares o allegados de directivos sin proceso competitivo.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">09</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">approval</span></div>
+      <div class="ctl-name">Flujo de autorización de compras (escalonado)</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Para adquisiciones que superen un umbral definido, requiere autorizaciones múltiples y decisión colegiada de un comité. Nadie decide solo las compras de mayor impacto. El escalonamiento va de menor a mayor valor: jefe de área → director → comité → junta.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Tabla de autoridades de gasto con montos y niveles de aprobación publicada, comité de compras con quórum mínimo, acta de cada comité con decisiones y justificaciones, restricción de la adjudicación directa a montos bajos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Una sola persona decide contratos de gran valor; la "urgencia" justifica saltarse el comité; los contratos se fraccionen artificialmente para no alcanzar el umbral del comité.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdir" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">10</span><span class="ctl-tipo tdir">Control Directivo</span><span class="material-icons" style="font-size:22px;color:#7c3aed;margin-left:auto">policy</span></div>
+      <div class="ctl-name">Monitoreo de aportes a campañas y cabildeo</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Toda interacción, donación o contribución política o de cabildeo queda sujeta a revisión exclusiva de la alta dirección, se documenta en un registro público y no puede realizarse sin aprobación formal. Previene el uso de recursos de la entidad para influir indebidamente en decisiones públicas.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Política de interacción con el sector político aprobada por junta, registro de reuniones con funcionarios y candidatos, prohibición de aportes a campañas políticas, reporte de actividades de cabildeo al oficial de cumplimiento.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Donaciones a fundaciones de políticos sin trazabilidad; reuniones frecuentes con funcionarios sin registro; personal que hace "gestión" ante el sector público sin autorización ni documentación.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">11</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">card_giftcard</span></div>
+      <div class="ctl-name">Política de regalos y pagos de facilitación</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Prohíbe expresamente ofrecer, prometer, entregar o aceptar regalos, dádivas, hospitalidades o pagos de facilitación a funcionarios públicos nacionales o extranjeros, sin excepción de monto. Los obsequios no autorizados se devuelven, se registran y se reportan.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Política escrita con límites claros (monto máximo, tipos permitidos), formulario de reporte de regalos recibidos, devolución documentada de todo obsequio fuera de política, capacitación semestral, cero excepciones para funcionarios públicos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>"Un detalle pequeño no es soborno"; el equipo acepta invitaciones de proveedores sin registro; se desconoce cuál es el límite permitido; nadie ha devuelto nunca un regalo.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdet" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">12</span><span class="ctl-tipo td">Detectivo</span><span class="material-icons" style="font-size:22px;color:var(--morazul);margin-left:auto">account_balance</span></div>
+      <div class="ctl-name">Supervisión financiera independiente (auditoría)</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> El revisor fiscal o auditor externo independiente revisa periódicamente los estados financieros, registros contables, conciliaciones bancarias y la coherencia entre ingresos reportados y la actividad real de la entidad. Emite opinión explícita sobre el PTEE conforme a la Ley 2195/22.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Visitas periódicas sin aviso previo, acceso irrestricto a la documentación, prueba selectiva de pagos y contratos, dictamen sobre el programa de cumplimiento, reporte directo a la junta directiva sin intermediación del ejecutivo.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>El revisor fiscal solo valida lo que le presentan; no ha emitido nunca opinión sobre el PTEE; sus informes no analizan riesgos C/ST ni mencionan hallazgos relevantes.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cmix" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">13</span><span class="ctl-tipo tmix">Prev/Detectivo</span><span class="material-icons" style="font-size:22px;color:#c8a000;margin-left:auto">receipt_long</span></div>
+      <div class="ctl-name">Trazabilidad documental y conservación de soportes</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Política de gestión documental que exige conservar, indexar y respaldar digitalmente todos los soportes financieros, contractuales y operativos por el período legal. Sin soporte válido, no hay pago ni certificación. La trazabilidad hace visible cualquier alteración o pérdida intencional de documentos.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Archivo digital y físico organizado por proyecto y período, metadatos de autoría y fecha en cada documento, cruce obligatorio entre manifiestos, certificados y órdenes de pago, control de integridad y acceso restringido a documentos críticos.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Certificados sin cruzar con manifiestos; facturas sin soportes adjuntos; se aprueban pagos con soporte "de palabra"; "el archivo se perdió cuando cambiamos de sistema".</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdet" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">14</span><span class="ctl-tipo td">Detectivo</span><span class="material-icons" style="font-size:22px;color:var(--morazul);margin-left:auto">verified</span></div>
+      <div class="ctl-name">Verificación de ejecución y destino de recursos donados</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Mecanismo de seguimiento periódico que verifica que los recursos recibidos (donaciones, cooperación, subvenciones) se ejecuten exclusivamente conforme a su destinación pactada. Incluye informes de ejecución a donantes y junta directiva, con cruce entre presupuesto aprobado y gasto real por componente.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Informe de ejecución por convenio con periodicidad mínima trimestral, revisión de coherencia entre actividades reportadas y soportes financieros, alerta inmediata ante desviaciones superiores al 10%, rendición de cuentas documentada al donante.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>No hay informes de ejecución por proyecto; los recursos de distintos donantes se mezclan en una sola cuenta; nadie sabe cuánto se ha gastado de cada convenio hasta el cierre.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cprev" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">15</span><span class="ctl-tipo tp">Preventivo</span><span class="material-icons" style="font-size:22px;color:#3a7068;margin-left:auto">language</span></div>
+      <div class="ctl-name">Monitoreo de contrapartes internacionales</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> Verifica periódicamente a contrapartes, beneficiarios y operaciones contra listas de sanciones internacionales (OFAC, ONU, UE, etc.), con alerta inmediata ante coincidencias. Clave para operaciones transfronterizas, exportaciones de residuos y relaciones con aliados internacionales.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Búsqueda en listas de sanciones antes de cada vinculación y anualmente, documentación del resultado de la búsqueda en cada expediente, protocolo de escalamiento ante una alerta positiva, sin excepción de urgencia.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>No se consultan listas de sanciones antes de girar recursos al exterior; nadie sabe qué es OFAC; los agentes internacionales no se verifican antes de formalizar el contrato.</div>
+      </div>
+    </div>
+
+    <div class="ctl-card cdir" onclick="this.classList.toggle('abierto')">
+      <div class="ctl-head"><span class="ctl-id">16</span><span class="ctl-tipo tdir">Control Directivo</span><span class="material-icons" style="font-size:22px;color:#7c3aed;margin-left:auto">campaign</span></div>
+      <div class="ctl-name">Transparencia corporativa y rendición de cuentas pública</div>
+      <div class="ctl-body">
+        <p><b>¿Qué hace?</b> La entidad publica periódicamente informes de gestión, estados financieros y resultados de proyectos en medios accesibles. Incluye verificación de operación real (sede, proyectos, beneficiarios documentados) y reporte a entes de vigilancia. La transparencia activa es el disuasor más poderoso frente a la corrupción.</p>
+        <p><b>¿Cómo funciona en la práctica (opciones)?</b> Informe de gestión anual público y verificable, cifras consistentes entre lo reportado a distintas audiencias, asamblea con rendición de cuentas documentada, respuesta formal y oportuna a requerimientos de entes de control.</p>
+        <div class="ctl-fact"><span class="ctl-fact-t">⚠ SEÑAL DE QUE NO EXISTE</span>Las cifras reportadas a los donantes no coinciden con las de la asamblea; el informe de gestión no se publica o es genérico; nadie puede verificar externamente que los proyectos existen y se ejecutaron.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ 3. MAPEO ═══════ -->
+<section id="s2-mapeo">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">3</span>
+    <h2>Mapeo: controles ↔ familias de riesgo</h2>
+    <span class="mins">5 min</span>
+  </div>
+  <p style="font-size:.9rem;color:var(--gris)">¿Qué control protege cada tipo de riesgo identificado en la Sesión 1? La siguiente tabla muestra la cobertura del banco de controles. <span style="font-family:var(--font-mono);font-size:.72rem;color:var(--onix)">● ALTO IMPACTO &nbsp;● MEDIO &nbsp;● COMPLEMENTARIO</span></p>
+  <div class="mapeo-wrap card" style="padding:0">
+    <table class="tmapeo">
+      <tr>
+        <th style="text-align:left">Control</th>
+        <th>Gobierno / Conflictos</th>
+        <th>Financiero / Contable</th>
+        <th>Operativo / Certif.</th>
+        <th>Terceros / Gestores</th>
+        <th>Sector Público</th>
+        <th>Internacional</th>
+      </tr>
+      <tr><td>01 · Debida diligencia</td><td></td><td></td><td></td><td><span class="dot-hi"></span></td><td></td><td><span class="dot-md"></span></td></tr>
+      <tr><td>02 · Segregación de funciones</td><td></td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td></td><td></td><td></td></tr>
+      <tr><td>03 · Conflictos de interés</td><td><span class="dot-hi"></span></td><td></td><td></td><td><span class="dot-md"></span></td><td><span class="dot-lo"></span></td><td></td></tr>
+      <tr><td>04 · Control presupuestal</td><td></td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td><span class="dot-lo"></span></td><td></td><td></td></tr>
+      <tr><td>05 · Cláusulas anticorrupción</td><td></td><td></td><td><span class="dot-md"></span></td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td><span class="dot-lo"></span></td></tr>
+      <tr><td>06 · Canal Ético / Denuncias</td><td><span class="dot-md"></span></td><td><span class="dot-md"></span></td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td><span class="dot-md"></span></td><td></td></tr>
+      <tr><td>07 · Beneficiario Final</td><td><span class="dot-md"></span></td><td></td><td></td><td><span class="dot-hi"></span></td><td></td><td><span class="dot-hi"></span></td></tr>
+      <tr><td>08 · Selección por Méritos</td><td><span class="dot-hi"></span></td><td></td><td></td><td></td><td><span class="dot-lo"></span></td><td></td></tr>
+      <tr><td>09 · Flujo de autorización de compras</td><td><span class="dot-md"></span></td><td><span class="dot-hi"></span></td><td></td><td><span class="dot-hi"></span></td><td></td><td></td></tr>
+      <tr><td>10 · Monitoreo cabildeo</td><td><span class="dot-md"></span></td><td></td><td></td><td></td><td><span class="dot-hi"></span></td><td><span class="dot-lo"></span></td></tr>
+      <tr><td>11 · Política de regalos</td><td></td><td></td><td></td><td><span class="dot-md"></span></td><td><span class="dot-hi"></span></td><td><span class="dot-hi"></span></td></tr>
+      <tr><td>12 · Auditoría</td><td><span class="dot-lo"></span></td><td><span class="dot-hi"></span></td><td><span class="dot-lo"></span></td><td></td><td></td><td></td></tr>
+      <tr><td>13 · Trazabilidad documental</td><td></td><td><span class="dot-hi"></span></td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td></td><td></td></tr>
+      <tr><td>14 · Verificación recursos donados</td><td></td><td><span class="dot-hi"></span></td><td></td><td><span class="dot-lo"></span></td><td></td><td><span class="dot-lo"></span></td></tr>
+      <tr><td>15 · Monitoreo contrapartes int.</td><td></td><td></td><td></td><td><span class="dot-hi"></span></td><td></td><td><span class="dot-hi"></span></td></tr>
+      <tr><td>16 · Transparencia corporativa</td><td><span class="dot-hi"></span></td><td><span class="dot-md"></span></td><td></td><td></td><td><span class="dot-md"></span></td><td></td></tr>
+    </table>
+  </div>
+  <div class="banner-cero" style="background:var(--morazul);margin-top:16px">
+    <span class="material-icons" style="color:var(--magico)">lightbulb</span>
+    <div><b>Ningún control actúa solo: la protección es sistémica.</b></div>
+  </div>
+</section>
+
+<!-- ═══════ 4. TALLER POR ENTIDAD ═══════ -->
+<section id="s2-taller">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">4</span>
+    <h2>Taller por entidad: casos de uso reales</h2>
+    <span class="mins">65 min</span>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="color:var(--morazul);margin-bottom:10px"><span class="material-icons" style="color:#3a7068">groups</span> Metodología (5 min)</h3>
+    <p style="font-size:.92rem">Organización en grupos por entidad. Cada grupo lee y analiza <b>3 casos de uso adaptados a sus posibles riesgos</b> analizados desde la Sesión 1. Para cada caso: identificar el control que aplica (del banco de controles), definir cómo se activa, quién es el responsable y qué evidencia queda. Luego responden las preguntas guía.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;font-family:var(--font-mono);font-size:.72rem;margin-top:8px;align-items:center">
+      <span class="chip" style="background:#e8f0ee;border:1px solid #3a7068;color:#3a7068">SITUACIÓN REAL</span>→
+      <span class="chip" style="background:var(--morazul);border:none">¿QUÉ CONTROL APLICA?</span>→
+      <span class="chip" style="background:var(--naranja);border:none">¿CÓMO SE ACTIVA?</span>→
+      <span class="chip" style="background:var(--morazul);border:none">RESPONSABLE + EVIDENCIA</span>→
+      <span class="chip" style="background:var(--nocturno);border:none">¿QUÉ PASA SI NO EXISTE?</span>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-top:8px">RONDA A: CASOS 1 Y 2 (25 MIN) · RONDA B: CASO 3 EN PROFUNDIDAD (20 MIN) · PLENARIA: CADA GRUPO PRESENTA (20 MIN)</p>
+  </div>
+
+  <div class="crono no-print" style="margin-bottom:16px">
+    <span class="material-icons" style="font-size:30px;color:#3a7068">timer</span>
+    <div class="tiempo" id="s2CronoDisp">25:00</div>
+    <button class="btn btn-primary" style="background:#3a7068" onclick="s2CronoSet(25)">Ronda A · 25 min</button>
+    <button class="btn btn-primary" style="background:#3a7068" onclick="s2CronoSet(20)">Ronda B · 20 min</button>
+    <button class="btn btn-ghost" onclick="s2CronoToggle()" id="s2CronoBtn"><span class="material-icons">play_arrow</span></button>
+    <button class="btn btn-ghost" onclick="s2CronoReset()"><span class="material-icons">replay</span></button>
+  </div>
+
+  <div class="ent-tabs no-print" id="s2EntTabs"></div>
+  <div id="s2CasosWrap"></div>
+</section>
+
+<!-- ═══════ 5. PLENARIA ═══════ -->
+<section id="s2-plenaria">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">5</span>
+    <h2>Plenaria y síntesis</h2>
+    <span class="mins">20 min</span>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--morazul);margin-bottom:12px"><span class="material-icons" style="color:#3a7068">record_voice_over</span> Estructura de la presentación de cada grupo</h3>
+    <div class="pasos">
+      <div class="paso" style="border-bottom-color:#3a7068"><span class="n" style="background:#3a7068">1</span><b>El caso más retador</b><small>¿Cuál fue el caso más difícil de resolver? ¿Por qué?</small></div>
+      <div class="paso" style="border-bottom-color:#3a7068"><span class="n" style="background:#3a7068">2</span><b>El control elegido</b><small>¿Qué control(es) aplica? ¿Es preventivo, detectivo o correctivo?</small></div>
+      <div class="paso" style="border-bottom-color:#3a7068"><span class="n" style="background:#3a7068">3</span><b>Responsable + evidencia</b><small>¿Quién lo opera? ¿Qué queda como registro verificable?</small></div>
+      <div class="paso" style="border-bottom-color:#3a7068"><span class="n" style="background:#3a7068">4</span><b>Sin el control…</b><small>¿Qué habría pasado si el control no existiera? Consecuencia concreta.</small></div>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card" style="border-top:4px solid var(--naranja)">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">workspace_premium</span> Los 3 controles más críticos del sector</h4>
+      <p style="font-size:.86rem;margin:0;text-align:justify"><b>01 Debida Diligencia:</b> sin verificar gestores, la operación entera depende de la fe. <b>13 Trazabilidad:</b> sin cruce de documentos, no hay forma de detectar certificados adulterados. <b>03 Conflictos de Interés:</b> sin declaración, las decisiones contaminadas no se detectan.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja)">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">warning</span> La trampa más común</h4>
+      <p style="font-size:.86rem;margin:0;text-align:justify">Tener el control <b>diseñado en papel pero no operando en la práctica</b>. Una cláusula anticorrupción que nadie lee al contratar. Una declaración de conflictos que nadie firma. Una línea ética que nadie conoce. El control existe cuando opera, no cuando está escrito.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--naranja)">
+      <h4 style="color:var(--morazul);font-size:.95rem;margin-bottom:6px"><span class="material-icons" style="color:var(--naranja)">trending_up</span> La medida de madurez</h4>
+      <p style="font-size:.86rem;margin:0;text-align:justify">Un control es maduro cuando: (a) hay un responsable nominado, (b) existe evidencia periódica de que operó, (c) hay un proceso de mejora cuando falla. La Evaluación Independiente del PTEE verificará exactamente esto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CIERRE S2 ═══════ -->
+<section id="s2-cierre">
+  <div class="sec-head">
+    <span class="chip-num" style="background:var(--morazul)">6</span>
+    <h2>Cierre y compromisos</h2>
+    <span class="mins">10 min</span>
+  </div>
+  <div class="compromiso-v">
+    <span class="material-icons" style="font-size:44px;color:var(--magico)">handshake</span>
+    <h3>Mi compromiso con los controles clave</h3>
+    <p>"Conozco los controles del PTEE que me corresponden operar. Me comprometo a aplicar al menos uno de ellos de manera verificable antes del próximo mes, con responsable definido y evidencia documentada."</p>
+    <p style="font-family:var(--font-mono);font-size:.78rem;opacity:.85">TOLERANCIA CERO C/ST · CONTROLES QUE OPERAN · EVIDENCIA QUE PROTEGE</p>
+  </div>
+
+  <h3 style="color:var(--morazul);margin:22px 0 12px"><span class="material-icons" style="color:#3a7068">checklist</span> Evaluación exprés — 3 preguntas en el chat antes de cerrar</h3>
+  <div class="grid g3">
+    <div class="card" style="border-left:5px solid #3a7068">
+      <h4 style="color:var(--morazul);font-size:.95rem">Pregunta 1</h4>
+      <p style="font-size:.9rem;font-style:italic;margin:6px 0 0">"¿Qué control del banco tiene mayor impacto en los riesgos de SU entidad y por qué?"</p>
+    </div>
+    <div class="card" style="border-left:5px solid #3a7068">
+      <h4 style="color:var(--morazul);font-size:.95rem">Pregunta 2</h4>
+      <p style="font-size:.9rem;font-style:italic;margin:6px 0 0">"¿Qué control del banco NO existe hoy en su entidad y representa el mayor riesgo?"</p>
+    </div>
+    <div class="card" style="border-left:5px solid #3a7068">
+      <h4 style="color:var(--morazul);font-size:.95rem">Pregunta 3</h4>
+      <p style="font-size:.9rem;font-style:italic;margin:6px 0 0">"¿Cuál es el UN control que usted va a implementar o fortalecer en los próximos 30 días? ¿Quién es el responsable?"</p>
+    </div>
+  </div>
+
+  </div>
 </section>
 
 </main>
+</div><!-- /s2-wrap -->
 
 <footer>
   <img id="logo4hFoot" alt="4Hands Partners" src="">
@@ -990,7 +1507,7 @@ function calcular(){
 }
 calcular();
 
-/* ===== Matriz integral de riesgos por compañía =====
+/* ===== Matriz integral de riesgos por entidad =====
    Análisis base predeterminado: 10 riesgos críticos C/ST por entidad.
    Formato de cada riesgo: [tipo, proceso, factor, evento, probabilidad, impacto] */
 const ENTIDADES = {
@@ -1308,15 +1825,279 @@ function cronoToggle(){
 function cronoReset(){ cronoSet(20); }
 cronoPintar();
 
+/* ===== Zoom para proyección ===== */
+let modoProyeccion = true;
+function toggleZoom(){
+  modoProyeccion = !modoProyeccion;
+  document.documentElement.style.zoom = modoProyeccion ? '1.3' : '1';
+  const btn = document.getElementById('btnZoom');
+  const lbl = document.getElementById('lblZoom');
+  if(modoProyeccion){
+    btn.classList.replace('btn-ghost','btn-zoom-act');
+    lbl.textContent = 'Proyección';
+    document.getElementById('btnZoom').querySelector('.material-icons').textContent = 'fullscreen';
+  } else {
+    btn.classList.replace('btn-zoom-act','btn-ghost');
+    lbl.textContent = 'Normal';
+    document.getElementById('btnZoom').querySelector('.material-icons').textContent = 'fullscreen_exit';
+  }
+}
+
 /* ===== Descarga del archivo ===== */
 function descargarHTML(){
   const contenido = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
   const blob = new Blob([contenido],{type:'text/html;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'Formacion_PTEE_riesgos_soborno_corrupcion_Grupo_Retorna.html';
+  a.download = 'Formacion_PTEE_Sesiones1y2_GrupoRetorna.html';
   document.body.appendChild(a); a.click(); a.remove();
 }
+
+/* ===== Cambio de sesión ===== */
+function cambiarSesion(n) {
+  document.getElementById('s1-wrap').style.display = n === 1 ? '' : 'none';
+  document.getElementById('s2-wrap').style.display = n === 2 ? '' : 'none';
+  document.getElementById('tab-s1').classList.toggle('act', n === 1);
+  document.getElementById('tab-s2').classList.toggle('act', n === 2);
+  window.scrollTo(0, 0);
+  if (n === 2 && !s2Init) { iniciarS2(); s2Init = true; }
+}
+
+/* ===== Cronómetro Sesión 2 ===== */
+let s2CronoSeg = 25*60, s2CronoInt = null;
+function s2PintarCrono(){
+  const m = String(Math.floor(s2CronoSeg/60)).padStart(2,'0');
+  const s = String(s2CronoSeg%60).padStart(2,'0');
+  const el = document.getElementById('s2CronoDisp');
+  if(el) el.textContent = m+':'+s;
+}
+function s2CronoSet(min){ clearInterval(s2CronoInt); s2CronoInt=null; s2CronoSeg=min*60; s2PintarCrono(); const b=document.getElementById('s2CronoBtn'); if(b) b.innerHTML='<span class="material-icons">play_arrow</span>'; }
+function s2CronoToggle(){
+  if(s2CronoInt){ clearInterval(s2CronoInt); s2CronoInt=null; const b=document.getElementById('s2CronoBtn'); if(b) b.innerHTML='<span class="material-icons">play_arrow</span>'; }
+  else{
+    s2CronoInt=setInterval(function(){
+      if(s2CronoSeg>0){ s2CronoSeg--; s2PintarCrono(); }
+      else{ clearInterval(s2CronoInt); s2CronoInt=null; const el=document.getElementById('s2CronoDisp'); if(el) el.textContent='\u00a1FIN!'; }
+    },1000);
+    const b=document.getElementById('s2CronoBtn'); if(b) b.innerHTML='<span class="material-icons">pause</span>';
+  }
+}
+function s2CronoReset(){ s2CronoSet(25); }
+
+/* ===== Casos de uso por entidad ===== */
+let s2Init = false;
+let s2EntAct = 'gr';
+
+const S2_CASOS = {
+  gr: [
+    { titulo:'El proveedor que agradeció la adjudicación', icono:'payments', proc:'GOBIERNO · CONTRATOS',
+      sit:'Tras adjudicar el contrato de la campaña anual de sensibilización a un proveedor de comunicaciones (valor: $45 millones), el Coordinador de Proyectos recibe un sobre con $500.000 en efectivo y una nota de "agradecimiento" del proveedor adjudicado. Consulta a su jefe si "puede conservarlo o tiene que devolverlo".',
+      guia:['¿Es esto un regalo o un soborno? ¿Qué diferencia hace el momento (post-adjudicación)?','¿Qué debe hacer el Coordinador EN ESE MOMENTO? ¿Y el jefe directo?','¿Qué dice la Política de Regalos y Atenciones del PTEE sobre esta situación?','¿Cómo debería estar redactada la cláusula anticorrupción del contrato para haber prevenido esto?'],
+      controles:[['11','chip-p','Prev'],['06','chip-d','Detect'],['05','chip-c','Prev/Corr']],
+      fac:'El sobre es un soborno post-adjudicación. Respuesta: rechazar y devolver (documentado), reportar por canal ético, evaluar si el proceso de adjudicación fue correcto. El jefe NO puede normalizar: su silencio lo hace cómplice. La cláusula debió prever terminación unilateral ante este intento.',
+      vinculo:'Tipología C — Soborno comercial. El proveedor adjudicado entrega una dádiva a un servidor de la organización para "agradecer" la decisión de contratación. Aunque no involucra funcionario público, configura corrupción privada: el servidor recibe un beneficio por actos propios de su cargo (art. 431 CP). Factor de riesgo: Debilidad en cláusulas contractuales y ausencia de política de regalos y atenciones efectiva (equivalente a R-02 y R-05 del banco de riesgos). El vector es la propia adjudicación: si el proceso hubiera tenido comité colegiado y cláusula anticorrupción con terminación unilateral, el intento habría tenido mayor costo para el proveedor.' },
+    { titulo:'Las facturas del mismo día', icono:'receipt_long', proc:'FINANCIERO · GESTIÓN',
+      sit:'Al cierre contable del trimestre, la Directora Financiera detecta tres facturas de tres proveedores distintos de eventos y logística que suman exactamente $80 millones (el tope del presupuesto del eje de sensibilización), todas con fecha del último día hábil del trimestre y con soportes incompletos. El contador dice que "así siempre se maneja".',
+      guia:['Liste al menos cinco señales de alerta en este escenario.','¿Qué controles preventivos habrían evitado llegar a este punto?','¿Qué debe hacer ahora la Directora Financiera?','¿Cómo diseña un proceso de aprobación de facturas que haga difícil este tipo de esquema?'],
+      controles:[['04','chip-d','Detect'],['02','chip-p','Prev'],['13','chip-p','Prev/Det']],
+      fac:'Señales: facturas en el mismo día, monto exacto al presupuesto, tres proveedores distintos con soportes similares, sin soporte de actividad real. Controles: segregación (quien aprueba el proveedor ≠ quien aprueba el pago), auditoría cruzada con soportes antes del pago, trazabilidad de eventos (fotos, listas, contratos previos).',
+      vinculo:'Tipología C — Facturación ficticia y sobrecostos. El patrón de tres facturas sincronizadas al cierre del período y al tope presupuestal es el evento R-07 del banco: "Facturación ficticia o sobrecostos para justificar egresos indebidos". También puede activar R-09 si los recursos provienen de aportes de los sistemas o financiadores externos (doble cobro ante financiadores). Factor de riesgo: Gestión financiera débil — ausencia de segregación funcional entre aprobación de proveedor, validación de actividad real y autorización de pago.' },
+    { titulo:'El aliado internacional con prisa', icono:'public', proc:'INTERNACIONAL · FINANCIERO',
+      sit:'Un aliado internacional que apoya una campaña REP pide transferir urgentemente USD 200.000 a una cuenta en Panamá a nombre de una "empresa de consultoría técnica" desconocida, antes del cierre del año fiscal. Insiste: "Si no sale en 48 horas el proyecto pierde los recursos".',
+      guia:['¿Por qué la urgencia artificial es siempre una señal de alerta roja en compliance?','¿Qué validaciones mínimas exige la debida diligencia antes de cualquier giro al exterior?','¿Cómo se identifica al beneficiario final de la "empresa de consultoría" panameña?','¿Contra qué listas de sanciones se verifica antes de girar recursos internacionales?'],
+      controles:[['01','chip-p','Prev'],['07','chip-p','Prev'],['15','chip-p','Prev']],
+      fac:'La urgencia artificial es el detonador clásico del fraude: presiona para saltar controles. Respuesta: NUNCA se transfiere sin carpeta de conocimiento completa del beneficiario, búsqueda en OFAC/ONU/SARLAFT, identificación del beneficiario final de la empresa panameña y aprobación del oficial de cumplimiento. La velocidad de respuesta correcta al compliance es: no gira hasta verificar.',
+      vinculo:'Tipología ST — Pago internacional a intermediario opaco. La solicitud de transferir recursos urgentes a una "empresa de consultoría" desconocida en Panamá es el evento R-03 del banco: "Pagos a intermediarios sin justificación o con fines de soborno". Si el beneficiario final es un servidor público extranjero, configura soborno transnacional (Ley 1778/2016). Factor de riesgo: Transacciones internacionales — ausencia de debida diligencia de beneficiario final, sin verificación en listas de sanciones (OFAC/ONU/UE). La urgencia artificial es el detonador diseñado específicamente para eludir estos controles.' }
+  ],
+  cc: [
+    { titulo:'La licencia que expiró hace 4 meses', icono:'verified_user', proc:'GESTORES · OPERATIVO',
+      sit:'Al revisar el expediente de un gestor RESPEL que lleva 3 años contratado, la Coordinadora de Operaciones descubre que su licencia ambiental venció hace 4 meses. El gestor dice que "está en trámite" y que no es necesario pausar. El contrato vence en 60 días.',
+      guia:['¿Puede la corporación enviar residuos a un gestor con licencia vencida? ¿Qué consecuencias tiene?','¿Qué debió detectar la debida diligencia periódica que no ocurrió?','¿Cómo redactar la cláusula contractual para cubrir este riesgo?','Si el gestor ofrece "arreglar" la licencia "con apoyo" de la corporación, ¿qué procede?'],
+      controles:[['01','chip-p','Prev'],['05','chip-c','Prev/Corr']],
+      fac:'Operar con gestor sin licencia expone a Cierra el Ciclo a sanciones ambientales y responsabilidad solidaria. La debida diligencia periódica (revisión anual de licencias) habría detectado el vencimiento. La cláusula contractual debe exigir vigencia continua de todas las habilitaciones como condición de pago, con terminación unilateral ante incumplimiento. Si el gestor ofrece "gestionar" la licencia con apoyo económico: es soborno a un funcionario ambiental. Reporte inmediato.',
+      vinculo:'Tipología C (doble vínculo). (1) Contratación sin verificación periódica de habilitaciones: factor "Debilidad jurídica y contractual" (R-02) — operar con un gestor cuya licencia venció implica que la debida diligencia no opera de forma continua, lo que abre la puerta a contratación con operadores inidóneos. (2) Si el gestor propone "gestionar" la licencia con apoyo económico de la corporación, activa el evento R-05: "Ofrecimiento de dádivas a funcionarios para agilizar licencias" — convirtiendo el caso en soborno activo ante autoridad ambiental, con responsabilidad solidaria para Cierra el Ciclo.' },
+    { titulo:'El certificado listo antes del pesaje', icono:'description', proc:'CERTIFICACIÓN · METAS',
+      sit:'Faltando 3 días para el reporte trimestral a la autoridad, el operador logístico envía certificados de incineración de 8 toneladas de plaguicidas. Pero los manifiestos solo registran el despacho de 3,2 toneladas en ese período. El operador dice "es un tema técnico de la báscula".',
+      guia:['¿Cuántas toneladas se reportan ante la autoridad? Justifique con el soporte documental.','¿Qué documentos deben cruzarse siempre con el certificado de tratamiento?','¿La explicación de la "báscula" cambia la decisión? ¿Por qué no?','¿Se debe reportar este hallazgo internamente? ¿A quién y con qué urgencia?'],
+      controles:[['13','chip-p','Prev/Det'],['04','chip-d','Detect'],['06','chip-d','Detect']],
+      fac:'Se reportan 3,2 toneladas: lo que acredita el manifiesto de transporte. El certificado sin manifiesto que lo sustente no tiene valor. Cruce obligatorio: manifiesto de transporte + báscula de entrada del centro de tratamiento + acta de incineración firmada por responsable técnico. "Todos lo hacen así" no es una justificación: tolerancia cero. Reportar al oficial de cumplimiento y documentar.',
+      vinculo:'Tipología C — Adulteración de certificados de toneladas gestionadas. Es exactamente el evento R-04 del banco: "Adulteración o doble reporte de certificados de toneladas gestionadas". Factor de riesgo: Gestión operativa débil — el operador logístico reporta volúmenes sin soporte de manifiestos de transporte verificados. La motivación es cumplir artificialmente metas ante la autoridad ambiental (ANLA/SDA), lo que también configura falsedad en informe a autoridad (art. 446 CP) y puede comprometer la certificación del programa.' },
+    { titulo:'El transportista con devolución incluida', icono:'local_shipping', proc:'LOGÍSTICA · FINANCIERO',
+      sit:'El transportista autorizado entrega una factura de un servicio especial con un 35% de sobrecosto. Propone que la diferencia ($4,2 M) "se devuelve en efectivo como gastos varios del equipo de operaciones, para no generar papeleo".',
+      guia:['¿Cómo se llama técnicamente la práctica que está proponiendo el transportista?','¿Qué controles de aprobación deben activarse antes de pagar la factura?','¿La excusa de "costos adicionales" puede ser legítima? ¿Qué soporte requeriría?','¿Quién más debe conocer este intento, además de quien recibe la factura?'],
+      controles:[['02','chip-p','Prev'],['11','chip-p','Prev'],['04','chip-d','Detect']],
+      fac:'Se llama kickback o retorno indebido: una forma de soborno comercial. Respuesta: NO tramitar la factura, documentar el intento, reportar al oficial de cumplimiento y al director. La segregación exige que quien recibe la factura no sea quien la aprueba ni quien paga. El "soporte" de costos adicionales legítimos sería: cotizaciones previas, acta del trabajo adicional, aprobación previa del Director. Sin eso: rechazo.',
+      vinculo:'Tipología C — Sobrecosto con retorno indebido (kickback). Evento R-07 del banco: "Facturación ficticia o sobrecostos para justificar egresos indebidos". El 35% de sobrecosto con "devolución en efectivo" es un kickback: el proveedor infla la factura, la entidad la paga, y parte del dinero regresa a un funcionario interno de manera encubierta. Factor de riesgo: Gestión financiera débil — sin segregación funcional ni auditoría de soportes previos al pago, el ciclo del kickback puede operar durante meses sin detección.' }
+  ],
+  ec: [
+    { titulo:'El negocio paralelo del coordinador', icono:'inventory_2', proc:'OPERATIVO · BODEGA',
+      sit:'Varios operarios reportan que el Coordinador de Logística separa componentes de alto valor (tarjetas gráficas, RAM, procesadores) de los RAEE antes de entregarlos al gestor autorizado, vendiéndolos a un comprador informal que pasa los viernes. Las básculas muestran una diferencia acumulada del 12% entre entrada y entrega.',
+      guia:['¿Cómo se usa la trazabilidad documental para confirmar o descartar el desvío?','¿Qué segregación de funciones en bodega habría hecho esto más difícil?','¿La diferencia del 12% es suficiente evidencia para actuar? ¿Qué más se necesita?','¿Cómo se protege al trabajador que denunció mientras se investiga?'],
+      controles:[['02','chip-p','Prev'],['13','chip-p','Prev/Det'],['06','chip-d','Detect']],
+      fac:'La diferencia del 12% en básculas es una señal de alerta objetiva: iniciar auditoría documental cruzando inventarios de entrada, registros de pesaje y manifiestos al gestor. La segregación ideal: quien recibe el RAEE ≠ quien lo clasifica ≠ quien prepara el despacho. La denuncia informal de los operarios es válida como señal de alerta y debe canalizarse por el protocolo de investigación. El denunciante tiene protección absoluta contra represalias.',
+      vinculo:'Tipología C — Desvío interno de activos / corrupción interna. Aunque no involucra funcionario público ni transacción internacional, configura corrupción interna: el servidor usa su posición de acceso privilegiado a los RAEE para derivar activos de alto valor hacia beneficio propio. Factor de riesgo: Gestión operativa débil — ausencia de segregación en bodega y trazabilidad de componentes de alto valor. Conexión R-04: si los equipos desviados se reportan como gestionados sin haber llegado al gestor autorizado, también activa "adulteración de certificados de toneladas gestionadas".' },
+    { titulo:'El agente aduanero con conexiones', icono:'directions_boat', proc:'EXPORTACIÓN · INTERNACIONAL',
+      sit:'Un contenedor de RAEE exportado para aprovechamiento en Europa lleva 22 días detenido en el puerto de destino. El agente aduanero local dice que por USD 3.500 "el proceso se mueve en 48 horas gracias a sus relaciones con el funcionario público de la aduana del puerto de destino, el inspector encargado del trámite".',
+      guia:['¿Por qué esto es soborno transnacional bajo la Ley 1778/2016, aunque ocurra en Europa?','¿Qué dice el contrato del agente aduanero sobre pagos de facilitación?','¿Qué alternativas legítimas tiene EcoCómputo para resolver el bloqueo aduanero?','¿Qué reportes internos y posiblemente externos genera esta solicitud?'],
+      controles:[['05','chip-c','Prev/Corr'],['15','chip-p','Prev'],['11','chip-p','Prev']],
+      fac:'La Ley 1778/2016 aplica a personas jurídicas colombianas por actos cometidos en cualquier país, directamente o a través de terceros que actúen a su nombre. El agente aduanero que actúa en nombre de EcoCómputo es su extensión de riesgo. Respuesta: rechazar por escrito, reportar al oficial de cumplimiento, documentar el requerimiento, evaluar la terminación del contrato del agente (cláusula anticorrupción), explorar canales formales con la autoridad aduanera.',
+      vinculo:'Tipología ST — Soborno transnacional a través de intermediario. Evento R-12 del banco: "Pagos irregulares para facilitar paso de fronteras o liberar embarques de residuos". La responsabilidad bajo la Ley 1778/2016 es objetiva para la persona jurídica colombiana aunque el pago lo realice el agente local en el extranjero actuando a su nombre. Factor de riesgo: Transacciones internacionales (ST) — el agente aduanero es la extensión de riesgo ST de EcoCómputo; sin cláusula anticorrupción vigente y debida diligencia del agente, cualquier pago de facilitación compromete directamente a la entidad.' },
+    { titulo:'El directivo silencioso', icono:'how_to_vote', proc:'GOBIERNO · CONTRATOS',
+      sit:'La Junta de EcoCómputo aprueba (3-2) la renovación del contrato con el principal operador de aprovechamiento ($280 M/año). Tres semanas después, una declaración patrimonial presentada por uno de los directivos votantes a otra entidad revela que tiene el 22% de acciones en ese operador, lo que nunca fue declarado.',
+      guia:['¿Qué debió declarar el directivo antes de la votación? ¿Existe ese formulario hoy?','¿La aprobación del contrato es válida? ¿Qué acciones proceden ahora?','¿Cómo habría detectado la debida diligencia de beneficiario final este vínculo antes de la votación?','¿Cómo se rediseña el proceso de aprobación para que esto sea prácticamente imposible?'],
+      controles:[['03','chip-p','Prev'],['07','chip-p','Prev'],['09','chip-p','Prev']],
+      fac:'El directivo debió declarar el vínculo accionario antes de la deliberación y retirarse. La decisión puede ser anulada y el proceso rehecho sin su participación. La debida diligencia de beneficiario final del operador debería cruzar los socios y accionistas contra el registro de directivos y declaraciones de conflictos. Rediseño: cruce automático entre el maestro de proveedores y el registro de declaraciones de conflictos antes de cada votación de contrato relevante.',
+      vinculo:'Tipología C — Conflicto de interés no declarado en gobierno corporativo. Evento R-10 del banco: "Decisiones de contratación con intereses no declarados de miembros de órganos de gobierno". Factor de riesgo: Conflictos de interés — el directivo vota una decisión de $280 M/año en la que tiene interés económico directo (22% de acciones del operador). La comisión del conflicto no requiere que el directivo haya recibido dinero: basta con que su voto favorezca un interés privado no declarado para que configure el evento de corrupción en el gobierno corporativo.' }
+  ],
+  pa: [
+    { titulo:'El punto que se multiplicó por 12', icono:'scale', proc:'PUNTOS RECOLECCIÓN · CERTIFICACIÓN',
+      sit:'El sistema de seguimiento muestra que un punto de recolección en Cali reportó 940 kg de pilas en noviembre, cuando su promedio histórico mensual es de 75 kg. El manifiesto de transporte de ese mes solo registra 82 kg recogidos. La diferencia: 858 kg "certificados" sin transporte.',
+      guia:['¿Qué documento es el soporte real del kilo gestionado: el reporte del punto o el manifiesto de transporte?','¿Qué alerta automática debería haber generado este reporte (volumen 12× el promedio)?','¿Cuáles son las hipótesis sobre lo que ocurrió? ¿Cómo se investiga cada una?','¿Qué se reporta a la autoridad ambiental sobre las metas de ese mes?'],
+      controles:[['13','chip-p','Prev/Det'],['04','chip-d','Detect']],
+      fac:'El soporte válido es el manifiesto de transporte verificado con la báscula del centro de acopio: 82 kg. No se reportan los 940 kg. Hipótesis: el aliado reporta kilos inexistentes para recibir incentivos; hay un error de captura; hay colusión con el responsable de registro. Investigación: cruce de manifiestos vs. registro del punto, entrevistas al transportador, visita física al punto. Diseñar alerta automática ante variaciones >200% del promedio.',
+      vinculo:'Tipología C — Adulteración de certificados de recolección. Evento R-04 del banco: "Adulteración o doble reporte de certificados de toneladas gestionadas". Factor de riesgo: Gestión operativa débil — el punto de recolección reporta kilos que no se transportaron ni certificaron físicamente. La motivación puede ser el cobro de incentivos por tonelada o evitar penalización por bajo rendimiento. Reportar ante la autoridad ambiental (ANLA) cifras sin soporte también constituye falsedad documental (art. 294 CP) y puede comprometer la licencia ambiental del programa.' },
+    { titulo:'El inspector que puede ayudar', icono:'flight_takeoff', proc:'EXPORTACIÓN · INTERNACIONAL',
+      sit:'Un embarque de pilas de litio hacia Alemania lleva 18 días detenido en Rotterdam. El agente local envía un correo insinuando que "con un detalle razonable al funcionario público de la autoridad aduanera del puerto" el problema se resuelve antes del fin de semana. "Todos los exportadores de residuos lo hacen."',
+      guia:['¿Qué riesgo legal genera para Pilas con el Ambiente si el agente realiza el pago a su nombre?','¿Cómo debe responder la Dirección Ejecutiva al correo del agente?','¿Cuáles son los canales oficiales para resolver un requerimiento técnico aduanero en destino?','¿Qué cláusula del contrato del agente debe activarse ante esta conducta?'],
+      controles:[['11','chip-p','Prev'],['15','chip-p','Prev'],['05','chip-c','Prev/Corr']],
+      fac:'La responsabilidad es objetiva bajo la Ley 1778/2016: el pago del agente a nombre de Pilas con el Ambiente genera responsabilidad para la corporación colombiana. Respuesta al correo: rechazo expreso por escrito, documentado, con copia al oficial de cumplimiento. Canales legítimos: comunicación formal con la autoridad aduanera de destino, asesoría de un agente certificado independiente, contacto con la embajada colombiana si hay demora injustificada. Terminación del contrato del agente.',
+      vinculo:'Tipología ST — Soborno transnacional a funcionario público extranjero. Evento R-12 del banco: "Pagos irregulares para facilitar paso de fronteras o liberar embarques de residuos". La Ley 1778/2016 establece responsabilidad de la persona jurídica colombiana por actos de terceros que actúen "a su nombre o por su cuenta y en su beneficio". El agente en Rotterdam actúa en representación de Pilas con el Ambiente. Factor de riesgo: Transacciones internacionales (ST). Agravante: el argumento "todos los exportadores lo hacen" es exactamente la normalización que las autoridades (SIC, FGN) toman como señal de práctica sistemática, no aislada.' },
+    { titulo:'La declaración que nunca llegó', icono:'person_off', proc:'GOBIERNO · CONTRATOS',
+      sit:'Una auditoría interna detecta que el Responsable de Contratos lleva 3 años sin presentar declaración anual de conflictos de interés. Al solicitársela, revela que su cónyuge tiene el 38% de la empresa transportadora que maneja el 68% del volumen del contrato de recolección, renovado automáticamente los últimos 3 años.',
+      guia:['¿Desde cuándo existe el conflicto de interés y cuándo debió declararse por primera vez?','¿El responsable de contratos debe separarse del proceso de renovación? ¿Definitivamente?','¿Qué proceso competitivo debe adelantarse ahora?','¿Cómo garantiza la organización que TODOS cumplan con la declaración anual de forma sistemática?'],
+      controles:[['03','chip-p','Prev'],['09','chip-p','Prev'],['01','chip-p','Prev']],
+      fac:'El conflicto existe desde el inicio de la relación con esa transportadora. Debió declararse antes de la primera contratación. El responsable debe ser separado permanentemente de cualquier decisión relacionada con esa empresa. El contrato vigente debe revisarse para evaluar si los términos son competitivos; si no, proceso de selección abierto. Mecanismo de cumplimiento: declaración firmada en enero de cada año, cruce automático contra lista de proveedores activos, bloqueo en el sistema para funcionarios sin declaración vigente.',
+      vinculo:'Tipología C — Conflicto de interés estructural no declarado. Evento R-10 del banco, forma agravada: el conflicto lleva 3 años activo con renovaciones automáticas que concentran el 68% del volumen en la empresa del cónyuge. Factor de riesgo: Conflictos de interés — la ausencia del mecanismo de declaración anual sistemática y su cruce contra el maestro de proveedores permitió que el conflicto operara de forma silenciosa. Conexión R-11: si el responsable usó su posición para favorecer la renovación por encima de condiciones de mercado, también configura "vinculación o contratación por presiones o vínculos, sin criterios objetivos".' }
+  ],
+  rv: [
+    { titulo:'El almuerzo y la tablet', icono:'lunch_dining', proc:'VERIFICACIÓN CAMPO · CERTIFICACIÓN',
+      sit:'El técnico de campo de Red Verde —empleado privado de la corporación, no funcionario público— tiene autoridad para certificar la destrucción de electrodomésticos ante la autoridad ambiental. Acepta el almuerzo del administrador de la planta verificada y recibe una tablet de $350.000. En el acta posterior certifica la chatarrización de 180 neveras aunque solo verificó físicamente 95 ("el resto estaba en el patio trasero, no se podía revisar hoy").',
+      guia:['¿Acepta el almuerzo y devuelve solo la tablet, o rechaza ambas cosas? Justifique según el PTEE.','¿Aplican las mismas restricciones de la política de regalos a un verificador privado que a un funcionario público? ¿Por qué sí, aunque el técnico no sea servidor del Estado?','¿Cómo se diseña el proceso de verificación de campo para que una persona sola no pueda certificar lo que no vio?','¿Qué pasa con el acta ya firmada incorrectamente? ¿A quién se reporta?'],
+      controles:[['11','chip-p','Prev'],['02','chip-p','Prev'],['06','chip-d','Detect']],
+      fac:'Rechazo total: almuerzo + tablet. Aunque el técnico es un empleado privado de Red Verde (no funcionario público), su función de verificación genera actos de certificación con efectos ante la autoridad ambiental: las mismas restricciones de la política de regalos aplican sin excepción. Cualquier atención recibida de quien es evaluado es un conflicto de interés, independientemente del monto. El acta se firma solo por lo verificado físicamente; lo no verificado queda en "pendiente" con fecha de nueva visita. El acta incorrectamente firmada debe corregirse, reportarse al oficial de cumplimiento y evaluar si el técnico y el administrador incurrieron en un acto de corrupción. El proceso debe incluir verificación con testigo o registro fotográfico georeferenciado.',
+      vinculo:'Tipología C — Soborno comercial al verificador + adulteración de certificado de campo. Doble vínculo: (1) Soborno comercial: el operador entrega dádivas (almuerzo + tablet) al verificador de Red Verde para que certifique lo que no verificó físicamente — análogo al evento R-05 desde la perspectiva del proveedor que intenta influir sobre quien tiene poder de certificación. (2) Adulteración de acta de verificación: el acta firmada con datos incorrectos activa el evento R-04: "adulteración de certificados", que al ser reportado a la autoridad configura falsedad en documento. Factor de riesgo: Gestión operativa débil + ausencia de política de regalos en verificación de campo.' },
+    { titulo:'El certificado sin firma del ingeniero', icono:'engineering', proc:'GESTORES · CERTIFICACIÓN TÉCNICA',
+      sit:'El operador de destrucción de electrodomésticos entrega el certificado técnico de eliminación de gases refrigerantes de un lote de 300 neveras. La coordinadora nota que no tiene firma de ingeniero habilitado, tiene tres fechas distintas y el número de equipos no coincide con el manifiesto de entrada de la semana anterior.',
+      guia:['¿Este certificado puede usarse para el reporte de metas? Justifique con criterios técnicos y legales.','¿Qué debió verificar la debida diligencia periódica de este operador?','¿Cuántos documentos deben cruzarse para validar que la extracción de gases ocurrió realmente?','¿Qué acciones contractuales proceden frente al operador?'],
+      controles:[['01','chip-p','Prev'],['13','chip-p','Prev/Det']],
+      fac:'Un certificado con inconsistencias estructurales (sin firma técnica habilitada, fechas inconsistentes, número de equipos diferente al manifiesto) NO puede usarse: es un documento inválido. La debida diligencia debió verificar: habilitación profesional del responsable técnico, licencia de la planta, historial de conformidad con la autoridad ambiental. Cruce de documentos: manifiesto de entrada + registro de báscula + acta de extracción de gas firmada por ingeniero CFC certificado + certificado de disposición. Acción contractual: suspensión de pagos, solicitud de nueva visita de verificación independiente, evaluación de terminación.',
+      vinculo:'Tipología C — Adulteración de certificado técnico. Evento R-04 del banco: "Adulteración o doble reporte de certificados de toneladas gestionadas". Un certificado sin firma de ingeniero habilitado, con fechas inconsistentes y cantidades que no coinciden con el manifiesto es un documento inválido que, de presentarse ante la autoridad ambiental como válido, constituye falsedad en documento privado con efectos públicos. Factor de riesgo: Gestión operativa débil — la debida diligencia periódica del operador (habilitación técnica, historial de conformidad) es el control que previene esta práctica antes de que el documento llegue al área de reporte.' },
+    { titulo:'La renovación sin proceso', icono:'how_to_vote', proc:'GOBIERNO · CONTRATOS',
+      sit:'La Junta de Red Verde aprueba la renovación del contrato de logística inversa ($180 M/año) sin proceso competitivo argumentando "calidad histórica". Tres días después se sabe que un directivo votante tiene 15% de participación en la empresa renovada, nunca declarado en ninguna sesión.',
+      guia:['¿Qué irregularidades hay en el proceso, independientemente del conflicto de interés?','¿Qué debe hacer ahora la Junta con la decisión ya tomada?','¿Cómo se publica esta situación para garantizar la transparencia ante los aportantes?','¿Qué proceso competitivo mínimo se requiere para contratos de esta magnitud?'],
+      controles:[['03','chip-p','Prev'],['09','chip-p','Prev'],['16','chip-d','Detect']],
+      fac:'Irregularidades: (1) renovación directa sin proceso competitivo para un contrato de alto valor, (2) conflicto de interés no declarado en la deliberación. La Junta debe: (a) convocar sesión extraordinaria para revocar la decisión, (b) adelantar proceso de selección abierto sin participación del directivo implicado, (c) publicar el incidente en la rendición de cuentas anual con las medidas correctivas adoptadas. Para contratos superiores a $50 M: proceso formal de selección, comité de evaluación, actas de decisión justificadas.',
+      vinculo:'Tipología C — Conflicto de interés en gobierno corporativo + contratación directa sin proceso. Evento R-10 del banco: "Decisiones de contratación con intereses no declarados". Agravante adicional: la renovación se aprobó sin proceso competitivo, lo que activa R-01 conexo: "contratación directa sin criterios objetivos". El caso combina dos factores de riesgo simultáneos: Conflictos de interés + Debilidad jurídica y contractual. Esto lo hace más grave: no solo la decisión fue parcializada, sino que el mecanismo que habría podido detectarla (proceso abierto) también fue suprimido.' }
+  ],
+  re: [
+    { titulo:'La báscula del buen pesador', icono:'monitor_weight', proc:'OPERATIVO · TRAZABILIDAD',
+      sit:'En los últimos 6 meses, el centro de acopio principal registra entradas consistentemente un 8-11% más altas que el peso certificado por el gestor receptor. Tres operarios de bodega comentan informalmente que el pesador "tiene trato" con intermediarios informales que pasan antes del camión del gestor.',
+      guia:['¿El referido informal de los operarios es suficiente para iniciar una investigación? ¿Por qué?','¿Cómo se investiga la discrepancia de pesaje de forma objetiva, sin señalar a nadie de partida?','¿Qué cambio en el proceso de pesaje (segregación) reduce el riesgo sin necesidad de investigar?','¿Cuál sería el impacto económico anual de una desviación del 10% en el volumen total?'],
+      controles:[['06','chip-d','Detect'],['04','chip-d','Detect'],['02','chip-p','Prev']],
+      fac:'Sí: la señal de alerta objetiva (discrepancia sistemática del 10% + información de operarios) justifica investigación. Investigación objetiva: auditoría cruzada de registros de báscula corporativa vs. báscula del gestor receptor en la misma fecha, calibración certificada de básculas, revisión de accesos al área de pesaje. Segregación: el pesador no puede ser el mismo que prepara el despacho y registra el sistema; debe haber un segundo registro independiente. Impacto económico: con 1.000 ton/año gestionadas, el 10% de desvío son 100 toneladas. Al precio de plomo (aprox $2.000 USD/ton), el desvío anual puede superar $200.000 USD.',
+      vinculo:'Tipología C — Desvío sistemático de activos mediante manipulación de báscula. Factor de riesgo: Gestión operativa débil + Gestión financiera débil (R-07 conexo). El pesador no actúa solo: la coordinación con un comprador informal implica una red mínima con acceso al área y silencio cómplice. Configura corrupción interna activa: el empleado desvía activos de la entidad usando su posición de control. En el sector de reciclaje, el desvío también puede generar reportes inexactos de toneladas gestionadas (R-04 conexo), afectando las metas certificadas ante la autoridad ambiental.' },
+    { titulo:'El recolector que no era recolector', icono:'payments', proc:'ABASTECIMIENTO · FINANCIERO',
+      sit:'Recoenergy compra baterías usadas a pequeños recolectores de zonas industriales pagando en efectivo, sin contrato ni identificación del vendedor. El auditor interno detecta una anomalía: uno de estos recolectores habituales entrega volúmenes cuatro veces superiores al promedio histórico de la zona. Al investigar, se descubre que es empleado de bodega de Metálicas del Norte, un cliente corporativo de Recoenergy con contrato activo de devolución de baterías. El empleado separa baterías del inventario de su empleador antes de que lleguen al canal formal y se las vende directamente a Recoenergy; para silenciar el faltante en el inventario, paga mensualmente al jefe de inventarios de Metálicas del Norte. Recoenergy lleva meses comprando material robado de su propio cliente, y la ausencia total de registros de sus recolectores informales hace imposible demostrar que no lo sabía.',
+      guia:['¿Por qué la práctica de comprar en efectivo sin identificar al vendedor es, por sí sola, una señal de alerta C/ST, aunque nadie en Recoenergy haya actuado de mala fe?','¿Qué información mínima sobre el origen del material habría permitido detectar el esquema desde la primera entrega sospechosa?','¿Qué consecuencias tiene para Recoenergy el contrato corporativo vigente con Metálicas del Norte, ahora que se sabe que fue la fuente del material robado?','¿Qué acciones concretas debe tomar Recoenergy al descubrir que parte de su material proviene de un esquema de desvío con soborno interno en un cliente?'],
+      controles:[['01','chip-p','Prev'],['02','chip-p','Prev'],['13','chip-p','Prev/Det']],
+      fac:'El fondo del caso es que comprar sin identificar al vendedor convirtió a Recoenergy en receptor involuntario de material ilícito. Tres consecuencias inmediatas: (1) exposición penal por receptación (art. 447 CP) aunque no hubiera intención — la ausencia de diligencia no exime de responsabilidad; (2) el contrato con Metálicas del Norte está comprometido: la empresa afectada puede reclamar daños y la relación comercial queda en riesgo; (3) si el material robado fue reportado como gestionado ante la autoridad ambiental, la certificación del programa también está en riesgo. Controles que habrían cortado el esquema: identificación obligatoria del vendedor con cédula y dirección de recolección, límite de volumen por vendedor con alerta automática ante variaciones superiores al 50%, verificación del origen del material. Ante el descubrimiento: documentar toda la cadena de evidencia, reportar al oficial de cumplimiento, notificar a Metálicas del Norte y cooperar con la investigación.',
+      vinculo:'Tipología C — Contratación con intermediario sin diligencia, como eslabón involuntario de un esquema de desvío con soborno interno. (1) R-02 del banco: "Contratación con empresas fachada o terceros sin debida diligencia" — el recolector actúa como intermediario completamente opaco; sin ningún registro de origen, Recoenergy no puede verificar la procedencia del material ni desvincularse del esquema. (2) El soborno del empleado al jefe de inventarios de Metálicas del Norte para silenciar el faltante es el evento de corrupción que sostiene todo el esquema: un soborno comercial interno financiado, indirectamente, con los pagos en efectivo de Recoenergy. Factor de riesgo: Debilidad jurídica y contractual — la ausencia de un proceso básico de conocimiento del proveedor es el único vector que hace posible toda la cadena. El caso demuestra que los controles de conocimiento del proveedor no son solo para evitar empresas fachada: también evitan que la entidad sea usada como canal involuntario de cadenas corruptas en terceros.' },
+    { titulo:'La empresa de Panamá', icono:'location_off', proc:'ABASTECIMIENTO · INTERNACIONAL',
+      sit:'Un nuevo proveedor de baterías propone firmar el contrato con su empresa radicada en Panamá. Presentan solo un Certificate of Incorporation sin nombres de directivos ni accionistas, y piden que el pago sea "al portador" mediante transferencia a una cuenta en las Islas Cayman.',
+      guia:['Liste todas las señales de alerta presentes en esta propuesta (mínimo 5).','¿Puede Recoenergy firmar el contrato con la documentación presentada? Justifique.','¿Qué información específica se debe obtener para identificar al beneficiario final?','¿Contra qué listas y bases de datos debe verificarse este proveedor?'],
+      controles:[['01','chip-p','Prev'],['07','chip-p','Prev'],['15','chip-p','Prev']],
+      fac:'Señales de alerta: (1) empresa en jurisdicción de alta opacidad (Panamá), (2) sin identificación de directivos ni socios, (3) pago al portador (no existe persona jurídica identificable), (4) cuenta en paraíso fiscal (Cayman), (5) sin historial verificable de operaciones. NO se puede firmar: no hay beneficiario final identificado, no hay posibilidad de verificación en listas de sanciones, no hay persona natural responsable. Información mínima requerida para identificar al beneficiario final: nombre, documento, porcentaje de propiedad, país de residencia fiscal de la(s) persona(s) natural(es) que controlan la empresa. Listas: OFAC SDN, ONU Consolidada, UE, SARLAFT, CSIS, World-Check.',
+      vinculo:'Tipología C + ST — Contratación con empresa fachada + vehículo de soborno transnacional. (1) C: R-02 del banco: "Contratación con empresas fachada o terceros sin debida diligencia" — empresa en jurisdicción opaca, sin beneficiario final identificado, sin historial verificable. (2) ST: R-03 del banco: "Pagos a intermediarios sin justificación o con fines de soborno" — una empresa de propósito especial en Panamá con pago "al portador" a cuenta en Cayman es el vehículo clásico para canalizar un soborno transnacional hacia un funcionario público extranjero sin trazabilidad. Factor de riesgo: Transacciones internacionales (ST) + Debilidad jurídica y contractual (C). Es el caso de mayor exposición ST de Recoenergy dado su modelo con proveedores internacionales.' }
+  ],
+  rw: [
+    { titulo:'El alcalde y el terreno', icono:'account_balance', proc:'SECTOR PÚBLICO · GOBIERNO',
+      sit:'El alcalde de un municipio de 200.000 habitantes —funcionario público electo— ofrece a Rueda Verde un terreno de 5.000 m² para punto de recolección de llantas, sin costo, a cambio de contratar directamente a la empresa de mantenimiento vial de su familia para obras de adecuación, por $120 millones, sin convocatoria.',
+      guia:['¿Este intercambio es una práctica legítima de relaciones institucionales o un riesgo de corrupción? ¿Por qué?','¿Puede Rueda Verde usar el terreno SI rechaza contratar la empresa del alcalde?','¿Qué proceso competitivo mínimo se requiere para la contratación de las obras?','¿Esta gestión con el alcalde debe quedar documentada? ¿Cómo?'],
+      controles:[['09','chip-p','Prev'],['10','chip-d','Control Dir'],['16','chip-d','Control Dir']],
+      fac:'El intercambio "terreno por contrato" es una práctica de corrupción aunque se llame "alianza institucional": el alcalde usa un bien público (el terreno) para beneficiar un interés privado (empresa familiar). Rueda Verde puede explorar el uso del terreno por vías formales (convenio público), pero NO contratando la empresa familiar sin proceso. La contratación de $120 M requiere: publicación de requerimiento, mínimo 3 propuestas, comité de evaluación, acta de adjudicación. Toda gestión con funcionarios públicos se registra (10) y puede aparecer en la rendición de cuentas.',
+      vinculo:'Tipología C — Intercambio de favores con funcionario público / Tráfico de influencias. Eventos R-05 y R-06 del banco: "Ofrecimiento de atenciones para agilizar trámites" (en forma inversa: el funcionario usa un bien público para obtener una contratación) y "Tráfico de influencias para obtener beneficios". Factor de riesgo: Relacionamiento con sector público — el alcalde usa el terreno como moneda de intercambio para beneficiar la empresa de su familia. Aceptar el intercambio convierte a Rueda Verde en partícipe activo del acto de corrupción. La contratación de la empresa familiar sin proceso equivale a una dádiva indirecta al funcionario.' },
+    { titulo:'El GCR que no cuadra', icono:'calculate', proc:'CERTIFICACIÓN · GESTORES',
+      sit:'El principal gestor de aprovechamiento reporta en su certificado mensual 280 toneladas de GCR (Granulado de Caucho Reciclado: el producto obtenido al triturar las llantas). Los registros de báscula del mes muestran que ingresaron 380 toneladas de llantas al centro de aprovechamiento. Aplicando la relación técnica estándar del proceso —máximo 0,65 kg de GCR por kg de llanta procesada— el máximo físicamente posible es 247 toneladas. El certificado presenta 33 toneladas más de las que el volumen de entrada pudo haber producido.',
+      guia:['¿Las 33 toneladas en exceso son necesariamente adulteración deliberada? ¿Qué hipótesis alternativas existen y cómo se investiga cada una?','¿Qué se reporta ante la autoridad ambiental mientras se investiga: las 280 del certificado, las 247 del máximo técnico o las toneladas que se confirmen en auditoría?','¿Qué auditoría técnica se necesita para determinar si la discrepancia fue error o fraude?','¿Qué acciones contractuales proceden frente al gestor mientras dura la investigación?'],
+      controles:[['13','chip-p','Prev/Det'],['04','chip-d','Detect'],['05','chip-c','Prev/Corr']],
+      fac:'El cálculo ya está dado: máximo técnico 247 ton, certificado 280 ton, excedente de 33 ton sin soporte material. La discusión debe centrarse en qué hacer con eso. Hipótesis que el grupo debe explorar: (a) adulteración deliberada para cobrar por producción inexistente o cumplir metas artificialmente; (b) error de registro de báscula; (c) inventario de GCR de períodos anteriores mezclado en el reporte. Ante la duda, se reportan a la autoridad las toneladas verificadas en auditoría, no las del certificado. La auditoría técnica cruza: báscula de entrada del gestor + registros de producción por turno + inventarios de producto terminado + actas de despacho. Acción contractual inmediata: suspensión preventiva del pago del certificado hasta verificación independiente.',
+      vinculo:'Tipología C — Adulteración de certificado de aprovechamiento. Evento R-04 del banco: "Adulteración o doble reporte de certificados de toneladas gestionadas". Las 33 toneladas en exceso no tienen soporte material: pueden representar adulteración deliberada para cobrar por producción inexistente o para cumplir artificialmente metas contractuales. Factor de riesgo: Gestión operativa débil — la verificación técnica independiente (factor de conversión, inventarios, básculas) es el único control que hace visible esta discrepancia antes de que el certificado llegue al reporte ante la autoridad ambiental.' },
+    { titulo:'Los tres proponentes amigos', icono:'group_work', proc:'ABASTECIMIENTO · CONTRATOS',
+      sit:'En la selección de transportadores para la ruta Bogotá-Medellín-Cali ($95 M/año), se reciben tres propuestas. Al revisarlas, la Coordinadora nota: mismo formato Word, idénticos términos de redacción (incluyendo un mismo error ortográfico), valores que difieren menos del 2%, y las tres empresas tienen la misma dirección en Cámara de Comercio.',
+      guia:['¿Cómo se llama este patrón de conducta entre los proponentes? ¿Qué entidades lo investigan?','¿Puede adelantarse el contrato con cualquiera de los tres? Justifique.','¿Qué acciones inmediatas debe tomar la Coordinadora de Contratos?','¿Cómo se rediseña el proceso para detectar la colusión antes de que lleguen las propuestas?'],
+      controles:[['01','chip-p','Prev'],['09','chip-p','Prev'],['05','chip-c','Prev/Corr']],
+      fac:'Se llama colusión en licitaciones (bid rigging): práctica anticompetitiva que viola el Decreto 2153/92 y es investigada por la SIC y la FGN. La pena puede incluir inhabilidad para contratar. NO se puede adjudicar a ninguno de los tres: el proceso está viciado. Acciones: (1) Declarar desierta la convocatoria y documentar las evidencias de colusión, (2) reportar a la Junta Directiva y al oficial de cumplimiento, (3) evaluar denuncia formal ante la SIC. Rediseño: solicitar declaración de independencia a cada proponente, verificar en Cámara de Comercio las relaciones entre empresas antes de admitir propuestas, ampliar el universo de convocados.',
+      vinculo:'Tipología C — Colusión entre proponentes (bid rigging). Evento R-01 del banco: "Colusión de proveedores o gestores para manipular procesos de selección o precios". Factor de riesgo: Debilidad jurídica y contractual — cuando tres proponentes aparentemente independientes coordinan sus ofertas (mismo formato, mismo error tipográfico, misma dirección, diferencias de precio < 2%), el proceso competitivo es una simulación. Configura una práctica restrictiva de la competencia (art. 1 Decreto 2153/1992), investigada por la SIC con multas para personas jurídicas y naturales, e inhabilidad para contratar. La entidad que adjudica en estas condiciones puede ser investigada por favorecer el cartel.' }
+  ]
+};
+
+function iniciarS2() {
+  renderS2Tabs();
+  renderS2Casos();
+  s2PintarCrono();
+}
+
+function renderS2Tabs() {
+  const wrap = document.getElementById('s2EntTabs');
+  if(!wrap) return;
+  wrap.innerHTML = Object.keys(ENTIDADES).map(k =>
+    '<button class="ent-tab' + (k === s2EntAct ? ' act' : '') + '" onclick="cambiarS2Ent(\''+k+'\')">'+ENTIDADES[k].n+'</button>'
+  ).join('');
+}
+
+function cambiarS2Ent(k) {
+  s2EntAct = k;
+  renderS2Tabs();
+  renderS2Casos();
+}
+
+function renderS2Casos() {
+  const wrap = document.getElementById('s2CasosWrap');
+  if(!wrap) return;
+  const casos = S2_CASOS[s2EntAct];
+  if(!casos){ wrap.innerHTML = '<p style="color:var(--onix)">No hay casos definidos para esta entidad.</p>'; return; }
+  const ent = ENTIDADES[s2EntAct];
+  let html2 = '<p style="font-family:var(--font-mono);font-size:.7rem;color:var(--onix);margin-bottom:14px;letter-spacing:.02em">' + ent.d + '</p>';
+  html2 += '<div class="grid g3">';
+  casos.forEach(function(c, ix) {
+    const chips = c.controles.map(ct =>
+      '<span class="ctrl-chip ' + ct[1] + '">' + ct[0] + ' · ' + ct[2] + '</span>'
+    ).join('');
+    const preguntas = c.guia.map(g => '<li>' + esc(g) + '</li>').join('');
+    html2 += '<div class="caso caso-ctrl">'
+      + '<div class="caso-top"><span class="material-icons">' + c.icono + '</span><b>Caso ' + (ix+1) + ' · ' + esc(c.titulo) + '</b><span class="proc-tag">' + esc(c.proc) + '</span></div>'
+      + '<div class="caso-mid">' + esc(c.sit) + '</div>'
+      + '<div class="ctrl-chips">' + chips + '</div>'
+      + '<div class="guia" id="s2g' + s2EntAct + ix + '"><ul>' + preguntas + '</ul></div>'
+      + '<button class="caso-btn" onclick="this.parentElement.classList.toggle(\'abierto\')">Ver preguntas guía</button>'
+      + '<button class="caso-btn fac" onclick="verFacS2(\''+s2EntAct+'\','+ix+')">·</button>'
+      + '<div class="guia-ctrl" id="s2fac' + s2EntAct + ix + '"></div>'
+      + '</div>';
+  });
+  html2 += '</div>';
+  wrap.innerHTML = html2;
+}
+
+/* Guía del facilitador S2 — protegida con la misma clave del documento principal */
+function verFacS2(ent, ix) {
+  if(!facOK) {
+    const p = prompt('Clave del facilitador:');
+    if(!p) return;
+    let hx=''; for(const ch of new TextEncoder().encode(p.trim())) hx+=ch.toString(16).padStart(2,'0');
+    if(hx!==FAC_PIN){ alert('Clave incorrecta'); return; }
+    facOK = true;
+  }
+  const d = document.getElementById('s2fac' + ent + ix);
+  if(!d) return;
+  const casos = S2_CASOS[ent];
+  if(!casos || !casos[ix]) return;
+  if(!d.innerHTML) {
+    d.innerHTML = '<span class="gc-tit">ORIENTACIÓN DEL FACILITADOR</span><div class="gc-tip">' + esc(casos[ix].fac) + '</div>'
+               + '<span class="gc-vtit">VÍNCULO C/ST — FACTORES DE RIESGO</span><div class="gc-vinculo">' + esc(casos[ix].vinculo) + '</div>';
+  }
+  d.style.display = (d.style.display === 'block') ? 'none' : 'block';
+}
+
 </script>
 </body>
 </html>
