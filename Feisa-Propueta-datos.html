@@ -7,37 +7,29 @@
     <title>Feisa — Automatización de procesos financieros y operativos · 2026</title>
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Gotu desde Google Fonts (único CDN externo adicional) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'naranja':   '#F18446',
-              'morazul':   '#093E5E',
-              'lago':      '#BED4CF',
-              'magico':    '#FEDB9B',
-              'gris':      '#4B4B4C',
-              'nocturno':  '#1C1C1C',
-              'onix':      '#8B8B8C',
-              'plata':     '#F1F1F1',
-              'tofu':      '#FEF0C4',
-              'jengibre':  '#FBF3E4',
-            },
-            fontFamily: {
-              'titles':     ['Ibrand', 'sans-serif'],
-              'subtitles':  ['Gotu', 'sans-serif'],
-              'paragraphs': ['Satoshi', 'Arial', 'sans-serif'],
-            }
-          }
-        }
+    <style type="text/tailwindcss">
+      @theme {
+        --color-naranja:  #F18446;
+        --color-morazul:  #093E5E;
+        --color-lago:     #BED4CF;
+        --color-magico:   #FEDB9B;
+        --color-gris:     #4B4B4C;
+        --color-nocturno: #1C1C1C;
+        --color-onix:     #8B8B8C;
+        --color-plata:    #F1F1F1;
+        --color-tofu:     #FEF0C4;
+        --color-jengibre: #FBF3E4;
+        --font-titles:    'Ibrand', sans-serif;
+        --font-subtitles: 'Gotu', sans-serif;
+        --font-paragraphs:'Satoshi', Arial, sans-serif;
       }
-    </script>
+    </style>
 
     <style>
         /* ── Fuentes de marca (instaladas localmente) ────────────────── */
