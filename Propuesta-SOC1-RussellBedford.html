@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="4Hands Partners S.A.S BIC · Lexnorma Group">
+    <title>Control Interno bajo SOC 1 — Russell Bedford GCT · 4Hands × Lexnorma · 2026</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Gotu desde Google Fonts (único CDN externo adicional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'naranja':   '#F18446',
+              'morazul':   '#093E5E',
+              'lago':      '#BED4CF',
+              'magico':    '#FEDB9B',
+              'gris':      '#4B4B4C',
+              'nocturno':  '#1C1C1C',
+              'onix':      '#8B8B8C',
+              'plata':     '#F1F1F1',
+              'tofu':      '#FEF0C4',
+              'jengibre':  '#FBF3E4',
+            },
+            fontFamily: {
+              'titles':     ['Ibrand', 'sans-serif'],
+              'subtitles':  ['Gotu', 'sans-serif'],
+              'paragraphs': ['Satoshi', 'Arial', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+        /* ── Fuentes de marca (instaladas localmente) ────────────────── */
+        @font-face { font-family: 'Ibrand';  src: local('Ibrand'); }
+        @font-face { font-family: 'Satoshi'; src: local('Satoshi'); }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Satoshi', Arial, sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        h1, h2 { font-family: 'Ibrand', sans-serif; }
+
+        /* ── Tokens tipográficos ─────────────────────────────────────── */
+        .label {
+            font-family: 'Gotu', sans-serif;
+            font-size: 0.6875rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .kpi { font-family: 'Ibrand', sans-serif; line-height: 1; }
+
+        /* ── Badge de etapa (círculo numerado) ───────────────────────── */
+        .badge {
+            font-family: 'Ibrand', sans-serif;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .badge-sm {
+            width: 1.625rem;
+            height: 1.625rem;
+            font-size: 0.7rem;
+        }
+
+        /* ── Step / fase ─────────────────────────────────────────────── */
+        .step-dot {
+            width: 1.625rem;
+            height: 1.625rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Ibrand', sans-serif;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* ── Portada: decoración geométrica sutil ────────────────────── */
+        .cover-geo::before {
+            content: '';
+            position: absolute; right: 0; top: 0;
+            width: 220px; height: 220px;
+            background: rgba(241, 132, 70, 0.09);
+            border-radius: 0 0 0 110px;
+            pointer-events: none;
+        }
+        .cover-geo::after {
+            content: '';
+            position: absolute; right: 48px; bottom: -60px;
+            width: 140px; height: 140px;
+            background: rgba(190, 212, 207, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ── Justificación de párrafos ───────────────────────────────── */
+        p {
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+        /* Justificar también spans de texto en listas y celdas */
+        li span, li p, li > div > p {
+            text-align: justify;
+            text-align-last: left;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+        /* Excluir elementos de etiqueta, KPI y datos puntuales */
+        .label, .kpi,
+        td p, th p,
+        [class*="text-center"] p,
+        [class*="text-center"] span,
+        [class*="text-right"] p,
+        [class*="text-right"] span { text-align: inherit; text-align-last: inherit; hyphens: none; -webkit-hyphens: none; }
+
+        /* ── Tabla base ──────────────────────────────────────────────── */
+        table { border-collapse: collapse; width: 100%; }
+
+        /* ── Roadmap horizontal (marca de 9 meses) ───────────────────── */
+        .rail { position: relative; }
+        .rail::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 0.8125rem;
+            height: 2px;
+            background: linear-gradient(90deg, #F18446 0%, #BED4CF 100%);
+            z-index: 0;
+        }
+        .rail > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Impresión ───────────────────────────────────────────────── */
+        @media print {
+            @page { size: Letter portrait; margin: 10mm; }
+            .no-print { display: none !important; }
+            body { background: #FBF3E4 !important; }
+            section { break-inside: avoid; page-break-inside: avoid; }
+            table  { break-inside: avoid; page-break-inside: avoid; }
+            .page-break { break-before: page; page-break-before: always; }
+        }
+    </style>
+</head>
+<body class="bg-plata antialiased">
+
+<div class="max-w-4xl mx-auto shadow-2xl bg-jengibre">
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  1 · PORTADA                                              -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="cover-geo relative overflow-hidden bg-morazul text-white"
+             style="border-bottom: 8px solid #F18446;">
+
+        <div class="relative px-10 py-14 sm:px-16 sm:py-16">
+
+            <!-- Co-branding header -->
+            <div class="flex items-start justify-between mb-14 flex-wrap gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="data:image/jpeg;base64,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4p6PcKyNe0KDV2t5/Pltbu2OYbiE/Mv+Na9FKcIzXLJaDp1JU5c0HZnP3HhlL61kh1bUrq/ZlwjNtQRn1VQMZ9zmrVzosdz4ebRZrud0ZAhmYguQCD6Y7VrUVCo01fTfQ0eJqu2uzuvJkdtCtvbxQISViQICeuAMVFqVlb6jYzWV0paGZdrAHB+o96s0Vo4prlexipSUuZPUw9L0GSyMSy6xe3UEGPKhdgqjHTOBlsehOKtJpMK6++tebIZngEOzjaBnOfXNaVFQqUEkktjWWIqSbbe+hT1iwj1TTLjT5ZGjSddpZMZHOeM1JHZwLpyae6+bAsQiKvzuUDHNWKKrljfmtqZ+0ko8t9L3+ZzFt4WmsWZNL169s7VjnyMK4X6FhxW5p9hFYwtGkkszyHdJLM+53PTJP9BxVuiohRhD4Ua1MRVq/G/y/Hv8zO0DSYdF08WUEskq72fdJjOSfarGpWNtqVlLZXcfmQyjDDp9CPerNFWoRUeS2hm6s3P2jeu9zBttD1G2hFrH4iu/sqjaqmNC6r6ByM1q6dZW2nWkdpax7Ik9TkknkknuSe9WaKmFKMNiqladRWk/wS/IKKKK1MQooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiiiwBRRRRYAoooosAUUUUWAKKKKLAFFFFFgCiiiiwBRRRRYAoooosAUUUUWAKKKKLAFFFFFgCiiiiwBRRRRYAoooosAUUUUWAKKKKLAFFFFFgCiiigD//2Q==" alt="4Hands Partners"
+                         class="h-11 w-11 rounded-full object-cover flex-shrink-0"
+                         style="background:#fff;">
+                    <div>
+                        <p class="label text-lago">4Hands Partners</p>
+                        <p class="text-xs text-onix" style="font-family:'Satoshi',Arial,sans-serif;">GRCA · Desarrollo Sostenible</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="label text-lago">Lexnorma Group</p>
+                    <p class="text-xs text-onix" style="font-family:'Satoshi',Arial,sans-serif;">Cumplimiento · Normatividad · Aseguramiento</p>
+                </div>
+            </div>
+
+            <!-- Collaboration mark -->
+            <p class="label text-naranja tracking-[0.22em] mb-3">4Hands Partners × Lexnorma Group</p>
+
+            <!-- Tipo de documento -->
+            <p class="label text-lago tracking-widest mb-4">Propuesta de servicios profesionales</p>
+
+            <!-- Título principal -->
+            <h1 class="font-titles text-3xl sm:text-4xl leading-tight mb-6 max-w-xl">
+                Diagnóstico, diseño e implementación de Control Interno bajo SOC 1
+            </h1>
+
+            <!-- Acento naranja -->
+            <div class="w-16 h-1.5 bg-naranja mb-10 rounded-sm"></div>
+
+            <!-- Dirigido a + fecha -->
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                    <p class="label text-lago mb-1">Presentada a</p>
+                    <h2 class="font-titles text-2xl text-white leading-none">Lexnorma Group</h2>
+                    <p class="text-sm text-onix mt-2 max-w-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;text-align:left;">
+                        Para su presentación integral, en conjunto con 4Hands Partners,
+                        a <span class="text-lago">Russell Bedford GCT S.A.S</span>
+                    </p>
+                </div>
+                <div class="sm:text-right">
+                    <p class="label text-onix mb-1">Fecha</p>
+                    <p class="text-white text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                        Agosto de 2026
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  2 · APERTURA: EL CONTEXTO                               -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-white px-10 py-12 sm:px-16">
+
+        <p class="label text-naranja mb-6">El punto de partida</p>
+
+        <!-- Cita abierta -->
+        <div class="border-t-2 border-morazul pt-6 mb-8">
+            <p class="font-titles text-morazul text-xl sm:text-2xl leading-snug max-w-2xl">
+                La confianza de quien delega un proceso crítico se sostiene sobre controles
+                que se pueden demostrar, no solo afirmar.
+            </p>
+        </div>
+
+        <p class="text-gris leading-relaxed max-w-2xl mb-6 text-sm"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            Russell Bedford GCT S.A.S, como organización de servicios que participa en procesos
+            relevantes para el reporte financiero de sus entidades usuarias, encuentra en el
+            <strong>marco SOC 1 (ISAE 3402 / SSAE 18)</strong> la vía para acreditar de forma
+            independiente que sus controles están bien diseñados y operan con eficacia. Esta propuesta
+            traza la ruta para <strong>diagnosticar, diseñar e implementar</strong> ese sistema de
+            control interno y llegar <strong>listos para la atestación SOC 1</strong> dentro del plazo
+            del acompañamiento.
+        </p>
+
+        <!-- Nota sobre la estructura de colaboración -->
+        <div class="rounded-lg p-5 mb-10 border" style="background:rgba(190,212,207,0.2);border-color:rgba(190,212,207,0.6);">
+            <p class="label text-morazul mb-2">Sobre esta propuesta</p>
+            <p class="text-gris text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                4Hands Partners presenta este documento a <strong>Lexnorma Group</strong>. Ambas firmas
+                integran una sola oferta —criterio normativo, aseguramiento GRCA y capacidad analítica—
+                para ser presentada de manera conjunta a <strong>Russell Bedford GCT S.A.S</strong>,
+                entidad donde se ejecutará la consultoría.
+            </p>
+        </div>
+
+        <!-- Diagnóstico en tiras (no tarjetas idénticas) -->
+        <div class="rounded-lg overflow-hidden border border-plata">
+
+            <!-- Fila 1 -->
+            <div class="flex flex-col sm:flex-row">
+                <div class="sm:w-5/12 bg-morazul px-6 py-5">
+                    <p class="label text-lago mb-1">Naturaleza del reto</p>
+                    <p class="font-titles text-white text-base leading-snug mt-1">Organización de servicios</p>
+                </div>
+                <div class="sm:w-7/12 px-6 py-5 bg-white border-t sm:border-t-0 sm:border-l border-plata">
+                    <p class="text-gris text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                        Los servicios de Russell Bedford GCT inciden en la información financiera de sus
+                        entidades usuarias. Ese vínculo exige controles trazables, documentados y
+                        verificables por un auditor independiente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Fila 2 -->
+            <div class="flex flex-col sm:flex-row border-t border-plata">
+                <div class="sm:w-5/12 bg-tofu px-6 py-5">
+                    <p class="label text-morazul mb-1">Marco objetivo</p>
+                    <p class="font-titles text-morazul text-base leading-snug mt-1">SOC 1 · ISAE 3402 / SSAE 18</p>
+                </div>
+                <div class="sm:w-7/12 px-6 py-5 bg-white border-t sm:border-t-0 sm:border-l border-plata">
+                    <p class="text-gris text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                        Informe de aseguramiento sobre controles relevantes para el control interno
+                        del reporte financiero de las entidades usuarias. Ruta Tipo I (diseño) con
+                        preparación para Tipo II (eficacia operativa).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Fila 3 — énfasis especial -->
+            <div class="flex flex-col sm:flex-row border-t border-plata">
+                <div class="sm:w-5/12 px-6 py-5" style="background: rgba(190,212,207,0.25);">
+                    <p class="label text-morazul mb-1">Diferenciador del acompañamiento</p>
+                    <p class="font-titles text-morazul text-2xl leading-none mt-1">Datos + IA</p>
+                </div>
+                <div class="sm:w-7/12 px-6 py-5 bg-white border-t sm:border-t-0 sm:border-l border-plata">
+                    <p class="text-gris text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                        Los controles se implementan con prioridad en
+                        <strong class="text-morazul">modelos basados en datos y en poblaciones completas
+                        con analítica e inteligencia artificial</strong>, gestionando los riesgos del
+                        proceso, asegurando el control y la evidencia y anticipando excepciones previo a
+                        la evaluación independiente.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ── Valor e impacto del acompañamiento ─────────────────── -->
+        <div class="mt-10">
+
+            <div class="flex items-center gap-3 mb-7">
+                <p class="label text-naranja">Valor e impacto del acompañamiento</p>
+                <div class="flex-1 h-px bg-plata"></div>
+            </div>
+
+            <!-- Transformación: Hoy → Al cierre del acompañamiento -->
+            <div class="rounded-xl overflow-hidden border border-plata mb-8">
+                <div class="grid grid-cols-2">
+                    <div class="px-5 py-3" style="background:#F1F1F1;">
+                        <p class="label text-onix">Punto de partida</p>
+                    </div>
+                    <div class="px-5 py-3 bg-morazul">
+                        <p class="label text-lago">Listos para SOC 1</p>
+                    </div>
+                </div>
+
+                <!-- Fila 1 -->
+                <div class="grid grid-cols-2 border-t border-plata">
+                    <div class="px-5 py-4 bg-white border-r border-plata flex items-start gap-3">
+                        <span class="text-onix/40 text-xs mt-0.5 flex-shrink-0">—</span>
+                        <p class="text-onix text-sm leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Controles distribuidos en el conocimiento de las personas, sin descripción
+                            formal del sistema ni objetivos de control definidos
+                        </p>
+                    </div>
+                    <div class="px-5 py-4 bg-white flex items-start gap-3">
+                        <span class="text-naranja text-xs mt-0.5 flex-shrink-0">→</span>
+                        <p class="text-morazul text-sm font-medium leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Descripción del proceso y sistema y matriz de riesgos y controles
+                            (RCM) alineadas a objetivos de control SOC 1
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fila 2 -->
+                <div class="grid grid-cols-2 border-t border-plata" style="background:rgba(254,240,196,0.3);">
+                    <div class="px-5 py-4 border-r border-plata flex items-start gap-3">
+                        <span class="text-onix/40 text-xs mt-0.5 flex-shrink-0">—</span>
+                        <p class="text-onix text-sm leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Evidencia de control dispersa y validada manualmente sobre muestras reducidas
+                        </p>
+                    </div>
+                    <div class="px-5 py-4 flex items-start gap-3">
+                        <span class="text-naranja text-xs mt-0.5 flex-shrink-0">→</span>
+                        <p class="text-morazul text-sm font-medium leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Pruebas sobre poblaciones completas o con muestras fuertes con analítica,
+                            detección de anomalías por IA y evidencia trazable
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fila 3 -->
+                <div class="grid grid-cols-2 border-t border-plata">
+                    <div class="px-5 py-4 bg-white border-r border-plata flex items-start gap-3">
+                        <span class="text-onix/40 text-xs mt-0.5 flex-shrink-0">—</span>
+                        <p class="text-onix text-sm leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Incertidumbre frente a lo que un auditor de aseguramiento esperaría encontrar
+                        </p>
+                    </div>
+                    <div class="px-5 py-4 bg-white flex items-start gap-3">
+                        <span class="text-naranja text-xs mt-0.5 flex-shrink-0">→</span>
+                        <p class="text-morazul text-sm font-medium leading-snug" style="font-family:'Satoshi',Arial,sans-serif;">
+                            Simulacro de evaluación (atestación) con plan de mejora y remediación,
+                            y evidencias trazables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beneficios directos: strip asimétrico -->
+            <p class="label text-morazul mb-4">Lo que obtiene Russell Bedford GCT</p>
+            <div class="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-plata">
+
+                <div class="sm:w-5/12 p-7 bg-morazul flex flex-col justify-between gap-6">
+                    <div>
+                        <p class="label text-lago mb-2">Confianza de las entidades usuarias</p>
+                        <p class="kpi text-white" style="font-size:2.25rem; line-height:1;">Acreditada</p>
+                    </div>
+                    <div>
+                        <p class="label text-lago mb-2">Madurez del control interno</p>
+                        <p class="kpi text-naranja" style="font-size:2.25rem; line-height:1;">Elevada</p>
+                    </div>
+                    <div>
+                        <p class="label text-lago mb-2">Exposición ante la atestación</p>
+                        <p class="kpi text-lago" style="font-size:2.25rem; line-height:1;">Reducida</p>
+                    </div>
+                </div>
+
+                <div class="sm:w-7/12 flex flex-col divide-y divide-plata">
+
+                    <div class="p-5 bg-jengibre flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                             style="background:rgba(241,132,70,0.15);">
+                            <span class="text-naranja font-titles text-xs">01</span>
+                        </div>
+                        <div>
+                            <p class="font-subtitles text-morazul text-sm mb-1">
+                                Diferenciador comercial verificable
+                            </p>
+                            <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                                Un informe SOC 1 abre puertas con clientes que exigen aseguramiento
+                                independiente sobre sus proveedores de servicios.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-white flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                             style="background:rgba(190,212,207,0.45);">
+                            <span class="font-titles text-morazul text-xs">02</span>
+                        </div>
+                        <div>
+                            <p class="font-subtitles text-morazul text-sm mb-1">
+                                Riesgo operativo bajo control
+                            </p>
+                            <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                                Controles diseñados sobre riesgos reales, monitoreados con analítica que
+                                detecta desviaciones antes de que escalen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-jengibre flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                             style="background:rgba(9,62,94,0.1);">
+                            <span class="font-titles text-morazul text-xs">03</span>
+                        </div>
+                        <div>
+                            <p class="font-subtitles text-morazul text-sm mb-1">
+                                Capacidad instalada, no dependencia
+                            </p>
+                            <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                                Documentación, tableros y modelos quedan operables por el equipo interno
+                                para sostener el control y encarar el Tipo II.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  3 · ENFOQUE BASADO EN DATOS, ANALÍTICA E IA            -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-tofu px-10 py-12 sm:px-16 page-break">
+
+        <p class="label text-naranja mb-2">La columna vertebral del método</p>
+        <h2 class="font-titles text-morazul text-2xl sm:text-3xl mb-3">
+            Experiencia técnica y datos: dos palancas que se refuerzan
+        </h2>
+        <p class="text-gris text-sm mb-9 max-w-2xl leading-relaxed"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            El rigor del acompañamiento se sostiene sobre dos bases complementarias: la
+            <strong>experiencia profunda en finanzas, contabilidad y GRCA</strong> del equipo
+            consultor —que permite leer el riesgo real de cada control, no solo su forma documental—
+            y la <strong>analítica e inteligencia artificial</strong> como herramientas para amplificar
+            esa experiencia con datos. Ambas palancas son inseparables: los datos sin criterio
+            producen ruido; el criterio sin datos produce afirmaciones.
+        </p>
+
+        <!-- Cuatro capacidades — layout asimétrico, no tarjetas idénticas -->
+        <div class="flex flex-col sm:flex-row rounded-xl overflow-hidden border border-plata mb-8">
+            <div class="sm:w-1/4 p-6 bg-white border-b sm:border-b-0 sm:border-r border-plata">
+                <p class="kpi text-naranja mb-3" style="font-size:1.75rem;">GRCA</p>
+                <p class="font-subtitles text-morazul text-sm mb-2">Criterio experto</p>
+                <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Finanzas, contabilidad y gobierno corporativo como base técnica para identificar
+                    riesgos reales, diseñar controles con sentido y validar que la evidencia responde
+                    a lo que importa.
+                </p>
+            </div>
+            <div class="sm:w-1/4 p-6 border-b sm:border-b-0 sm:border-r border-plata" style="background:rgba(190,212,207,0.22);">
+                <p class="kpi text-morazul mb-3" style="font-size:1.75rem;">Datos</p>
+                <p class="font-subtitles text-morazul text-sm mb-2">Prioridad en cobertura</p>
+                <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Cuando el proceso, los equipos y los sistemas lo permiten, se trabaja sobre
+                    poblaciones completas. En todo caso, siempre con muestras robustas y adecuado
+                    aseguramiento sobre los riesgos del control.
+                </p>
+            </div>
+            <div class="sm:w-1/4 p-6 bg-white border-b sm:border-b-0 sm:border-r border-plata">
+                <p class="kpi text-naranja mb-3" style="font-size:1.75rem;">IA</p>
+                <p class="font-subtitles text-morazul text-sm mb-2">Detección, prevención y automatización</p>
+                <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Modelos que detectan patrones atípicos y rupturas de segregación de funciones,
+                    pero también que previenen fallas automatizando controles dentro del mismo proceso,
+                    reduciendo la dependencia de la intervención manual.
+                </p>
+            </div>
+            <div class="sm:w-1/4 p-6" style="background:rgba(254,240,196,0.4);">
+                <p class="kpi text-morazul mb-3" style="font-size:1.75rem;">CCM</p>
+                <p class="font-subtitles text-morazul text-sm mb-2">Monitoreo continuo</p>
+                <p class="text-gris text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Se diseña e implementa un esquema de monitoreo continuo de controles adaptado
+                    a la realidad de los sistemas y procesos de Russell Bedford GCT. Su alcance
+                    y frecuencia se definen durante el acompañamiento, con base en los riesgos
+                    prioritarios identificados.
+                </p>
+            </div>
+        </div>
+
+        <!-- Franja de refuerzo -->
+        <div class="rounded-lg p-6 border" style="background:rgba(9,62,94,0.05);border-color:rgba(9,62,94,0.12);">
+            <p class="text-morazul text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                <strong>Lo que el evaluador independiente encontrará:</strong> controles diseñados
+                con criterio técnico sólido, evidencia robusta y trazable, y un sistema de control
+                interno que no solo existe en papel, sino que opera y puede demostrarse.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  4 · LA RUTA · 9 MESES EN 5 ETAPAS                      -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-white px-10 py-12 sm:px-16 page-break">
+
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <p class="label text-naranja mb-2">La ruta al informe SOC 1</p>
+                <h2 class="font-titles text-morazul text-2xl sm:text-3xl leading-tight">
+                    Nueve meses, cinco etapas, un objetivo
+                </h2>
+            </div>
+            <div class="sm:text-right flex-shrink-0">
+                <p class="label text-onix mb-1">Inicio</p>
+                <p class="font-titles text-morazul text-lg leading-none">7 de septiembre de 2026</p>
+                <p class="text-onix text-xs mt-1" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Cierre estimado · mayo de 2027
+                </p>
+            </div>
+        </div>
+
+        <!-- Roadmap horizontal (riel de 9 meses) -->
+        <div class="rail grid grid-cols-3 sm:grid-cols-5 gap-x-2 gap-y-6 mb-12">
+            <div class="text-center px-1">
+                <div class="badge badge-sm bg-naranja text-white mx-auto mb-2">1</div>
+                <p class="label text-morazul leading-tight" style="font-size:0.6rem;">Diagnóstico</p>
+                <p class="text-onix text-[0.6rem] mt-1" style="font-family:'Satoshi',Arial,sans-serif;">Sep–Oct</p>
+            </div>
+            <div class="text-center px-1">
+                <div class="badge badge-sm bg-naranja text-white mx-auto mb-2">2</div>
+                <p class="label text-morazul leading-tight" style="font-size:0.6rem;">Diseño</p>
+                <p class="text-onix text-[0.6rem] mt-1" style="font-family:'Satoshi',Arial,sans-serif;">Oct–Dic</p>
+            </div>
+            <div class="text-center px-1">
+                <div class="badge badge-sm bg-naranja text-white mx-auto mb-2">3</div>
+                <p class="label text-morazul leading-tight" style="font-size:0.6rem;">Implementación</p>
+                <p class="text-onix text-[0.6rem] mt-1" style="font-family:'Satoshi',Arial,sans-serif;">Ene–Mar</p>
+            </div>
+            <div class="text-center px-1">
+                <div class="badge badge-sm bg-morazul text-white mx-auto mb-2">4</div>
+                <p class="label text-morazul leading-tight" style="font-size:0.6rem;">Pruebas piloto</p>
+                <p class="text-onix text-[0.6rem] mt-1" style="font-family:'Satoshi',Arial,sans-serif;">Abr</p>
+            </div>
+            <div class="text-center px-1">
+                <div class="badge badge-sm bg-morazul text-white mx-auto mb-2">5</div>
+                <p class="label text-morazul leading-tight" style="font-size:0.6rem;">Diag. previo</p>
+                <p class="text-onix text-[0.6rem] mt-1" style="font-family:'Satoshi',Arial,sans-serif;">May</p>
+            </div>
+        </div>
+
+        <!-- Detalle de etapas -->
+        <div class="space-y-5">
+
+            <!-- Etapa 1 -->
+            <div class="flex gap-4 items-start">
+                <div class="step-dot bg-naranja text-white">1</div>
+                <div class="flex-1 pb-5 border-b border-plata">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <p class="font-subtitles text-morazul text-base">Diagnóstico y definición de alcance</p>
+                        <span class="label text-onix">~8 semanas · Sep–Oct 2026</span>
+                    </div>
+                    <p class="text-gris text-sm leading-relaxed mt-2"
+                       style="font-family:'Satoshi',Arial,sans-serif;">
+                        Definición del alcance del sistema y de los servicios que impactan el reporte
+                        financiero de las entidades usuarias. Identificación de subcontratistas y de los
+                        controles complementarios de las entidades usuarias. Análisis de brecha contra
+                        objetivos de control SOC 1 y mapeo inicial de procesos, riesgos y controles con
+                        lectura analítica de los datos disponibles.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Etapa 2 -->
+            <div class="flex gap-4 items-start">
+                <div class="step-dot bg-naranja text-white">2</div>
+                <div class="flex-1 pb-5 border-b border-plata">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <p class="font-subtitles text-morazul text-base">Diseño del sistema de control interno</p>
+                        <span class="label text-onix">~10 semanas · Oct–Dic 2026</span>
+                    </div>
+                    <p class="text-gris text-sm leading-relaxed mt-2"
+                       style="font-family:'Satoshi',Arial,sans-serif;">
+                        Definición de objetivos de control y actividades de control. Construcción de la
+                        matriz de riesgos y controles y de la descripción del proceso y sistema. Diseño
+                        de indicadores (KPI/KRI) y de los tableros de monitoreo que soportarán la
+                        analítica. Definición de la estrategia de evidencia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Etapa 3 · Implementación + Datos e IA integradas -->
+            <div class="flex gap-4 items-start">
+                <div class="step-dot bg-naranja text-white">3</div>
+                <div class="flex-1 pb-5 border-b border-plata">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <p class="font-subtitles text-morazul text-base">Implementación basada en datos</p>
+                        <span class="label text-onix">~12 semanas · Ene–Mar 2027</span>
+                    </div>
+                    <p class="text-gris text-sm leading-relaxed mt-2"
+                       style="font-family:'Satoshi',Arial,sans-serif;">
+                        Puesta en operación de los controles diseñados y remediación de brechas del
+                        diagnóstico. Formalización de políticas, procedimientos y responsables.
+                        Implementación de controles clave y captura estructurada de evidencia desde el
+                        origen de los datos. En paralelo, se despliegan los modelos analíticos para
+                        detección y prevención, consolidando la capa de datos que da trazabilidad a la
+                        evidencia del sistema.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Etapa 4 -->
+            <div class="flex gap-4 items-start">
+                <div class="step-dot bg-morazul text-white">4</div>
+                <div class="flex-1 pb-5 border-b border-plata">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <p class="font-subtitles text-morazul text-base">Pruebas piloto</p>
+                        <span class="label text-onix">~4 semanas · Abr 2027</span>
+                    </div>
+                    <p class="text-gris text-sm leading-relaxed mt-2"
+                       style="font-family:'Satoshi',Arial,sans-serif;">
+                        Simulacro de evaluación con pruebas de diseño y de eficacia operativa de los
+                        controles implementados. Identificación de excepciones, plan de mejora y
+                        remediación.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Etapa 5 -->
+            <div class="flex gap-4 items-start">
+                <div class="step-dot bg-morazul text-white">5</div>
+                <div class="flex-1">
+                    <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <p class="font-subtitles text-morazul text-base">Diagnóstico previo a la evaluación independiente</p>
+                        <span class="label text-onix">~4 semanas · May 2027</span>
+                    </div>
+                    <p class="text-gris text-sm leading-relaxed mt-2"
+                       style="font-family:'Satoshi',Arial,sans-serif;">
+                        Revisión final del estado del sistema de control interno frente a los objetivos
+                        de control SOC 1. Consolidación de evidencias trazables y hoja de ruta de mejora
+                        continua. Al cierre, Russell Bedford GCT cuenta con un diagnóstico claro de su
+                        preparación y los elementos necesarios para afrontar la evaluación independiente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="text-onix text-xs mt-8 leading-relaxed"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            Las etapas y el cronograma se acuerdan y refinan de manera conjunta al iniciar el servicio.
+            Los tiempos son flexibles y dependen de la disponibilidad de información y de los equipos de
+            Russell Bedford GCT. La emisión del informe SOC 1 la realiza un auditor de aseguramiento
+            independiente; el alcance de esta propuesta es dejar a la organización lista para esa atestación.
+        </p>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  5 · CONSULTORÍA INICIAL DE CONTEXTO (2 HORAS)          -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-morazul text-white px-10 py-12 sm:px-16">
+
+        <div class="flex flex-col sm:flex-row gap-8 items-start">
+
+            <div class="sm:w-7/12">
+                <p class="label text-naranja mb-3">Antes de empezar · Paso 0</p>
+                <h2 class="font-titles text-white text-2xl sm:text-3xl leading-tight mb-4">
+                    Consultoría inicial de contexto
+                </h2>
+                <p class="text-lago text-sm leading-relaxed mb-5" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Una sesión de <strong class="text-white">dos horas</strong> para conocer de primera mano
+                    el proceso, alinear expectativas y precisar el alcance antes de comprometer el proyecto
+                    de nueve meses. Es la forma de asegurar que cada etapa parta de un entendimiento común.
+                </p>
+                <ul class="text-lago text-sm space-y-2.5" style="font-family:'Satoshi',Arial,sans-serif;">
+                    <li class="flex items-start gap-2">
+                        <span class="text-naranja text-xs mt-0.5">●</span>
+                        Entendimiento del proceso, los servicios y las entidades usuarias.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-naranja text-xs mt-0.5">●</span>
+                        Entendimiento general de prioridades frente al marco SOC 1.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-naranja text-xs mt-0.5">●</span>
+                        Precisión conjunta del alcance y de las prioridades del proyecto.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Ficha de precio consultoría -->
+            <div class="sm:w-5/12 w-full rounded-xl p-7 flex flex-col gap-4"
+                 style="background:rgba(255,255,255,0.06);border:1px solid rgba(190,212,207,0.3);">
+                <div>
+                    <p class="label text-lago mb-1">Tarifa profesional</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="kpi text-naranja" style="font-size:2.5rem;">$450.000</span>
+                        <span class="text-lago text-sm" style="font-family:'Satoshi',Arial,sans-serif;">/ hora</span>
+                    </div>
+                    <p class="text-white/50 text-xs mt-1" style="font-family:'Satoshi',Arial,sans-serif;">+ IVA</p>
+                </div>
+                <div class="h-px bg-white/15"></div>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <p class="label text-lago mb-1">Sesión de contexto</p>
+                        <p class="text-white text-sm" style="font-family:'Satoshi',Arial,sans-serif;">2 horas</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="kpi text-white" style="font-size:1.75rem;">$900.000</span>
+                        <p class="text-white/50 text-xs mt-0.5" style="font-family:'Satoshi',Arial,sans-serif;">+ IVA</p>
+                    </div>
+                </div>
+                <p class="text-white/45 text-xs leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Servicio independiente y previo. Facturable por separado a la aceptación de la sesión.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  6 · EQUIPO                                               -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-jengibre px-10 py-12 sm:px-16">
+
+        <p class="label text-naranja mb-2">El equipo</p>
+        <h2 class="font-titles text-morazul text-2xl sm:text-3xl mb-2">
+            Tres capacidades, una sola oferta integral
+        </h2>
+        <p class="text-gris text-sm mb-10 max-w-2xl leading-relaxed"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            La colaboración entre 4Hands Partners y Lexnorma Group reúne el criterio en gobierno,
+            riesgos, control interno y aseguramiento, la capacidad analítica y de IA, y el dominio
+            técnico. Russell Bedford GCT recibe el espectro completo en un equipo coordinado.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-8">
+
+            <!-- Yuly -->
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-5">
+                    <img src="data:image/jpeg;base64,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" alt="Yuly Alejandra Jaramillo Henao"
+                         class="w-16 h-16 rounded-full object-cover flex-shrink-0">
+                    <div>
+                        <h3 class="font-subtitles text-morazul text-base leading-snug tracking-wide">
+                            Yuly Alejandra Jaramillo Henao
+                        </h3>
+                        <p class="label text-naranja mt-0.5">4Hands Partners</p>
+                    </div>
+                </div>
+                <p class="text-gris text-sm mb-3" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Contadora Pública · Auditora · Gestión de riesgos · Control Interno · Cumplimiento · Gobierno Corporativo · Sostenibilidad · GRCA
+                </p>
+            </div>
+
+            <!-- Separador vertical -->
+            <div class="hidden sm:block w-px bg-plata flex-shrink-0"></div>
+
+            <!-- Juan -->
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-5">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUEBAQEAwUEBAQGBQUGCA0ICAcHCBALDAkNExAUExIQEhIUFx0ZFBYcFhISGiMaHB4fISEhFBkkJyQgJh0gISD/2wBDAQUGBggHCA8ICA8gFRIVICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAEYARgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiisDxH4z8L+ErVrjxBrVtYgDIjd8yN9EHJ/KgDforxN/2mvh2ZhHbQatc84YpbqMfgXBNS3H7SXw+t/vQ6rk/dU2wUn8CwqOePcrll2PZ6K820D42+A9fZlF5caaQMj7dD5YcexBI/Ou40nXtF12Az6NqtpqEY6m3lV9v1A6fjVJp7Caa3NGiiimIKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigA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" alt="Especialista en datos e IA"
+                         class="w-16 h-16 rounded-full object-cover flex-shrink-0">
+                    <div>
+                        <h3 class="font-subtitles text-morazul text-base leading-snug tracking-wide">Juan David Jaramillo</h3>
+                        <p class="label text-naranja mt-0.5">4Hands Partners</p>
+                    </div>
+                </div>
+                <p class="text-gris text-sm mb-3" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Contador · Desarrollo de Software · Analítica de Datos · Automatización con IA
+                </p>
+            </div>
+
+            <!-- Separador vertical -->
+            <div class="hidden sm:block w-px bg-plata flex-shrink-0"></div>
+
+            <!-- Lexnorma Group -->
+            <div class="flex-1">
+                <div class="flex items-center gap-4 mb-5">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                         style="background:#093E5E;">
+                        <span class="font-titles text-lago" style="font-size:1.1rem;">LX</span>
+                    </div>
+                    <div>
+                        <h3 class="font-subtitles text-morazul text-base leading-snug tracking-wide">Lexnorma Group</h3>
+                        <p class="label text-naranja mt-0.5">Firma colaboradora</p>
+                    </div>
+                </div>
+                <p class="text-gris text-sm mb-3" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Cumplimiento · Marco normativo · Aseguramiento · Relación con el cliente
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  7 · RESUMEN ECONÓMICO                                    -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-white px-10 py-12 sm:px-16 page-break">
+
+        <p class="label text-naranja mb-2">Resumen económico</p>
+        <h2 class="font-titles text-morazul text-2xl sm:text-3xl mb-3">
+            Anticipo e inversión por etapa
+        </h2>
+        <p class="text-gris text-sm mb-8 max-w-2xl leading-relaxed"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            El proyecto inicia con un <strong>anticipo del 30%</strong> al momento de la firma del contrato.
+            El 70% restante se distribuye en pagos al cierre y aceptación de cada etapa, proporcionales
+            al esfuerzo estimado. Los valores son estimados y se formalizan en el contrato correspondiente.
+        </p>
+
+        <!-- Tabla de precios -->
+        <div class="overflow-x-auto rounded-lg border border-plata shadow-sm">
+            <table>
+                <thead>
+                    <tr class="bg-morazul text-white">
+                        <th class="text-left px-6 py-4 font-titles font-normal text-base">Etapa</th>
+                        <th class="text-center px-4 py-4 label text-lago whitespace-nowrap">Facturación</th>
+                        <th class="text-right px-6 py-4 label text-lago whitespace-nowrap">Valor · COP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Anticipo inicial 30% -->
+                    <tr class="border-b border-plata" style="background:rgba(9,62,94,0.06);">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-morazul text-white" style="font-size:0.6rem;">30%</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Anticipo inicial · firma del contrato
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al inicio</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$54.000.000</td>
+                    </tr>
+                    <!-- Etapa 1 -->
+                    <tr class="bg-white border-b border-plata">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-naranja text-white">1</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Diagnóstico y definición de alcance
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al cierre</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$26.000.000</td>
+                    </tr>
+                    <!-- Etapa 2 -->
+                    <tr class="border-b border-plata" style="background:rgba(254,240,196,0.25);">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-naranja text-white">2</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Diseño del sistema de control interno
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al cierre</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$33.000.000</td>
+                    </tr>
+                    <!-- Etapa 3 · Implementación + Datos e IA -->
+                    <tr class="bg-white border-b border-plata">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-naranja text-white">3</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Implementación basada en datos
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al cierre</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$40.000.000</td>
+                    </tr>
+                    <!-- Etapa 4 -->
+                    <tr class="bg-white border-b border-plata">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-morazul text-white">4</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Pruebas piloto
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al cierre</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$13.000.000</td>
+                    </tr>
+                    <!-- Etapa 5 -->
+                    <tr class="border-b border-plata" style="background:rgba(254,240,196,0.25);">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="badge badge-sm bg-morazul text-white">5</span>
+                                <p class="font-medium text-morazul text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                                    Diagnóstico previo a la evaluación independiente
+                                </p>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-center label text-onix">Al cierre</td>
+                        <td class="px-6 py-4 text-right font-titles text-morazul text-lg">$14.000.000</td>
+                    <tr style="background:rgba(9,62,94,0.06);">
+                        <td colspan="2" class="px-6 py-5">
+                            <p class="font-titles text-morazul text-base leading-none">
+                                Inversión total del proyecto · 9 meses
+                            </p>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                            <p class="font-titles text-naranja text-2xl">$180.000.000</p>
+                            <p class="text-onix text-xs mt-0.5" style="font-family:'Satoshi',Arial,sans-serif;">
+                                COP · no incluye IVA
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Línea separada: consultoría inicial -->
+        <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg px-6 py-4 border"
+             style="background:rgba(190,212,207,0.2);border-color:rgba(190,212,207,0.6);">
+            <div class="flex items-center gap-3">
+                <span class="badge badge-sm bg-lago text-morazul">0</span>
+                <p class="text-gris text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                    <strong class="text-morazul">Consultoría inicial de contexto</strong> · 2 horas · previa e independiente
+                </p>
+            </div>
+            <p class="font-titles text-morazul text-lg sm:text-right">
+                $900.000 <span class="text-onix text-xs font-paragraphs">+ IVA</span>
+            </p>
+        </div>
+
+        <p class="text-onix text-xs mt-4 leading-relaxed max-w-2xl"
+           style="font-family:'Satoshi',Arial,sans-serif;">
+            Valores estimados en pesos colombianos (COP). Cifras antes de adicionar IVA. Sujeto a
+            revisión y precisión según el alcance tras la consultoría inicial y el diagnóstico. La
+            emisión del informe de aseguramiento SOC 1 por parte del auditor independiente no está
+            incluida en este alcance.
+        </p>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  8 · CONDICIONES COMERCIALES                              -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-jengibre px-10 py-12 sm:px-16">
+
+        <p class="label text-naranja mb-6">Condiciones comerciales</p>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-8">
+
+            <!-- Facturación y pago -->
+            <div class="border border-plata rounded-lg p-5 bg-white">
+                <p class="label text-morazul mb-3">Facturación y pago</p>
+                <ul class="text-gris text-sm space-y-2" style="font-family:'Satoshi',Arial,sans-serif;">
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        Facturación con <strong>anticipo del 30%</strong> a la firma del contrato y el 70% restante al <strong>cierre y aceptación de cada etapa</strong>.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        El pago por etapa se factura al <strong>cierre y aceptación de la etapa</strong> o al
+                        <strong>finalizar las semanas estimadas para la etapa</strong>, si por restricciones
+                        del cliente no se ha podido avanzar en el servicio.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        Plazo de pago: 15 días calendario por factura.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        El valor indicado no incluye IVA, el cual será adicionado en la facturación.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        La consultoría inicial de 2 horas se factura por separado a su realización.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Cronograma y alcance -->
+            <div class="border border-plata rounded-lg p-5 bg-white">
+                <p class="label text-morazul mb-3">Cronograma y alcance</p>
+                <ul class="text-gris text-sm space-y-2" style="font-family:'Satoshi',Arial,sans-serif;">
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        Etapas y cronograma se acuerdan conjuntamente al iniciar.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        Demoras en la entrega de información trasladan el cronograma en igual proporción.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        La atestación SOC 1 la emite un auditor de aseguramiento independiente.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        <span><strong>Otros valores — gastos de viaje y costos logísticos:</strong> el valor
+                        no incluye estos rubros. En caso de identificar la necesidad de estos, se
+                        informarán y acordarán conjuntamente antes de su ejecución.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-lago text-xs mt-0.5">○</span>
+                        Cambios futuros en las expectativas, alcance, normatividad, complejidad, riesgos
+                        significativos, actividades y/o en la cobertura del servicio, se analizará
+                        conjuntamente su efecto en el valor estimado para efectuar los ajustes a que haya
+                        lugar de común acuerdo.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Consideraciones generales -->
+        <p class="label text-morazul mb-4">Consideraciones generales</p>
+        <ul class="text-gris text-sm space-y-2.5 max-w-2xl"
+            style="font-family:'Satoshi',Arial,sans-serif;">
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                Es relevante asegurar la disponibilidad y responsabilidad de la administración,
+                responsables de procesos y sus equipos y/o entidades aplicables.
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                Se requiere la información completa y oportuna durante el proceso. Si la información
+                requiere un esfuerzo significativo no razonable en preparación y limpieza por su
+                dispersión, inconsistencias, indisponibilidad o manualidad, se revisará conjuntamente
+                efectos adicionales en honorarios.
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                La estimación de tiempos es flexible y adaptable según la disponibilidad que sea
+                acordada, durante el tiempo previsto en las etapas y cronograma.
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                Se realizará acuerdo de confidencialidad y/o contrato firmado, según acuerdo conjunto.
+                El servicio se presta de manera remota y eventualmente presencial cuando sea requerido
+                para alguno de sus componentes o etapas.
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                Los representantes legales y/o administradores del cliente son los responsables de las
+                decisiones, gestión, riesgos asumidos, acciones y consecuencias que se deriven de los
+                conceptos, diseño, estrategias, alternativas y/o recomendaciones que se proponen en
+                la prestación del servicio.
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-naranja text-xs mt-0.5">●</span>
+                Una vez se inicie el servicio se hará debida diligencia ampliada de la entidad, sus
+                representantes legales y/o socios, así como de sus beneficiarios finales. Si se
+                identifican situaciones que revisten riesgo significativo, se revisarán las condiciones
+                del contrato y/o su continuidad si fuese necesario.
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  9 · QUIÉNES SOMOS                                          -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="px-10 py-12 sm:px-16 page-break" style="background:rgba(190,212,207,0.15);">
+
+        <p class="label text-naranja mb-6">Sobre las firmas</p>
+
+        <!-- Cita de posicionamiento -->
+        <div class="border-t-2 border-morazul pt-6 mb-8">
+            <p class="font-titles text-morazul text-xl sm:text-2xl leading-snug max-w-2xl">
+                Una red de consultoría colaborativa profesional en servicios integrados de GRCA
+                para el desarrollo sostenible.
+            </p>
+            <p class="text-onix text-xs mt-2" style="font-family:'Satoshi',Arial,sans-serif;">
+                *G: Gobierno · R: Riesgo · C: Cumplimiento y control · A: Aseguramiento
+            </p>
+        </div>
+
+        <!-- Propósito + ejes (layout asimétrico) -->
+        <div class="flex flex-col sm:flex-row gap-6 mb-8">
+
+            <div class="sm:w-7/12 bg-morazul rounded-xl p-7">
+                <p class="label text-lago mb-3">Nuestro propósito</p>
+                <p class="text-white text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Movilizar el desarrollo consciente y ético de personas y negocios, a través del
+                    acompañamiento profesional de una red que transforma capacidades, crea y comparte
+                    conocimiento, perspectivas y opiniones.
+                </p>
+                <div class="mt-5 pt-5 border-t border-white/15">
+                    <p class="label text-lago mb-2">Esta oferta, en colaboración</p>
+                    <p class="text-white/80 text-sm leading-relaxed" style="font-family:'Satoshi',Arial,sans-serif;">
+                        4Hands Partners y Lexnorma Group integran criterio GRCA, capacidad analítica y
+                        dominio normativo para acompañar a Russell Bedford GCT hacia el aseguramiento SOC 1.
+                    </p>
+                </div>
+            </div>
+
+            <div class="sm:w-5/12 flex flex-col gap-3">
+                <div class="flex items-center gap-3 bg-white rounded-lg px-5 py-4 border border-plata">
+                    <span class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                          style="background:rgba(241,132,70,0.15);">
+                        <span class="text-naranja font-titles text-xs">1</span>
+                    </span>
+                    <p class="font-subtitles text-morazul text-sm">Red colaborativa</p>
+                </div>
+                <div class="flex items-center gap-3 rounded-lg px-5 py-4 border border-plata"
+                     style="background:rgba(190,212,207,0.25);">
+                    <span class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                          style="background:rgba(190,212,207,0.55);">
+                        <span class="font-titles text-morazul text-xs">2</span>
+                    </span>
+                    <p class="font-subtitles text-morazul text-sm">Sostenibilidad</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white rounded-lg px-5 py-4 border border-plata">
+                    <span class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                          style="background:rgba(9,62,94,0.1);">
+                        <span class="font-titles text-morazul text-xs">3</span>
+                    </span>
+                    <p class="font-subtitles text-morazul text-sm">Conocimiento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosistema GRCA -->
+        <p class="label text-morazul mb-4">Ecosistema de servicios</p>
+        <div class="rounded-xl overflow-hidden border border-plata mb-8">
+            <div class="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-plata">
+                <div class="flex-1 px-5 py-5 bg-white">
+                    <p class="label text-naranja mb-1">G</p>
+                    <p class="font-subtitles text-morazul text-sm">Gobierno corporativo</p>
+                </div>
+                <div class="flex-1 px-5 py-5" style="background:rgba(254,240,196,0.4);">
+                    <p class="label text-naranja mb-1">R</p>
+                    <p class="font-subtitles text-morazul text-sm">Riesgo</p>
+                </div>
+                <div class="flex-1 px-5 py-5 bg-white">
+                    <p class="label text-naranja mb-1">C</p>
+                    <p class="font-subtitles text-morazul text-sm">Cumplimiento y control</p>
+                </div>
+                <div class="flex-1 px-5 py-5" style="background:rgba(190,212,207,0.25);">
+                    <p class="label text-naranja mb-1">A</p>
+                    <p class="font-subtitles text-morazul text-sm">Aseguramiento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA portafolio -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-5 border-t border-plata">
+            <p class="text-gris text-sm max-w-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                Conozca el alcance completo de nuestros servicios profesionales para el desarrollo
+                sostenible de personas y organizaciones.
+            </p>
+            <a href="https://4handsp-my.sharepoint.com/:b:/g/personal/dir_ejecutiva_4hands_co/IQCAC7MBj1PhS4TqLI8SPDdiAeTuNYSolhy13rLrpLH02og?e=HCZR1U"
+               target="_blank"
+               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-colors flex-shrink-0"
+               style="background:#F18446;color:#fff;font-family:'Satoshi',Arial,sans-serif;text-decoration:none;">
+                Ver portafolio de servicios →
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  10 · CONTACTO / VIGENCIA                                 -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <section class="bg-nocturno text-white px-10 py-12 sm:px-16"
+             style="border-top: 4px solid #F18446;">
+
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8 mb-10">
+
+            <!-- 4Hands -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-naranja flex items-center justify-center flex-shrink-0">
+                        <span style="font-family:'Ibrand',sans-serif;font-size:0.5rem;">4H</span>
+                    </div>
+                    <div>
+                        <p class="font-titles text-white text-lg leading-none">4Hands Partners</p>
+                        <p class="label text-onix mt-0.5">S.A.S BIC</p>
+                    </div>
+                </div>
+                <div class="space-y-1.5 text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                    <p class="text-white/60">Yuly Alejandra Jaramillo Henao</p>
+                    <a href="tel:+573054697173" class="block text-lago hover:text-white transition-colors">
+                        +57 305 469 7173
+                    </a>
+                    <a href="mailto:info@4hands.co" class="block text-lago hover:text-white transition-colors">
+                        info@4hands.co
+                    </a>
+                    <a href="https://outlook.office.com/owa/calendar/G5971dc3fcb4f48d0bac65b2df4960085@4Hands.co/bookings/?ismsaljsauthenabled"
+                       target="_blank"
+                       class="block text-naranja hover:text-white transition-colors">
+                        Agendar reunión →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Lexnorma -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                         style="background:#BED4CF;">
+                        <span class="font-titles text-morazul text-xs">LX</span>
+                    </div>
+                    <div>
+                        <p class="font-titles text-white text-lg leading-none">Lexnorma Group</p>
+                        <p class="label text-onix mt-0.5">Firma colaboradora</p>
+                    </div>
+                </div>
+                <p class="text-lago text-sm" style="font-family:'Satoshi',Arial,sans-serif;">
+                    Oferta conjunta coordinada con 4Hands Partners
+                </p>
+            </div>
+
+            <!-- Vigencia -->
+            <div class="sm:text-right">
+                <p class="label text-onix mb-2">Vigencia de la propuesta</p>
+                <p class="font-titles text-naranja" style="font-size:2rem;line-height:1;">30 días</p>
+                <p class="text-white/40 text-xs mt-1" style="font-family:'Satoshi',Arial,sans-serif;">
+                    A partir de la fecha de presentación
+                </p>
+            </div>
+        </div>
+
+        <!-- Pie social + copyright -->
+        <div class="border-t border-white/10 pt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div class="flex gap-5 text-xs" style="font-family:'Satoshi',Arial,sans-serif;">
+                <a href="https://www.linkedin.com/company/4hands-partners/" target="_blank"
+                   class="text-onix hover:text-lago transition-colors">
+                    LinkedIn: 4Hands Partners
+                </a>
+                <a href="https://www.instagram.com/4hands_partners/" target="_blank"
+                   class="text-onix hover:text-lago transition-colors">
+                    Instagram: @4hands_partners
+                </a>
+            </div>
+            <p class="text-onix text-xs" style="font-family:'Satoshi',Arial,sans-serif;">
+                © 2026 4Hands Partners S.A.S BIC · Lexnorma Group. Todos los derechos reservados.
+            </p>
+            <p class="text-onix text-xs mt-2 text-center sm:text-right" style="font-family:'Satoshi',Arial,sans-serif;letter-spacing:0.04em;">
+                Confidencial · Propuesta preparada exclusivamente para el cliente
+            </p>
+        </div>
+
+    </section>
+
+</div><!-- /max-w-4xl -->
+
+</body>
+</html>
